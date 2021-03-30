@@ -1,0 +1,29 @@
+{
+    "root": true,
+    "extends": [
+      "airbnb",
+      "airbnb/hooks",
+      "plugin:@typescript-eslint/recommended"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "plugins": ["@typescript-eslint"],
+    //Ref: https://stackoverflow.com/a/55280867
+    "settings": {
+      "import/resolver": {
+        "node": {
+          "extensions": [".js", ".jsx", ".ts", ".tsx"]
+        }
+      }
+    },
+    "rules": {
+      // Ref: https://hini7.tistory.com/147
+      "import/extensions": [
+        "off"
+      ],
+      // Ref: https://stackoverflow.com/questions/55614983/jsx-not-allowed-in-files-with-extension-tsxeslintreact-jsx-filename-extensio
+      "react/jsx-filename-extension": [2, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
+      // Ref: https://stackoverflow.com/a/64024916
+      "no-use-before-define": "off",
+      "@typescript-eslint/no-use-before-define": ["error"]
+    }
+}
