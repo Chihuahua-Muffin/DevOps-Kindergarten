@@ -11,7 +11,8 @@
     "settings": {
       "import/resolver": {
         "node": {
-          "extensions": [".js", ".jsx", ".ts", ".tsx"]
+          "extensions": [".js", ".jsx", ".ts", ".tsx"],
+          "paths": ["src"]
         }
       }
     },
@@ -24,6 +25,8 @@
       "react/jsx-filename-extension": [2, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
       // Ref: https://stackoverflow.com/a/64024916
       "no-use-before-define": "off",
-      "@typescript-eslint/no-use-before-define": ["error"]
+      "@typescript-eslint/no-use-before-define": ["error"],
+      "arrow-body-style": "off",
+      "@typescript-eslint/explicit-module-boundary-types": "off"
     }
 }
