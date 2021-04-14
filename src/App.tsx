@@ -1,15 +1,21 @@
 import React from 'react';
-import './App.css';
+import styles from 'styled-components';
+import LoadMap from 'pages/LoadMap';
+import Header from 'components/Header';
+
+const Container = styles.body`
+  display: flex;
+  flex-direction: column;
+  widht: 100%:
+  height: 100%;
+`;
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          DevOps Kindergarten
-        </p>
-      </header>
-    </div>
+    <Container>
+      <Header />
+      <LoadMap />
+    </Container>
   );
 }
 
