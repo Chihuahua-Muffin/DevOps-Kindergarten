@@ -6,6 +6,7 @@
     "build": "next build",
     "prestart": "next build",
     "start": "next start",
+    "eslint": "eslint ./src --ext .tsx,.ts --cache --ignore-pattern .gitignore",
     "type-check": "tsc"
   },
   "dependencies": {
