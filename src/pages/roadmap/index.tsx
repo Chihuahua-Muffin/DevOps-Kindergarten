@@ -1,24 +1,43 @@
-import { useRouter } from 'next/router';
 import {
   chakra,
+  Grid,
   Box,
 } from '@chakra-ui/react';
 
-const Container = chakra(Box, {
+const Container = chakra(Grid, {
   baseStyle: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    height: "100%",
+    gridTemplateColumns: "repeat(12, 1fr)",
+    gridTemplateRows: "repeat(12, 1fr)",
+    gap: 6,
+  },
+});
+
+const Item = chakra(Box, {
+  baseStyle: {
+    width: "100%",
+    height: "10",
+    backgroundColor: "blue.500"
   },
 });
 
 const RoadMapPage = () => {
-  const router = useRouter();
-
   return (
     <Container>
-      {router.pathname} 페이지 입니다.
+      <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item />
+      <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item />
+      <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item />
+      <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item />
+      <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item />
+      <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item />
+      <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item />
+      <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item />
+      <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item />
+      <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item />
+      <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item />
+      <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item />
+      <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item />
+      <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item />
+      <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item />
     </Container>
   );
 };
