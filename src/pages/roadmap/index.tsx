@@ -3,6 +3,7 @@ import {
   Grid,
   Box,
 } from '@chakra-ui/react';
+import Field from '#/components/dictionary/Field';
 
 const Container = chakra(Grid, {
   baseStyle: {
@@ -28,7 +29,7 @@ const RoadMapPage = () => {
       <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item />
       <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item />
       <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item />
-      <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item />
+      <Item /> <Item /> <Item /> <Item /> <Item /> <Field /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item />
       <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item />
       <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item />
       <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item />
