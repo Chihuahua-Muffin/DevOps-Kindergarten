@@ -5,6 +5,7 @@ import {
   Text,
   Tooltip,
 } from '@chakra-ui/react';
+import Link from 'next/link';
 
 const Container = chakra(Box, {
   baseStyle: {
@@ -17,6 +18,7 @@ const Container = chakra(Box, {
     transition: "all 0.3s cubic-bezier(.25,.8,.25,1)",
     "&:hover": {
       boxShadow: "0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)",
+      cursor: "pointer",
     },
   },
 });
@@ -26,11 +28,13 @@ const Container = chakra(Box, {
 const Field = () => {
   return (
     <Tooltip hasArrow gutter={20} label="CD에 대한 간략한 설명" bg="teal.300" color="white">
-      <Container>
-        <Heading as="h1">CD</Heading>
-        <Text color="gray.500">Continuous Delivery</Text>
-        <Text color="gray.500">지속적 전달</Text>
-      </Container>
+      <Link href="/explain/CD">
+        <Container>
+          <Heading as="h1">CD</Heading>
+          <Text color="gray.500">Continuous Delivery</Text>
+          <Text color="gray.500">지속적 전달</Text>
+        </Container>
+      </Link>
     </Tooltip>
   );
 };
