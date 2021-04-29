@@ -1,7 +1,6 @@
 import {
   chakra,
   Grid,
-  Box,
 } from '@chakra-ui/react';
 import Field from '#/components/dictionary/Field';
 
@@ -13,32 +12,10 @@ const Container = chakra(Grid, {
   },
 });
 
-const Item = chakra(Box, {
-  baseStyle: {
-    width: "100%",
-    height: "10",
-    backgroundColor: "blue.500"
-  },
-});
-
 const RoadMapPage = () => {
   return (
     <Container>
-      <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item />
-      <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item />
-      <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item />
-      <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item />
-      <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item />
-      <Item /> <Item /> <Item /> <Item /> <Item /> <Field /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item />
-      <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item />
-      <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item />
-      <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item />
-      <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item />
-      <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item />
-      <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item />
-      <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item />
-      <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item />
-      <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item /> <Item />
+      <Field />
     </Container>
   );
 };
