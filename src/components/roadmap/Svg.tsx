@@ -12,9 +12,10 @@ const PathBox = chakra(Box, {
     width: '1000px',
     height: '100%',
     margin: 'auto',
-    zIndex: '-10',
+    zIndex: '-1',
     "& path": {
       strokeDasharray: "1300",
+      opacity: "0.1",
       animation: "dash 4s linear infinite",
     },
     "& svg" : {
