@@ -114,7 +114,8 @@ const RoadMapPage = () => {
         <FieldContainer>
           {fields.map((field) => {
             return (
-              <Field 
+              <Field
+                key={field.id}
                 id={field.id}
                 icon={field.icon}
                 title={field.title}
