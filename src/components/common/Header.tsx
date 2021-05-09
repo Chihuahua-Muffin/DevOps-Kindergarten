@@ -17,6 +17,8 @@ const HeaderContainer = chakra(Box, {
     backgroundColor: "white",
     top: "0",
     height: "80px",
+    width: '100%',
+    zIndex: "5",
   },
 });
 

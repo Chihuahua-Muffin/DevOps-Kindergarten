@@ -3,7 +3,7 @@ import Head from 'next/head';
 
 // 모든 페이지에 적용되는 컴포넌트
 export const Layout: React.FunctionComponent = props =>
-  <div id="layout">
+  <div>
     <Head>
       <meta
         name="viewport"
