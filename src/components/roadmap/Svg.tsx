@@ -14,17 +14,20 @@ const PathBox = chakra(Box, {
     margin: 'auto',
     zIndex: '-1',
     "& path": {
-      strokeDasharray: "1300",
+      strokeDasharray: "2600",
       opacity: "0.1",
-      animation: "dash 4s linear infinite",
+      animation: "dash 3s ease-in-out infinite",
     },
     "& svg" : {
       width: "100%",
       height: '600px',
     },
     "@keyframes dash": {
+      from: {
+        strokeDashoffset: "5200",
+      },
       to: {
-        strokeDashoffset: "2600",
+        strokeDashoffset: "0",
       }
     },
   },
@@ -40,18 +43,19 @@ const RoadmapSvg = () => {
     <PathBox>
       <svg>
         <path 
-          stroke="#1E1935"
-          strokeWidth="50"
+          stroke="#b8b9b9"
+          strokeWidth="20"
+          strokeLinecap="round"
           fill="none" 
-          d="M300,100 Q500,100
+          d="M300,500 Q100,500
+            100,300 100,100
+            300,100 500,100
             500,300 500,500
             700,500 900,500
             900,300 900,100
             700,100 500,100
             500,300 500,500
-            300,500 100,500
-            100,300 100,100
-            300,100"
+            300,500"
         />
       </svg>
     </PathBox>
