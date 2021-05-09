@@ -41,7 +41,7 @@ const Field = ({
   gridColumn,
 }: FieldProps) => {
   return (
-    <Tooltip key={id} label={title}>
+    <Tooltip label={title}>
       <Box gridColumn={gridColumn} gridRow={gridRow} as="span">
         <Link href={`/explain/${title}`}>
           <Container>
