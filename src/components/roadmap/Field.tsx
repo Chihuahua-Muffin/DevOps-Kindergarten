@@ -1,3 +1,4 @@
+import { Dispatch, SetStateAction } from 'react';
 import {
   chakra,
   Box,
@@ -10,8 +11,9 @@ interface FieldProps {
   id: number;
   icon: SvgIconProps;
   title: string;
-  gridRow: number;
-  gridColumn: number;
+  gridRow: string;
+  gridColumn: string;
+  setHoverField: Dispatch<SetStateAction<string>>;
 }
 
 const Container = chakra(Box, {
@@ -39,10 +41,20 @@ const Field = ({
   title,
   gridRow,
   gridColumn,
+  setHoverField,
 }: FieldProps) => {
+
+  const onHoverField = () => {
+    if(id === 1 || id === 2 || id === 3 || id === 4) {
+      setHoverField('Dev');
+    } else {
+      setHoverField('Ops');
+    }
+  };
+
   return (
     <Tooltip label={title}>
-      <Box gridColumn={gridColumn} gridRow={gridRow} as="span">
+      <Box onMouseEnter={onHoverField} margin="auto 0" gridColumn={gridColumn} gridRow={gridRow} as="span">
         <Link href={`/explain/${title}`}>
           <Container>
             <Badge 
