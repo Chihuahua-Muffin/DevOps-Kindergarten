@@ -16,7 +16,7 @@ const PathBox = chakra(Box, {
     "& path": {
       strokeDasharray: "2600",
       opacity: "0.1",
-      animation: "dash 3s ease-in-out infinite",
+      animation: "dash 4s ease-in-out infinite",
     },
     "& svg" : {
       width: "100%",
@@ -44,8 +44,7 @@ const RoadmapSvg = () => {
       <svg>
         <path 
           stroke="#b8b9b9"
-          strokeWidth="20"
-          strokeLinecap="round"
+          strokeWidth="200"
           fill="none" 
           d="M300,500 Q100,500
             100,300 100,100
