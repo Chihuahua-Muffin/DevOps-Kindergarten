@@ -54,7 +54,13 @@ const Field = ({
 
   return (
     <Tooltip label={title}>
-      <Box onMouseEnter={onHoverField} margin="auto 0" gridColumn={gridColumn} gridRow={gridRow} as="span">
+      <Box 
+        onMouseEnter={onHoverField}
+        margin="auto 0"
+        gridColumn={gridColumn}
+        gridRow={gridRow}
+        as="span"
+      >
         <Link href={`/explain/${title}`}>
           <Container>
             <Badge 
