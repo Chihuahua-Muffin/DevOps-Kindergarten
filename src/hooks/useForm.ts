@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 
 type useFormProps = {
   initialValues: {
@@ -7,8 +7,8 @@ type useFormProps = {
     id: string,
     password: string,
   },
-  onSubmit: (values: any) => any,
-  validate: any,
+  onSubmit: (values: any) => any, // eslint-disable-line
+  validate: any, // eslint-disable-line
 };
 
 type errorProps = {
@@ -23,16 +23,16 @@ function useForm({ initialValues, onSubmit, validate }: useFormProps) {
   const [errors, setErrors] = useState<errorProps>({});
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setValues({ ...values, [name]: value });
-  };
+  }, [values]);
 
-  const handleSubmit = (event: React.SyntheticEvent) => {
+  const handleSubmit = useCallback((event: React.SyntheticEvent) => {
     setIsLoading(true);
     event.preventDefault();
     setErrors(validate(values));
-  };
+  }, [validate, values]);
 
   useEffect(() => {
     (async () => {
@@ -43,7 +43,7 @@ function useForm({ initialValues, onSubmit, validate }: useFormProps) {
         setIsLoading(false);
       }
     })();
-  }, [errors, isLoading]);
+  }, [values, errors, isLoading, onSubmit]);
 
   return {
     values,
