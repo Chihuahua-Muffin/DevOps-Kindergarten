@@ -10,7 +10,12 @@ export default function SignUpValidation({ name, email, id, password }: SignUpVa
 
   if (!name) {
     errors.name = '이름이 입력되지 않았습니다.'
-  }
+  } 
+  /*
+  else if (Some regex validation) {
+    errors.name = 'Some error text';
+  } 
+  */
 
   if (!email) {
     errors.email = '이메일이 입력되지 않았습니다.';
@@ -21,6 +26,11 @@ export default function SignUpValidation({ name, email, id, password }: SignUpVa
   if (!id) {
     errors.id = '아이디가 입력되지 않았습니다.';
   }
+  /*
+  else if (Some regex validation) {
+    errors.id = 'Some error text';
+  } 
+  */
 
   if (!password) {
     errors.password = '비밀번호가 입력되지 않았습니다.';
