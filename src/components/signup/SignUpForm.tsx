@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import {
   chakra,
   Box,
@@ -77,22 +76,22 @@ const SignUpForm = () => {
     <Container as='form' onSubmit={handleSubmit}>
       <FormControlContainer isInvalid={errors.name}>
         <FormLabel>이름</FormLabel>
-        <FormInput name='name' value={values.name} onChange={handleChange} />
+        <FormInput id='name' name='name' value={values.name} onChange={handleChange} />
         <FormErrorMessage>{errors.name}</FormErrorMessage>
       </FormControlContainer>
       <FormControlContainer isInvalid={errors.email}>
         <FormLabel>이메일</FormLabel>
-        <FormInput name='email' type='email' value={values.email} onChange={handleChange} />
+        <FormInput id='email' name='email' type='email' value={values.email} onChange={handleChange} />
         <FormErrorMessage>{errors.email}</FormErrorMessage>
       </FormControlContainer>
       <FormControlContainer isInvalid={errors.id}>
         <FormLabel>아이디</FormLabel>
-        <FormInput name='id' value={values.id} onChange={handleChange} />
+        <FormInput id='id' name='id' value={values.id} onChange={handleChange} />
         <FormErrorMessage>{errors.id}</FormErrorMessage>
       </FormControlContainer>
       <FormControlContainer isInvalid={errors.password}>
         <FormLabel>비밀번호</FormLabel>
-        <FormInput name='password' type='password' value={values.password} onChange={handleChange} />
+        <FormInput id='password' name='password' type='password' value={values.password} onChange={handleChange} />
         <FormErrorMessage>{errors.password}</FormErrorMessage>
       </FormControlContainer>
       <SubmitButton type='submit' disabled={isLoading} colorScheme='red'>
