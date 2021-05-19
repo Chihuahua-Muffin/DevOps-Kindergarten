@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 
 type useFormProps = {
   initialValues: {
-    name: string,
-    email: string,
+    name?: string,
+    email?: string,
     id: string,
     password: string,
   },
