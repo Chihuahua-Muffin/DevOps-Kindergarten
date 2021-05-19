@@ -1,24 +1,25 @@
-import { useRouter } from 'next/router';
 import {
   chakra,
   Box,
 } from '@chakra-ui/react';
+import SignInForm from '#/components/signin/SignInForm';
 
 const Container = chakra(Box, {
   baseStyle: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    height: "100%",
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin: 'auto',
+    width: '600px',
+    height: '89vh',
   },
 });
 
 const RoadMapPage = () => {
-  const router = useRouter();
-
   return (
     <Container>
-      {router.pathname} 페이지 입니다.
+      <SignInForm />
     </Container>
   );
 };
