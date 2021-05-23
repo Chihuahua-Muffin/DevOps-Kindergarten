@@ -1,7 +1,16 @@
 import { extendTheme } from "@chakra-ui/react";
+import { createBreakpoints } from "@chakra-ui/theme-tools"
 import "@fontsource/noto-sans-kr"
 
+const breakpoints = createBreakpoints({
+  sm: "320px",
+  md: "768px",
+  lg: "960px",
+  xl: "1200px",
+})
+
 const theme = extendTheme({
+  breakpoints,
   styles: {
     // 글로벌 CSS
     global: {

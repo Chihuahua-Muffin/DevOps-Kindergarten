@@ -36,7 +36,15 @@ const mockUpDatas = [
 
 const CardContainer = () => {
   return (
-    <Grid templateColumns="repeat(4, 1fr)" gap={6}>
+    <Grid
+      templateColumns={{
+        sm: "repeat(1, 1fr)",
+        md: "repeat(2, 1fr)",
+        lg: "repeat(3, 1fr)",
+        xl: "repeat(4, 1fr)",
+      }}
+      gap={6}
+    >
       {mockUpDatas.map((data) => {
         return (
           <Card
