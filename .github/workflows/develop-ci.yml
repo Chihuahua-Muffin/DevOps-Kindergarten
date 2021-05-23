@@ -1,11 +1,6 @@
 name: '[CI]'
 
 on:
-  push:
-    branches:
-      - 'master' # required
-      - 'develop' # required
-      - 'feature/**' # required
   pull_request:
     branches:
       - 'master' # required
@@ -20,14 +15,13 @@ jobs:
       matrix:
         node-version: [8.x, 10.x, 12.x]
     steps:
-      - name: Checkout source code ## 소스코드를 checkout 하는 step
+      - name: actions/checkout@v2 ## 소스코드를 checkout 하는 step
         uses: actions/checkout@v2
-
-      - name: Cache yarn dependencies ## yarn dependencies를 cache 하는 step
-        uses: actions/cache@v1
-        id: yarn-cache
         with:
-          path: node_modules
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
+        node-version: ${{ matrix.node-version }}
+
+      - name: yarn install
+        run: yarn
+      
+      - name: yarn eslint
+        run: yarn eslint
