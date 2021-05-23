@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router';
 import {
   chakra,
   Box,
@@ -13,12 +12,31 @@ const Container = chakra(Box, {
   },
 });
 
-const RoadMapPage = () => {
-  const router = useRouter();
+const mockUpData = [
+  {
+    wordEnglish: 'Continuous Deployment',
+    wordKorean: '지속적 배포',
+    description: '지속적 배포(CD)는 ...',
+    tag: ['deploy', 'operate', 'build'],
+  },
+  {
+    wordEnglish: 'Continuous Integration',
+    wordKorean: '지속적 통합',
+    description: '지속적 통합(CI)는 ...',
+    tag: ['release', 'operate'],
+  },
+  {
+    wordEnglish: 'Kubernetes',
+    wordKorean: '쿠버네티스',
+    description: '쿠버네티스(Kubernetes)는 ...',
+    tag: ['deploy', 'monitor'],
+  },
+];
 
+const RoadMapPage = () => {
   return (
     <Container>
-      {router.pathname} 페이지 입니다.
+      
     </Container>
   );
 };
