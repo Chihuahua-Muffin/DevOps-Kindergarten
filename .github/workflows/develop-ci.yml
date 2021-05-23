@@ -1,6 +1,11 @@
 name: '[CI]'
 
 on:
+  push:
+    branches:
+      - 'master' # required
+      - 'develop' # required
+      - 'feature/**' # required
   pull_request:
     branches:
       - 'master' # required
