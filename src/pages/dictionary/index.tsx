@@ -3,10 +3,12 @@ import {
   Box,
 } from '@chakra-ui/react';
 import SearchBox from '#/components/dictionary/SearchBox';
+import CardContainer from '#/components/dictionary/CardContainer';
 
 const Container = chakra(Box, {
   baseStyle: {
     display: "flex",
+    flexDirection: 'column',
     justifyContent: "center",
     alignItems: "center",
     height: "100%",
@@ -38,7 +40,7 @@ const RoadMapPage = () => {
   return (
     <Container>
       <SearchBox />
-      {/* 사전 리스트 */}
+      <CardContainer />
     </Container>
   );
 };
