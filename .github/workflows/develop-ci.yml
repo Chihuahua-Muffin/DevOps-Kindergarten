@@ -18,7 +18,7 @@ jobs:
       - name: actions/checkout@v2 ## 소스코드를 checkout 하는 step
         uses: actions/checkout@v2
         with:
-        node-version: ${{ matrix.node-version }}
+          node-version: ${{ matrix.node-version }}
 
       - name: yarn install
         run: yarn
