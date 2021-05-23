@@ -1,8 +1,13 @@
-import Header from '#/components/common/Header';
+import React from 'react';
 import Head from 'next/head';
+import Header from '#/components/common/Header';
+
+interface LayoutProps {
+  children: React.ReactNode;
+}
 
 // 모든 페이지에 적용되는 컴포넌트
-export const Layout: React.FunctionComponent = props =>
+const Layout = ({ children }: LayoutProps) => (
   <div>
     <Head>
       <meta
@@ -10,10 +15,11 @@ export const Layout: React.FunctionComponent = props =>
         content="width=device-width, initial-scale=1, shrink-to-fit=no"
       />
     </Head>
-    <Header/>
+    <Header />
     <main>
-      {props.children}
+      {children}
     </main>
   </div>
+);
 
 export default Layout;
