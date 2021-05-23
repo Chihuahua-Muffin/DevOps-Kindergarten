@@ -2,6 +2,7 @@ import {
   chakra,
   Box,
 } from '@chakra-ui/react';
+import SearchBox from '#/components/dictionary/SearchBox';
 
 const Container = chakra(Box, {
   baseStyle: {
@@ -36,7 +37,8 @@ const mockUpData = [
 const RoadMapPage = () => {
   return (
     <Container>
-      
+      <SearchBox />
+      {/* 사전 리스트 */}
     </Container>
   );
 };
