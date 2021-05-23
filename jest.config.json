@@ -1,0 +1,39 @@
+{
+  "preset": "ts-jest",
+  "moduleDirectories": [
+    "node_modules",
+    "src"
+  ],
+  "moduleNameMapper": {
+    "^#/components/signin/(.*)": "<rootDir>/src/components/signin/$1",
+    "^#/hooks/(.*)": "<rootDir>/src/hooks/$1"
+  },
+  "setupFilesAfterEnv": ["<rootDir>/src/setupTests.ts"],
+  "snapshotSerializers": ["enzyme-to-json/serializer"],
+  "moduleFileExtensions": [
+    "ts",
+    "tsx",
+    "js"
+  ],
+  "transform": {
+    "^.+\\.tsx?$": "ts-jest"
+  },
+  "testMatch": [
+    "**/*.test.(ts|tsx)"
+  ],
+  "globals": {
+    "ts-jest": {
+      "babelConfig": true,
+      "tsconfig": "jest.tsconfig.json"
+    }
+  },
+  "coveragePathIgnorePatterns": [
+    "/node_modules/"
+  ],
+  "coverageReporters": [
+    "json",
+    "lcov",
+    "text",
+    "text-summary"
+  ]
+}

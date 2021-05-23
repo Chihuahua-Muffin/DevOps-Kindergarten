@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   chakra,
   Box,
@@ -83,15 +84,15 @@ const SignInForm = () => {
     <Container as='form' onSubmit={handleSubmit}>
       <FormControlContainer isInvalid={errors.id}>
         <FormLabel>아이디</FormLabel>
-        <FormInput id='id' name='id' value={values.id} onChange={handleChange} />
-        <FormErrorMessage>{errors.id}</FormErrorMessage>
+        <FormInput type='text' className='idInput' name='id' value={values.id} onChange={handleChange} />
+        <FormErrorMessage id='idErrorText'>{errors.id}</FormErrorMessage>
       </FormControlContainer>
       <FormControlContainer isInvalid={errors.password}>
         <FormLabel>비밀번호</FormLabel>
         <FormInput id='password' name='password' type='password' value={values.password} onChange={handleChange} />
         <FormErrorMessage>{errors.password}</FormErrorMessage>
       </FormControlContainer>
-      <SubmitButton type='submit' disabled={isLoading} colorScheme='teal'>
+      <SubmitButton id='submitButton' type='submit' disabled={isLoading} colorScheme='teal'>
         {isLoading ? <Spinner /> : '로그인'}
       </SubmitButton>
     </Container>
