@@ -3,9 +3,9 @@ name: '[CI]'
 on:
   pull_request:
     branches:
-      - 'master' # required
-      - 'develop' # required
-      - 'feature/**' # required
+      - master # required
+      - develop # required
+      - feature/** # required
 
 jobs:
   DevOps-Kindergarten-js:
