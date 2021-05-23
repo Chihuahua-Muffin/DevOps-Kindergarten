@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   chakra,
   Box,
@@ -51,7 +52,7 @@ const SignUpForm = () => {
     errors,
     isLoading,
     handleChange,
-    handleSubmit, 
+    handleSubmit,
   } = useForm({
     initialValues: {
       name: '',
@@ -59,11 +60,11 @@ const SignUpForm = () => {
       id: '',
       password: '',
     },
-    onSubmit: async (values) => {
+    onSubmit: async (submitValues) => {
       await new Promise((r) => setTimeout(r, 2000));
       toast({
-        title: `회원가입 되었습니다!`,
-        description: `${values.name}님 환영합니다!`,
+        title: '회원가입 되었습니다!',
+        description: `${submitValues.name}님 환영합니다!`,
         status: 'success',
         duration: 9000,
         isClosable: true,
@@ -73,28 +74,28 @@ const SignUpForm = () => {
   });
 
   return (
-    <Container as='form' onSubmit={handleSubmit}>
+    <Container as="form" onSubmit={handleSubmit}>
       <FormControlContainer isInvalid={errors.name}>
         <FormLabel>이름</FormLabel>
-        <FormInput id='name' name='name' value={values.name} onChange={handleChange} />
+        <FormInput id="name" name="name" value={values.name} onChange={handleChange} />
         <FormErrorMessage>{errors.name}</FormErrorMessage>
       </FormControlContainer>
       <FormControlContainer isInvalid={errors.email}>
         <FormLabel>이메일</FormLabel>
-        <FormInput id='email' name='email' type='email' value={values.email} onChange={handleChange} />
+        <FormInput id="email" name="email" type="email" value={values.email} onChange={handleChange} />
         <FormErrorMessage>{errors.email}</FormErrorMessage>
       </FormControlContainer>
       <FormControlContainer isInvalid={errors.id}>
         <FormLabel>아이디</FormLabel>
-        <FormInput id='id' name='id' value={values.id} onChange={handleChange} />
+        <FormInput id="id" name="id" value={values.id} onChange={handleChange} />
         <FormErrorMessage>{errors.id}</FormErrorMessage>
       </FormControlContainer>
       <FormControlContainer isInvalid={errors.password}>
         <FormLabel>비밀번호</FormLabel>
-        <FormInput id='password' name='password' type='password' value={values.password} onChange={handleChange} />
+        <FormInput id="password" name="password" type="password" value={values.password} onChange={handleChange} />
         <FormErrorMessage>{errors.password}</FormErrorMessage>
       </FormControlContainer>
-      <SubmitButton type='submit' disabled={isLoading} colorScheme='red'>
+      <SubmitButton type="submit" disabled={isLoading} colorScheme="red">
         {isLoading ? <Spinner /> : '회원가입'}
       </SubmitButton>
     </Container>

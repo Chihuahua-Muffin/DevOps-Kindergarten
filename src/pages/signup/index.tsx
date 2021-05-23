@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   chakra,
   Box,
@@ -16,12 +17,10 @@ const Container = chakra(Box, {
   },
 });
 
-const SignUpPage = () => {
-  return (
-    <Container>
-      <SignUpForm />
-    </Container>
-  );
-};
+const SignUpPage = () => (
+  <Container>
+    <SignUpForm />
+  </Container>
+);
 
 export default SignUpPage;

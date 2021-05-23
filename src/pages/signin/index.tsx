@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   chakra,
   Box,
@@ -16,12 +17,10 @@ const Container = chakra(Box, {
   },
 });
 
-const RoadMapPage = () => {
-  return (
-    <Container>
-      <SignInForm />
-    </Container>
-  );
-};
+const RoadMapPage = () => (
+  <Container>
+    <SignInForm />
+  </Container>
+);
 
 export default RoadMapPage;

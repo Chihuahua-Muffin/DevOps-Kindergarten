@@ -1,5 +1,6 @@
+import React from 'react';
 import { Text, chakra } from '@chakra-ui/react';
- 
+
 interface ExplainAnchorProps {
   id: string;
 }
@@ -12,16 +13,14 @@ const Anchor = chakra(Text, {
   },
 });
 
-const ExplainAnchor = ({ id }: ExplainAnchorProps) => {
-  return (
-    <Anchor 
-      aria-label="anchor"
-      href={`#${id}`}
-      as="a"
-    >
-      #
-    </Anchor>
-  );
-}
+const ExplainAnchor = ({ id }: ExplainAnchorProps) => (
+  <Anchor
+    aria-label="anchor"
+    href={`#${id}`}
+    as="a"
+  >
+    #
+  </Anchor>
+);
 
 export default ExplainAnchor;

@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   chakra,
   Box,
@@ -17,12 +18,10 @@ const Container = chakra(Box, {
   },
 });
 
-const ExplainContainer = ({ children }: ExplainContainerProps) => {
-  return (
-    <Container>
-      {children}
-    </Container>
-  )
-}
+const ExplainContainer = ({ children }: ExplainContainerProps) => (
+  <Container>
+    {children}
+  </Container>
+);
 
 export default ExplainContainer;

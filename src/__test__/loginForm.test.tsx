@@ -16,7 +16,7 @@ describe('<LoginForm /> 테스트', () => {
   });
   it('ID는 필수 입력값입니다.', () => {
     // 아이디 값 넣기 (simulate 뒤에는 다시 find 해주어야 함)
-    wrapper.find('input').at(0).simulate('change', { target : { name: 'id', value: '' } });
+    wrapper.find('input').at(0).simulate('change', { target: { name: 'id', value: '' } });
     // expect(wrapper.find('input').at(0).props().value).toBe("id입니다");
 
     wrapper.find('form').simulate('submit');
