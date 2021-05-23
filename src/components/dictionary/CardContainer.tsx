@@ -1,3 +1,4 @@
+import React from 'react';
 import { Grid } from '@chakra-ui/react';
 import Card from './Card';
 
@@ -34,30 +35,26 @@ const mockUpDatas = [
   },
 ];
 
-const CardContainer = () => {
-  return (
-    <Grid
-      templateColumns={{
-        sm: "repeat(1, 1fr)",
-        md: "repeat(2, 1fr)",
-        lg: "repeat(3, 1fr)",
-        xl: "repeat(4, 1fr)",
-      }}
-      gap={6}
-    >
-      {mockUpDatas.map((data) => {
-        return (
-          <Card
-            key={data.wordEnglish}
-            wordEnglish={data.wordEnglish}
-            wordKorean={data.wordKorean}
-            description={data.description}
-            tags={data.tags}
-          />
-        );
-      })}
-    </Grid>
-  );
-};
+const CardContainer = () => (
+  <Grid
+    templateColumns={{
+      sm: 'repeat(1, 1fr)',
+      md: 'repeat(2, 1fr)',
+      lg: 'repeat(3, 1fr)',
+      xl: 'repeat(4, 1fr)',
+    }}
+    gap={6}
+  >
+    {mockUpDatas.map((data) => (
+      <Card
+        key={data.wordEnglish}
+        wordEnglish={data.wordEnglish}
+        wordKorean={data.wordKorean}
+        description={data.description}
+        tags={data.tags}
+      />
+    ))}
+  </Grid>
+);
 
 export default CardContainer;

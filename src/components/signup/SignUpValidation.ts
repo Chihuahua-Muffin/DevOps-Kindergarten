@@ -5,16 +5,18 @@ type SignUpValidationProps = {
   password?: string,
 }
 
-export default function SignUpValidation({ name, email, id, password }: SignUpValidationProps) {
+export default function SignUpValidation({
+  name, email, id, password,
+}: SignUpValidationProps) {
   const errors: SignUpValidationProps = {};
 
   if (!name) {
-    errors.name = '이름이 입력되지 않았습니다.'
-  } 
+    errors.name = '이름이 입력되지 않았습니다.';
+  }
   /*
   else if (Some regex validation) {
     errors.name = 'Some error text';
-  } 
+  }
   */
 
   if (!email) {
@@ -29,7 +31,7 @@ export default function SignUpValidation({ name, email, id, password }: SignUpVa
   /*
   else if (Some regex validation) {
     errors.id = 'Some error text';
-  } 
+  }
   */
 
   if (!password) {

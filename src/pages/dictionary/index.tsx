@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   chakra,
   Box,
@@ -7,21 +8,19 @@ import CardContainer from '#/components/dictionary/CardContainer';
 
 const Container = chakra(Box, {
   baseStyle: {
-    display: "flex",
+    display: 'flex',
     flexDirection: 'column',
-    justifyContent: "center",
-    alignItems: "center",
-    height: "100%",
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '100%',
   },
 });
 
-const RoadMapPage = () => {
-  return (
-    <Container>
-      <SearchBox />
-      <CardContainer />
-    </Container>
-  );
-};
+const RoadMapPage = () => (
+  <Container>
+    <SearchBox />
+    <CardContainer />
+  </Container>
+);
 
 export default RoadMapPage;

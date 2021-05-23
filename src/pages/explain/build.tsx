@@ -1,3 +1,5 @@
+import React from 'react';
+
 import ExplainContainer from '#/components/explain/ExplainContainer';
 import ExplainTitle from '#/components/explain/ExplainTitle';
 import ExplainSubTitle from '#/components/explain/ExplainSubTitle';
@@ -7,19 +9,17 @@ import ExplainContent from '#/components/explain/ExplainContent';
 // ExplainSubTitle  : h2   /#{id} 이런식으로 들어감
 // ExplainContent   : p
 
-const BuildPage = () => {
-  return (
-    <ExplainContainer>
-      <ExplainTitle>BUILD</ExplainTitle>
-      <ExplainContent>
-        BUILD?
-      </ExplainContent>
-      <ExplainSubTitle id="tools">Tools</ExplainSubTitle>
-      <ExplainContent>
-        대표 툴에 대한 설명
-      </ExplainContent>
-    </ExplainContainer>
-  );
-};
+const BuildPage = () => (
+  <ExplainContainer>
+    <ExplainTitle>BUILD</ExplainTitle>
+    <ExplainContent>
+      BUILD?
+    </ExplainContent>
+    <ExplainSubTitle id="tools">Tools</ExplainSubTitle>
+    <ExplainContent>
+      대표 툴에 대한 설명
+    </ExplainContent>
+  </ExplainContainer>
+);
 
 export default BuildPage;

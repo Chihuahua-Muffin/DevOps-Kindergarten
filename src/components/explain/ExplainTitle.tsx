@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   chakra,
   Text,
@@ -15,12 +16,10 @@ const Title = chakra(Text, {
   },
 });
 
-const ExplainTitle = ({ children }: ExplainTitleProps) => {
-  return (
-    <Title as="h1">
-      {children}
-    </Title>
-  );
-};
+const ExplainTitle = ({ children }: ExplainTitleProps) => (
+  <Title as="h1">
+    {children}
+  </Title>
+);
 
 export default ExplainTitle;

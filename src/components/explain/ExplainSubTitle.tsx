@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   chakra,
   Text,
@@ -22,13 +23,11 @@ const SubTitle = chakra(Text, {
   },
 });
 
-const ExplainSubTitle = ({ children, id }: ExplainSubTitleProps) => {
-  return (
-    <SubTitle id={id} as="h2">
-      {children}
-      <ExplainAnchor id={id} />
-    </SubTitle>
-  );
-};
+const ExplainSubTitle = ({ children, id }: ExplainSubTitleProps) => (
+  <SubTitle id={id} as="h2">
+    {children}
+    <ExplainAnchor id={id} />
+  </SubTitle>
+);
 
 export default ExplainSubTitle;

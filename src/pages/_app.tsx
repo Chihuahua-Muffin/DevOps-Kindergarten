@@ -1,5 +1,6 @@
-import type { AppProps /*, AppContext */ } from 'next/app';
-import { ChakraProvider } from "@chakra-ui/react";
+import React from 'react';
+import type { AppProps /* , AppContext */ } from 'next/app';
+import { ChakraProvider } from '@chakra-ui/react';
 import Layout from '#/components/Layout';
 import theme from '#/utils/theme';
 
@@ -7,6 +8,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ChakraProvider theme={theme}>
       <Layout>
+        {/* eslint-disable-next-line */}
         <Component {...pageProps} />
       </Layout>
     </ChakraProvider>

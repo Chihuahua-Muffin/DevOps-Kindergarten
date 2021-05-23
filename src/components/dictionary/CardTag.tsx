@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   Box,
   chakra,
@@ -27,19 +28,15 @@ const Tag = chakra(Box, {
   },
 });
 
-const CardTag = ({tags}: CardTagProps) => {
-  return (
-    <TagContainer>
-      {tags.map((tag) => {
-        return (
-          <Tag key={tag}>
-            <Text color="teal.600" fontWeight="bold">#</Text>
-            <Text color="teal.400">{tag}</Text>
-          </Tag>
-        )
-      })}
-    </TagContainer>
-  );
-}
+const CardTag = ({ tags }: CardTagProps) => (
+  <TagContainer>
+    {tags.map((tag) => (
+      <Tag key={tag}>
+        <Text color="teal.600" fontWeight="bold">#</Text>
+        <Text color="teal.400">{tag}</Text>
+      </Tag>
+    ))}
+  </TagContainer>
+);
 
 export default CardTag;

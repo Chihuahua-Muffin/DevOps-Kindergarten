@@ -52,18 +52,18 @@ const SignInForm = () => {
     errors,
     isLoading,
     handleChange,
-    handleSubmit, 
+    handleSubmit,
   } = useForm({
     initialValues: {
       id: '',
       password: '',
     },
-    onSubmit: async (values) => {
+    onSubmit: async (submitValues) => {
       await new Promise((r) => setTimeout(r, 2000));
       // 성공 시
       toast({
-        title: `로그인 되었습니다!`,
-        description: `${values.id}님 환영합니다!`,
+        title: '로그인 되었습니다!',
+        description: `${submitValues.id}님 환영합니다!`,
         status: 'success',
         duration: 9000,
         isClosable: true,
@@ -81,18 +81,18 @@ const SignInForm = () => {
   });
 
   return (
-    <Container as='form' onSubmit={handleSubmit}>
+    <Container as="form" onSubmit={handleSubmit}>
       <FormControlContainer isInvalid={errors.id}>
         <FormLabel>아이디</FormLabel>
-        <FormInput type='text' className='idInput' name='id' value={values.id} onChange={handleChange} />
-        <FormErrorMessage id='idErrorText'>{errors.id}</FormErrorMessage>
+        <FormInput type="text" className="idInput" name="id" value={values.id} onChange={handleChange} />
+        <FormErrorMessage id="idErrorText">{errors.id}</FormErrorMessage>
       </FormControlContainer>
       <FormControlContainer isInvalid={errors.password}>
         <FormLabel>비밀번호</FormLabel>
-        <FormInput id='password' name='password' type='password' value={values.password} onChange={handleChange} />
+        <FormInput id="password" name="password" type="password" value={values.password} onChange={handleChange} />
         <FormErrorMessage>{errors.password}</FormErrorMessage>
       </FormControlContainer>
-      <SubmitButton id='submitButton' type='submit' disabled={isLoading} colorScheme='teal'>
+      <SubmitButton id="submitButton" type="submit" disabled={isLoading} colorScheme="teal">
         {isLoading ? <Spinner /> : '로그인'}
       </SubmitButton>
     </Container>

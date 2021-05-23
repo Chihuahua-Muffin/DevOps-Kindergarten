@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 import { Input, chakra } from '@chakra-ui/react';
 
 const SearchInput = chakra(Input, {

@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction } from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import {
   chakra,
   Box,
@@ -25,17 +25,17 @@ const Container = chakra(Box, {
     widht: '100px',
     height: '100px',
     borderRadius: '50%',
-    transition: "all 0.3s cubic-bezier(.25,.8,.25,1)",
-    "&:hover": {
+    transition: 'all 0.3s cubic-bezier(.25,.8,.25,1)',
+    '&:hover': {
       backgroundColor: '#B2F5EA',
-      cursor: "pointer",
+      cursor: 'pointer',
     },
   },
 });
 
 // 모듈화 시키는 작업 필요
 // Field 컴포넌트는 로드맵 페이지에서 하나의 데브옵스 분야에 대한 버튼을 나타냄
-const Field = ({ 
+const Field = ({
   id,
   icon,
   title,
@@ -43,9 +43,8 @@ const Field = ({
   gridColumn,
   setHoverField,
 }: FieldProps) => {
-
   const onHoverField = () => {
-    if(id === 1 || id === 2 || id === 3 || id === 4) {
+    if (id === 1 || id === 2 || id === 3 || id === 4) {
       setHoverField('Dev');
     } else {
       setHoverField('Ops');
@@ -54,7 +53,7 @@ const Field = ({
 
   return (
     <Tooltip label={title}>
-      <Box 
+      <Box
         onMouseEnter={onHoverField}
         margin="auto 0"
         gridColumn={gridColumn}
@@ -63,11 +62,11 @@ const Field = ({
       >
         <Link href={`/explain/${title}`}>
           <Container>
-            <Badge 
+            <Badge
               anchorOrigin={{
                 vertical: 'bottom',
                 horizontal: 'right',
-              }} 
+              }}
               badgeContent={id}
               color="default"
             >

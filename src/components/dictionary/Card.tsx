@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   Box,
   chakra,
@@ -51,15 +52,15 @@ const DescriptionText = chakra(Text, {
   },
 });
 
-const Card = ({ wordEnglish, wordKorean, description, tags }: CardProps) => {
-  return (
-    <DictionaryCard>
-      <EnglishHeadText>{wordEnglish}</EnglishHeadText>
-      <KoreanHeadText>{wordKorean}</KoreanHeadText>
-      <DescriptionText>{description}</DescriptionText>
-      <CardTag tags={tags} />
-    </DictionaryCard>
-  );
-};
+const Card = ({
+  wordEnglish, wordKorean, description, tags,
+}: CardProps) => (
+  <DictionaryCard>
+    <EnglishHeadText>{wordEnglish}</EnglishHeadText>
+    <KoreanHeadText>{wordKorean}</KoreanHeadText>
+    <DescriptionText>{description}</DescriptionText>
+    <CardTag tags={tags} />
+  </DictionaryCard>
+);
 
 export default Card;
