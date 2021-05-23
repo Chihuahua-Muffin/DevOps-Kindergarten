@@ -3,7 +3,7 @@ name: '[CI]'
 on:
   pull_request:
     branches:
-      - master # required
+      - main # required
       - develop # required
       - feature/** # required
 
