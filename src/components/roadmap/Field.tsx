@@ -53,6 +53,8 @@ const Field = ({
   return (
     <Tooltip label={title}>
       <Box
+        id={title}
+        className="field"
         onMouseEnter={onHoverField}
         margin="auto 0"
         gridColumn={gridColumn}

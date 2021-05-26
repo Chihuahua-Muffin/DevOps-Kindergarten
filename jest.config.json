@@ -6,7 +6,19 @@
   ],
   "moduleNameMapper": {
     "^#/components/signin/(.*)": "<rootDir>/src/components/signin/$1",
-    "^#/hooks/(.*)": "<rootDir>/src/hooks/$1"
+    "^#/components/signup/(.*)": "<rootDir>/src/components/signup/$1",
+    "^#/components/dictionary/(.*)": "<rootDir>/src/components/dictionary/$1",
+    "^#/components/explain/(.*)": "<rootDir>/src/components/explain/$1",
+    "^#/components/common/(.*)": "<rootDir>/src/components/common/$1",
+    "^#/components/lecture/(.*)": "<rootDir>/src/components/lecture/$1",
+    "^#/components/roadmap/(.*)": "<rootDir>/src/components/roadmap/$1",
+    "^#/hooks/(.*)": "<rootDir>/src/hooks/$1",
+    "^#/pages/signin/(.*)": "<rootDir>/src/pages/signin/$1",
+    "^#/pages/signup/(.*)": "<rootDir>/src/pages/signup/$1",
+    "^#/pages/dictionary/(.*)": "<rootDir>/src/pages/dictionary/$1",
+    "^#/pages/explain/(.*)": "<rootDir>/src/pages/explain/$1",
+    "^#/pages/lecture/(.*)": "<rootDir>/src/pages/lecture/$1",
+    "^#/pages/roadmap/(.*)": "<rootDir>/src/pages/roadmap/$1"
   },
   "setupFilesAfterEnv": ["<rootDir>/src/setupTests.ts"],
   "snapshotSerializers": ["enzyme-to-json/serializer"],
