@@ -12,9 +12,10 @@ interface CardTagProps {
 const TagContainer = chakra(Box, {
   baseStyle: {
     display: 'flex',
-    position: 'absolute',
-    bottom: '0',
-    right: '0',
+    justifyContent: 'center',
+    flexWrap: 'wrap',
+    margin: '20px',
+    width: '350px',
   },
 });
 
