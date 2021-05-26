@@ -2,7 +2,6 @@ import React from 'react';
 import { Grid } from '@chakra-ui/react';
 import LectureCard from './LectureCard';
 
-
 const mockUpDatas = [
   {
     id: '12532123', // hash
