@@ -44,6 +44,7 @@ const CardContainer = () => (
       xl: 'repeat(4, 1fr)',
     }}
     gap={6}
+    marginBottom={10}
   >
     {mockUpDatas.map((data) => (
       <Card

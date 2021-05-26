@@ -5,6 +5,8 @@ const SearchInput = chakra(Input, {
   baseStyle: {
     width: '50vw',
     maxWidth: '400px',
+    borderRadius: '0px',
+    margin: '30px',
   },
 });
 
@@ -19,6 +21,8 @@ const SearchBox = () => {
     <SearchInput
       onChange={changeHandler}
       value={value}
+      placeholder="ex: 쿠버네티스"
+      focusBorderColor="pink.400"
     />
   );
 };
