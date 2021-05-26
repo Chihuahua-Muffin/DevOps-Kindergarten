@@ -1,0 +1,27 @@
+name: '[CI]'
+
+on:
+  pull_request:
+    branches:
+      - main # required
+      - develop # required
+      - feature/** # required
+
+jobs:
+  DevOps-Kindergarten-js:
+    name: Test Code
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [8.x, 10.x, 12.x]
+    steps:
+      - name: actions/checkout@v2 ## 소스코드를 checkout 하는 step
+        uses: actions/checkout@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: yarn install
+        run: yarn
+      
+      - name: yarn eslint
+        run: yarn eslint
