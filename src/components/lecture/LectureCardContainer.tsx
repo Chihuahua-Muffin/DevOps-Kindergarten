@@ -47,6 +47,7 @@ const LectureCardContainer = () => (
     {mockUpDatas.map((data) => (
       <LectureCard
         key={data.id}
+        lectureNumber={data.id}
         title={data.title}
         image={data.image}
         description={data.description}

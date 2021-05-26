@@ -5,6 +5,7 @@ import {
   Text,
 } from '@chakra-ui/react';
 import Image from 'next/image';
+import Link from 'next/link';
 import '@fontsource/song-myung';
 
 import LectureCardTag from './LectureCardTag';
@@ -14,6 +15,7 @@ interface CardProps {
   image: string,
   description: string,
   tags: string[],
+  lectureNumber: string,
 }
 
 const DictionaryCardContainer = chakra(Box, {
@@ -38,6 +40,11 @@ const DictionaryContentCard = chakra(Box, {
     height: '350px',
     textAlign: 'center',
     boxShadow: '0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)',
+    transition: 'transform .3s ease',
+    '&:hover': {
+      cursor: 'pointer',
+      transform: 'translateY(-5px);',
+    },
   },
 });
 
@@ -63,23 +70,25 @@ const DescriptionText = chakra(Text, {
 });
 
 const LectureCard = ({
-  title, image, description, tags,
+  title, image, description, tags, lectureNumber,
 }: CardProps) => (
   <DictionaryCardContainer>
-    <DictionaryContentCard>
-      <ImageBox>
-        <Image
-          src={`/${image}`}
-          alt="Lecture Image"
-          draggable={false}
-          width={200}
-          height={200}
-          objectFit="contain"
-        />
-      </ImageBox>
-      <EnglishHeadText>{title}</EnglishHeadText>
-      <DescriptionText>{description}</DescriptionText>
-    </DictionaryContentCard>
+    <Link href={`/lecture/${lectureNumber}`}>
+      <DictionaryContentCard>
+        <ImageBox>
+          <Image
+            src={`/${image}`}
+            alt="Lecture Image"
+            draggable={false}
+            width={200}
+            height={200}
+            objectFit="contain"
+          />
+        </ImageBox>
+        <EnglishHeadText>{title}</EnglishHeadText>
+        <DescriptionText>{description}</DescriptionText>
+      </DictionaryContentCard>
+    </Link>
     <LectureCardTag tags={tags} />
   </DictionaryCardContainer>
 );
