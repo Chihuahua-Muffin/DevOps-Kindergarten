@@ -33,7 +33,6 @@ const Container = chakra(Box, {
   },
 });
 
-// 모듈화 시키는 작업 필요
 // Field 컴포넌트는 로드맵 페이지에서 하나의 데브옵스 분야에 대한 버튼을 나타냄
 const Field = ({
   id,

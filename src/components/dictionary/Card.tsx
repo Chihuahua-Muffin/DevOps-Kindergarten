@@ -4,6 +4,7 @@ import {
   chakra,
   Text,
 } from '@chakra-ui/react';
+import Link from 'next/link';
 import '@fontsource/song-myung';
 
 import CardTag from './CardTag';
@@ -28,6 +29,11 @@ const DictionaryCard = chakra(Box, {
     border: '6px solid #111111',
     boxShadow: '0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)',
     backgroundColor: '#f7f7f7',
+    transition: 'transform .3s ease',
+    '&:hover': {
+      cursor: 'pointer',
+      transform: 'translateY(-5px);',
+    },
   },
 });
 
@@ -55,12 +61,14 @@ const DescriptionText = chakra(Text, {
 const Card = ({
   wordEnglish, wordKorean, description, tags,
 }: CardProps) => (
-  <DictionaryCard>
-    <EnglishHeadText>{wordEnglish}</EnglishHeadText>
-    <KoreanHeadText>{wordKorean}</KoreanHeadText>
-    <DescriptionText>{description}</DescriptionText>
-    <CardTag tags={tags} />
-  </DictionaryCard>
+  <Link href={`/dictionary/${wordEnglish}`}>
+    <DictionaryCard>
+      <EnglishHeadText>{wordEnglish}</EnglishHeadText>
+      <KoreanHeadText>{wordKorean}</KoreanHeadText>
+      <DescriptionText>{description}</DescriptionText>
+      <CardTag tags={tags} />
+    </DictionaryCard>
+  </Link>
 );
 
 export default Card;
