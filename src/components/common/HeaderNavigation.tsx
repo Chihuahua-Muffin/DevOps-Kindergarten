@@ -54,6 +54,11 @@ const HeaderNavigation = () => {
           사전
         </NavItem>
       </Link>
+      <Link href="/lecture">
+        <NavItem colorScheme="teal" variant={select === '/lecture' ? 'solid' : 'ghost'}>
+          실습
+        </NavItem>
+      </Link>
     </NavigationContainer>
   );
 };
