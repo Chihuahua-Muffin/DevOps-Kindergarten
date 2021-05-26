@@ -32,7 +32,7 @@ const DictionaryCard = chakra(Box, {
     transition: 'transform .3s ease',
     '&:hover': {
       cursor: 'pointer',
-      transform: 'translateY(-5px);'
+      transform: 'translateY(-5px);',
     },
   },
 });
