@@ -3,6 +3,7 @@ import {
   chakra,
   Box,
 } from '@chakra-ui/react';
+import LectureCardContainer from '#/components/lecture/LectureCardContainer';
 
 const Container = chakra(Box, {
   baseStyle: {
@@ -16,7 +17,7 @@ const Container = chakra(Box, {
 
 const LecturePage = () => (
   <Container>
-    실습페이지
+    <LectureCardContainer />
   </Container>
 );
 
