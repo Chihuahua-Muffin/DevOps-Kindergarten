@@ -5,6 +5,8 @@ type SignUpValidationProps = {
   password?: string,
 }
 
+const korean = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
+
 export default function SignUpValidation({
   name, email, id, password,
 }: SignUpValidationProps) {
@@ -13,11 +15,7 @@ export default function SignUpValidation({
   if (!name) {
     errors.name = '이름이 입력되지 않았습니다.';
   }
-  /*
-  else if (Some regex validation) {
-    errors.name = 'Some error text';
-  }
-  */
+
 
   if (!email) {
     errors.email = '이메일이 입력되지 않았습니다.';
@@ -27,17 +25,16 @@ export default function SignUpValidation({
 
   if (!id) {
     errors.id = '아이디가 입력되지 않았습니다.';
+  } else if (id.length < 6) {
+    errors.id = '6자 이상의 아이디를 사용해야 합니다.';
+  } else if (korean.test(id)) {
+    errors.id = '아이디는 영문자로 이루어져야 합니다.';
   }
-  /*
-  else if (Some regex validation) {
-    errors.id = 'Some error text';
-  }
-  */
 
   if (!password) {
     errors.password = '비밀번호가 입력되지 않았습니다.';
-  } else if (password.length < 8) {
-    errors.password = '8자 이상의 패스워드를 사용해야 합니다.';
+  } else if (password.length < 6) {
+    errors.password = '6자 이상의 패스워드를 사용해야 합니다.';
   }
 
   return errors;
