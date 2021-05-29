@@ -1,11 +1,12 @@
-type SignUpValidationProps = {
-  name?: string,
-  email?: string,
-  id?: string,
-  password?: string,
+interface SignUpValidationProps {
+  name?: string;
+  email?: string;
+  id?: string;
+  password?: string;
 }
 
-const korean = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
+const NUMBER_ENGLISH_REGEX = /^[a-zA-Z0-9]+$/;
+const EMAIL_REGEX = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
 
 export default function SignUpValidation({
   name, email, id, password,
@@ -16,10 +17,9 @@ export default function SignUpValidation({
     errors.name = '이름이 입력되지 않았습니다.';
   }
 
-
   if (!email) {
     errors.email = '이메일이 입력되지 않았습니다.';
-  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email)) {
+  } else if (!EMAIL_REGEX.test(email)) {
     errors.email = '입력된 이메일이 유효하지 않습니다.';
   }
 
@@ -27,14 +27,20 @@ export default function SignUpValidation({
     errors.id = '아이디가 입력되지 않았습니다.';
   } else if (id.length < 6) {
     errors.id = '6자 이상의 아이디를 사용해야 합니다.';
-  } else if (korean.test(id)) {
-    errors.id = '아이디는 영문자로 이루어져야 합니다.';
+  } else if (id.length > 15) {
+    errors.id = '15자 이하의 아이디를 사용해야 합니다.';
+  } else if (!NUMBER_ENGLISH_REGEX.test(id)) {
+    errors.id = '아이디는 영문자 또는 숫자로 이루어져야 합니다.';
   }
 
   if (!password) {
     errors.password = '비밀번호가 입력되지 않았습니다.';
   } else if (password.length < 6) {
-    errors.password = '6자 이상의 패스워드를 사용해야 합니다.';
+    errors.password = '6자 이상의 비밀번호를 사용해야 합니다.';
+  } else if (password.length > 15) {
+    errors.password = '15자 이하의 비밀번호를 사용해야 합니다.';
+  } else if (!NUMBER_ENGLISH_REGEX.test(password)) {
+    errors.password = '비밀번호는 영문자 또는 숫자만 가능합니다.';
   }
 
   return errors;
