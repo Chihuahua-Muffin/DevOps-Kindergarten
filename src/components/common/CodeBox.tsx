@@ -1,6 +1,5 @@
 import React from 'react';
-import { chakra, Box, Button, Text } from '@chakra-ui/react';
-import { useToast } from "@chakra-ui/react"
+import { chakra, Box, Button, Text, useToast } from '@chakra-ui/react';
 
 const toastId = 'TOAST';
 
