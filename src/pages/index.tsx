@@ -1,16 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
 import { Flex, Box, Button, Center } from '@chakra-ui/react';
-import CodeBox from '#/components/common/CodeBox';
-
-const TEXT = 'const CopyButton = chakra(Button, dafdfdsfdsafadsfdsfdsfadsfadsfsdfasdfadsfsdafasdfdsfsdafds{\n'
-+ '  baseStyle: {\n'
-+ "    position: 'absolute',\n"
-+ "    margin: '10px',\n"
-+ "    top: '0',\n"
-+ "    right: '0',\n"
-+ '  },\n'
-+ '});';
 
 const LandingPage = () => (
   <>
@@ -20,7 +10,6 @@ const LandingPage = () => (
         <Link href="/roadmap">
           <Button>시작하기</Button>
         </Link>
-        <CodeBox text={TEXT} />
       </Flex>
     </Box>
   </>
