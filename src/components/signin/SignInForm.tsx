@@ -10,8 +10,12 @@ import {
   FormErrorMessage,
   useToast,
 } from '@chakra-ui/react';
+import axios from 'axios';
+
+import SERVER_URL from '#/serverURL';
 import useForm from '#/hooks/useForm';
 import SignInValidation from '#/components/signin/SignInValidation';
+
 
 const Container = chakra(Box, {
   baseStyle: {
@@ -59,7 +63,14 @@ const SignInForm = () => {
       password: '',
     },
     onSubmit: async (submitValues) => {
-      await new Promise((r) => setTimeout(r, 2000));
+      const data = await axios.post(
+        SERVER_URL + '/api/login',
+        {
+          username: 'admin',
+          password: 'admin',
+        },
+      )
+      console.log(data);
       // 성공 시
       toast({
         title: '로그인 되었습니다!',
