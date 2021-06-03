@@ -41,10 +41,11 @@ const CopyButton = chakra(Button, {
     top: '0',
     right: '0',
     zIndex: '100',
-    transform: 'translateY(-100%)',
+    transform: 'translateY(-110%)',
   },
 });
 
+/* text에는 안에 들어갈 코드 내용이 들어감 */
 const CodeBox = ({ text }: CodeBoxProps) => {
   const toast = useToast();
 
@@ -69,7 +70,7 @@ const CodeBox = ({ text }: CodeBoxProps) => {
 
   return (
     <Container>
-      <CopyButton onClick={onClickButton}>복사하기</CopyButton>
+      <CopyButton colorScheme="teal" onClick={onClickButton}>복사하기</CopyButton>
       <CodeContainer>
         <Code as="pre">{text}</Code>
       </CodeContainer>
