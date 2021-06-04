@@ -27,6 +27,8 @@
     "no-use-before-define": "off",
     "@typescript-eslint/no-use-before-define": ["error"],
     "react/require-default-props": [2, { "ignoreFunctionalComponents": true }],
-    "@typescript-eslint/explicit-module-boundary-types": "off"
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "linebreak-style": "off",
+    "object-curly-newline": "off"
   }
 }
