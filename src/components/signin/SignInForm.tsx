@@ -76,7 +76,7 @@ const SignInForm = () => {
         title: '로그인 되었습니다!',
         description: `${submitValues.id}님 환영합니다!`,
         status: 'success',
-        duration: 9000,
+        duration: 2000,
         isClosable: true,
       });
       // 실패 시
