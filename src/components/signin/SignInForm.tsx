@@ -10,6 +10,7 @@ import {
   FormErrorMessage,
   useToast,
 } from '@chakra-ui/react';
+
 import useForm from '#/hooks/useForm';
 import SignInValidation from '#/components/signin/SignInValidation';
 
@@ -59,13 +60,12 @@ const SignInForm = () => {
       password: '',
     },
     onSubmit: async (submitValues) => {
-      await new Promise((r) => setTimeout(r, 2000));
       // 성공 시
       toast({
         title: '로그인 되었습니다!',
         description: `${submitValues.id}님 환영합니다!`,
         status: 'success',
-        duration: 9000,
+        duration: 2000,
         isClosable: true,
       });
       // 실패 시
