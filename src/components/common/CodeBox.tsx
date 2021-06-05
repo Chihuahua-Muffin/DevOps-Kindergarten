@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { chakra, Box, Button, Text, useToast } from '@chakra-ui/react';
+import { chakra, Box, Button, Text/* useToast */ } from '@chakra-ui/react';
 
-const toastId = 'TOAST';
+// const toastId = 'TOAST';
 
 interface CodeBoxProps {
   text: string;
@@ -47,9 +47,9 @@ const CopyButton = chakra(Button, {
 
 /* text에는 안에 들어갈 코드 내용이 들어감 */
 const CodeBox = ({ text }: CodeBoxProps) => {
-  const toast = useToast();
+  // const toast = useToast();
   const [CopyButtonText, setCopyButtonText] = useState('복사하기');
-  const isButtonDisabled = CopyButtonText === '복사하기' ? false : true; 
+  const isButtonDisabled = CopyButtonText !== '복사하기';
 
   const onClickButton = () => {
     const tempElem = document.createElement('textarea');
@@ -63,14 +63,14 @@ const CodeBox = ({ text }: CodeBoxProps) => {
     setTimeout(() => {
       setCopyButtonText('복사하기');
     }, 2000);
-      // toast({
-      //   id: toastId,
-      //   title: '클립보드에 복사되었습니다.',
-      //   status: 'success',
-      //   duration: 2000,
-      //   position: 'bottom-left',
-      //   isClosable: true,
-      // });
+    // toast({
+    //   id: toastId,
+    //   title: '클립보드에 복사되었습니다.',
+    //   status: 'success',
+    //   duration: 2000,
+    //   position: 'bottom-left',
+    //   isClosable: true,
+    // });
     // }
   };
 
