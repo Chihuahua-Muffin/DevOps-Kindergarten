@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { chakra, Box, Button, Text, useToast } from '@chakra-ui/react';
 
 const toastId = 'TOAST';
@@ -48,6 +48,8 @@ const CopyButton = chakra(Button, {
 /* text에는 안에 들어갈 코드 내용이 들어감 */
 const CodeBox = ({ text }: CodeBoxProps) => {
   const toast = useToast();
+  const [CopyButtonText, setCopyButtonText] = useState('복사하기');
+  const isButtonDisabled = CopyButtonText === '복사하기' ? false : true; 
 
   const onClickButton = () => {
     const tempElem = document.createElement('textarea');
@@ -56,21 +58,32 @@ const CodeBox = ({ text }: CodeBoxProps) => {
     tempElem.select();
     document.execCommand('copy');
     document.body.removeChild(tempElem);
-    if (!toast.isActive(toastId)) {
-      toast({
-        id: toastId,
-        title: '클립보드에 복사되었습니다.',
-        status: 'success',
-        duration: 2000,
-        position: 'bottom-left',
-        isClosable: true,
-      });
-    }
+    // if (!toast.isActive(toastId)) {
+    setCopyButtonText('복사완료');
+    setTimeout(() => {
+      setCopyButtonText('복사하기');
+    }, 2000);
+      // toast({
+      //   id: toastId,
+      //   title: '클립보드에 복사되었습니다.',
+      //   status: 'success',
+      //   duration: 2000,
+      //   position: 'bottom-left',
+      //   isClosable: true,
+      // });
+    // }
   };
 
   return (
     <Container>
-      <CopyButton colorScheme="teal" onClick={onClickButton}>복사하기</CopyButton>
+      <CopyButton
+        colorScheme="teal"
+        onClick={onClickButton}
+        name="copyButton"
+        isDisabled={isButtonDisabled}
+      >
+        {CopyButtonText}
+      </CopyButton>
       <CodeContainer>
         <Code as="pre">{text}</Code>
       </CodeContainer>
