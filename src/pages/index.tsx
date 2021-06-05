@@ -3,7 +3,6 @@ import Link from 'next/link';
 import {
   Flex, Box, Button, Center,
 } from '@chakra-ui/react';
-import CommentList from '#/components/common/comment/CommentList';
 
 const LandingPage = () => (
   <>
@@ -11,7 +10,6 @@ const LandingPage = () => (
       <Flex h="100%" direction="column" align="center" justify="space-around">
         <Center>랜딩 페이지</Center>
         <Link href="/roadmap"><Button>시작하기</Button></Link>
-        <CommentList />
       </Flex>
     </Box>
   </>

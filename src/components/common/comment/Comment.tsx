@@ -12,8 +12,8 @@ import {
   IconButton,
   Divider,
 } from '@chakra-ui/react';
-import RecommentForm from './RecommentForm';
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
+import RecommentForm from './RecommentForm';
 
 // 전체 컨테이너
 const CommentContainer = chakra(Box, {
@@ -122,19 +122,35 @@ const LikeCount = chakra(Text, {
 const Comment = () => {
   const [isRecommentVisible, setIsRecommentVisible] = useState(false);
   const [recommentButtonText, setRecommentButtonText] = useState('답글 달기');
+  // To do : 추후에 사용자가 좋아요를 클릭했는지 안했는지에 따라 기본값이 바뀌도록 바꿔야함
+  const [isLikeButtonClicked, setIsLikeButtonClicked] = useState(false);
+  // To do : 데이터베이스에서 좋아요 수를 받아와야 함
+  const [likeCount, setLikeCount] = useState(0);
 
-  const openRecommentForm = useCallback(() => {
+  const openRecommentFormHandler = useCallback(() => {
     setIsRecommentVisible(!isRecommentVisible);
-    if(isRecommentVisible) {
+    if (isRecommentVisible) {
       setRecommentButtonText('답글 달기');
     } else {
       setRecommentButtonText('취소');
     }
   }, [isRecommentVisible]);
 
-  const recommentButtonColor = useMemo(() =>
-    isRecommentVisible ? 'teal' : 'gray', [isRecommentVisible],
-  ); 
+  const recommentButtonColor = useMemo(() => (isRecommentVisible ? 'teal' : 'gray'), [isRecommentVisible]);
+
+  const likeButtonClickHandler = useCallback(() => {
+    setIsLikeButtonClicked(!isLikeButtonClicked);
+    if (isLikeButtonClicked) {
+      // To do: 데이터베이스에 좋아요가 하나 감소하는 로직 추가
+      setLikeCount(likeCount - 1);
+    } else {
+      // To do: 데이터베이스에 좋아요가 하나 증가하는 로직 추가
+      setLikeCount(likeCount + 1);
+    }
+  }, [isLikeButtonClicked, likeCount]);
+
+  // To do: 백엔드 연결되면 바꾸기
+  const likeButtonColor = useMemo(() => (isLikeButtonClicked ? 'teal' : 'gray'), [isLikeButtonClicked]);
 
   return (
     <CommentContainer>
@@ -142,18 +158,12 @@ const Comment = () => {
       <TopContainer>
         <Thumbnail bg="teal.500" size="md" />
         <UserDataContainer>
-          <UserName>
-            유저이름
-          </UserName>
-          <CreatedAt>
-            생성날짜
-          </CreatedAt>
+          <UserName>유저이름</UserName>
+          <CreatedAt>생성날짜</CreatedAt>
         </UserDataContainer>
       </TopContainer>
       <MidContainer>
-        <CommentText>
-          유저 댓글 내용
-        </CommentText>
+        <CommentText>유저 댓글 내용</CommentText>
       </MidContainer>
       <BottomContainer>
         <ButtonContainer>
@@ -161,12 +171,18 @@ const Comment = () => {
             aria-label="Like"
             size="sm"
             icon={<ThumbUpAltIcon />}
+            colorScheme={likeButtonColor}
+            onClick={likeButtonClickHandler}
+            name="likeButton"
           />
-          <LikeCount>
-            10
-          </LikeCount>
+          <LikeCount name="likeCount">{likeCount}</LikeCount>
         </ButtonContainer>
-        <RecommentButton colorScheme={recommentButtonColor} onClick={openRecommentForm} size="sm">
+        <RecommentButton
+          colorScheme={recommentButtonColor}
+          onClick={openRecommentFormHandler}
+          size="sm"
+          name="recommentButton"
+        >
           {recommentButtonText}
         </RecommentButton>
       </BottomContainer>
