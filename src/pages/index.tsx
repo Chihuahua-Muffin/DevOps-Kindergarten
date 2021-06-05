@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { Flex, Box, Button, Center } from '@chakra-ui/react';
+import CodeBox from '#/components/common/CodeBox';
 
 const LandingPage = () => (
   <>
@@ -10,6 +11,7 @@ const LandingPage = () => (
         <Link href="/roadmap">
           <Button>시작하기</Button>
         </Link>
+        <CodeBox text="dddd" />
       </Flex>
     </Box>
   </>
