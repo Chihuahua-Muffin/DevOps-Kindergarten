@@ -30,6 +30,12 @@ describe('<LoginForm /> 테스트', () => {
     expect(wrapper.find('FormErrorMessage').at(0).text()).toBe('6자 이상의 아이디를 사용해야 합니다.');
   });
 
+  it('ID는 15자 이하입니다.', () => {
+    wrapper.find('input').at(0).simulate('change', { target: { name: 'id', value: 'vas121213131233122' } });
+    wrapper.find('form').simulate('submit');
+    expect(wrapper.find('FormErrorMessage').at(0).text()).toBe('15자 이하의 아이디를 사용해야 합니다.');
+  });
+
   it('Password는 필수 입력값입니다.', () => {
     wrapper.find('input').at(1).simulate('change', { target: { name: 'password', value: '' } });
     wrapper.find('form').simulate('submit');
@@ -40,5 +46,11 @@ describe('<LoginForm /> 테스트', () => {
     wrapper.find('input').at(1).simulate('change', { target: { name: 'password', value: 'jhs12' } });
     wrapper.find('form').simulate('submit');
     expect(wrapper.find('FormErrorMessage').at(1).text()).toBe('6자 이상의 패스워드를 사용해야 합니다.');
+  });
+
+  it('Password는 15자 이하입니다.', () => {
+    wrapper.find('input').at(1).simulate('change', { target: { name: 'password', value: 'jhs1212313213132132112' } });
+    wrapper.find('form').simulate('submit');
+    expect(wrapper.find('FormErrorMessage').at(1).text()).toBe('15자 이하의 비밀번호를 사용해야 합니다.');
   });
 });
