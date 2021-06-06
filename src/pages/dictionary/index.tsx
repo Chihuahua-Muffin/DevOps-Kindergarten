@@ -5,6 +5,7 @@ import {
 } from '@chakra-ui/react';
 import SearchBox from '#/components/dictionary/SearchBox';
 import CardContainer from '#/components/dictionary/CardContainer';
+import CreateButton from '#/components/dictionary/CreateButton';
 
 const Container = chakra(Box, {
   baseStyle: {
@@ -16,11 +17,12 @@ const Container = chakra(Box, {
   },
 });
 
-const RoadMapPage = () => (
+const DictionaryPage = () => (
   <Container>
     <SearchBox />
     <CardContainer />
+    <CreateButton />
   </Container>
 );
 
-export default RoadMapPage;
+export default DictionaryPage;
