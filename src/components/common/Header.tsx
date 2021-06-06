@@ -7,6 +7,7 @@ import {
   Box,
 } from '@chakra-ui/react';
 import HeaderNavigation from '#/components/common/HeaderNavigation';
+import { HEADER_HEIGHT } from '#/constants';
 
 const HeaderContainer = chakra(Box, {
   baseStyle: {
@@ -17,7 +18,7 @@ const HeaderContainer = chakra(Box, {
     position: 'sticky',
     backgroundColor: 'white',
     top: '0',
-    height: '80px',
+    height: HEADER_HEIGHT,
     width: '100%',
     zIndex: '5',
   },
