@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import { chakra, Box } from '@chakra-ui/react';
 import _ from 'lodash';
 
+import EditButton from '#/components/dictionary/EditButton';
 import dictionaries from '#/mockupData/dictionary';
 
 const Container = chakra(Box, {
@@ -49,6 +50,7 @@ const DictionaryExplainPage = () => {
           </div>
         ))}
       </TagContainer>
+      <EditButton id={String(id)} />
     </Container>
   );
 };
