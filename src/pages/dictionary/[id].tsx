@@ -28,8 +28,8 @@ const TagContainer = chakra(Box, {
 const DictionaryExplainPage = () => {
   const router = useRouter();
   const { id } = router.query;
-  
-  const foundDictionary = _.find(dictionaries, function(o) { return o.id === id });
+
+  const foundDictionary = _.find(dictionaries, (o) => o.id === id);
 
   return (
     <Container>
