@@ -1,39 +1,8 @@
 import React from 'react';
 import { Grid } from '@chakra-ui/react';
-import Card from './Card';
 
-const mockUpDatas = [
-  {
-    wordEnglish: 'Continuous Deployment',
-    wordKorean: '지속적 배포',
-    description: '지속적 배포(CD)는 ...',
-    tags: ['deploy', 'operate', 'build'],
-  },
-  {
-    wordEnglish: 'Continuous Integration',
-    wordKorean: '지속적 통합',
-    description: '지속적 통합(CI)는 ...',
-    tags: ['release', 'operate'],
-  },
-  {
-    wordEnglish: 'Kubernetes',
-    wordKorean: '쿠버네티스',
-    description: '쿠버네티스(Kubernetes)는 ...',
-    tags: ['deploy', 'monitor'],
-  },
-  {
-    wordEnglish: 'Docker',
-    wordKorean: '도커',
-    description: '도커(Docker)는 ...',
-    tags: ['deploy', 'monitor'],
-  },
-  {
-    wordEnglish: 'Jenkins',
-    wordKorean: '젠킨스',
-    description: '젠킨스(Jenkins)는 ...',
-    tags: ['deploy', 'monitor'],
-  },
-];
+import Card from './Card';
+import mockupDatas from '#/mockupData/dictionary';
 
 const CardContainer = () => (
   <Grid
@@ -46,9 +15,10 @@ const CardContainer = () => (
     gap={6}
     marginBottom={10}
   >
-    {mockUpDatas.map((data) => (
+    {mockupDatas.map((data) => (
       <Card
-        key={data.wordEnglish}
+        id={data.id}
+        key={data.id}
         wordEnglish={data.wordEnglish}
         wordKorean={data.wordKorean}
         description={data.description}
