@@ -17,7 +17,9 @@ const DictionaryEditPage = () => {
   const { id } = router.query;
   return (
     <Container>
-      {id} EDIT 페이지
+      {id}
+      {' '}
+      EDIT 페이지
     </Container>
   );
 };

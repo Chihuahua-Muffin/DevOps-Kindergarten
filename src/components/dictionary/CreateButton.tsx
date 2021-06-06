@@ -18,7 +18,7 @@ const CreateButtonContainer = chakra(IconButton, {
 });
 
 const CreateButton = () => (
-  <Link href={`/dictionary/create`}>
+  <Link href="/dictionary/create">
     <CreateButtonContainer
       icon={<AddIcon />}
       colorScheme="teal"
