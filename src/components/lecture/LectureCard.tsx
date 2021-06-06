@@ -6,7 +6,6 @@ import {
 } from '@chakra-ui/react';
 import Image from 'next/image';
 import Link from 'next/link';
-import '@fontsource/song-myung';
 
 import LectureCardTag from './LectureCardTag';
 

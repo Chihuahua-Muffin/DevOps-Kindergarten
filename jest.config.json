@@ -19,7 +19,8 @@
     "^#/pages/explain/(.*)": "<rootDir>/src/pages/explain/$1",
     "^#/pages/lecture/(.*)": "<rootDir>/src/pages/lecture/$1",
     "^#/pages/roadmap/(.*)": "<rootDir>/src/pages/roadmap/$1",
-    "^#/constants": "<rootDir>/src/constants"
+    "^#/constants": "<rootDir>/src/constants",
+    "^#/mockupData/(.*)": "<rootDir>/src/mockupData/$1"
   },
   "setupFilesAfterEnv": ["<rootDir>/src/setupTests.ts"],
   "snapshotSerializers": ["enzyme-to-json/serializer"],

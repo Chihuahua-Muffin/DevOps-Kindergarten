@@ -5,11 +5,11 @@ import {
   Text,
 } from '@chakra-ui/react';
 import Link from 'next/link';
-import '@fontsource/song-myung';
 
 import CardTag from './CardTag';
 
 interface CardProps {
+  id: string,
   wordEnglish: string,
   wordKorean: string,
   description: string,
@@ -26,10 +26,11 @@ const DictionaryCard = chakra(Box, {
     width: '260px',
     height: '280px',
     textAlign: 'center',
-    border: '6px solid #111111',
-    boxShadow: '0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)',
-    backgroundColor: '#f7f7f7',
+    boxShadow: '0 7px 15px rgba(0,0,0,0.05), 0 10px 10px rgba(0,0,0,0.1)',
+    borderRadius: '30px',
     transition: 'transform .3s ease',
+    border: '1px solid #EDF2F7',
+    rowGap: '10px',
     '&:hover': {
       cursor: 'pointer',
       transform: 'translateY(-5px);',
@@ -39,16 +40,16 @@ const DictionaryCard = chakra(Box, {
 
 const EnglishHeadText = chakra(Text, {
   baseStyle: {
-    fontFamily: 'Song Myung',
-    fontSize: '30px',
+    fontSize: '24px',
+    fontWeight: '600',
     lineHeight: '25px',
   },
 });
 
 const KoreanHeadText = chakra(Text, {
   baseStyle: {
-    fontFamily: 'Song Myung',
     fontSize: '20px',
+    fontWeight: '300',
   },
 });
 
@@ -59,10 +60,10 @@ const DescriptionText = chakra(Text, {
 });
 
 const Card = ({
-  wordEnglish, wordKorean, description, tags,
+  wordEnglish, wordKorean, description, tags, id,
 }: CardProps) => (
-  <Link href={`/dictionary/${wordEnglish}`}>
-    <DictionaryCard>
+  <Link href={`/dictionary/${id}`}>
+    <DictionaryCard name={wordEnglish}>
       <EnglishHeadText>{wordEnglish}</EnglishHeadText>
       <KoreanHeadText>{wordKorean}</KoreanHeadText>
       <DescriptionText>{description}</DescriptionText>

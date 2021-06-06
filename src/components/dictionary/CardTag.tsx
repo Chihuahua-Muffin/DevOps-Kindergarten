@@ -13,6 +13,7 @@ const TagContainer = chakra(Box, {
   baseStyle: {
     display: 'flex',
     position: 'absolute',
+    padding: '10px',
     bottom: '0',
     right: '0',
   },
@@ -21,7 +22,6 @@ const TagContainer = chakra(Box, {
 const Tag = chakra(Box, {
   baseStyle: {
     display: 'flex',
-    backgroundColor: '#eeeeee',
     fontSize: '12px',
     padding: '4px',
     margin: '4px',
