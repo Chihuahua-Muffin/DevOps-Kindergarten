@@ -1,2 +1,2 @@
 export const CONTENT_WIDTH = '800px';
-export const SOME = 'some';
+export const HEADER_HEIGHT = '80px';
