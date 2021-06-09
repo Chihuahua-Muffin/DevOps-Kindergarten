@@ -61,7 +61,7 @@ const SignInForm = () => {
       id: '',
       password: '',
     },
-    onSubmit: async (submitValues) => {
+    onSubmit: async () => {
       const result = await axios.post(`${SERVER_URL}/api/login`, {
         username: 'admin',
         password: 'admin',
