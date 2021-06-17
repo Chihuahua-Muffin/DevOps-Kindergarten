@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { Flex, Box, Button, Center } from '@chakra-ui/react';
-import CodeBox from '#/components/common/CodeBox';
+import CodeBox from '#/components/common/codeBox';
 
 const LandingPage = () => (
   <>
