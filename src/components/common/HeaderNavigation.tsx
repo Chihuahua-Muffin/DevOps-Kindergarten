@@ -39,16 +39,6 @@ const HeaderNavigation = () => {
         </NavItem>
       </Link>
       <Spacer />
-      <Link href="/signin">
-        <NavItem colorScheme="teal" variant={select === '/signin' ? 'solid' : 'ghost'}>
-          로그인
-        </NavItem>
-      </Link>
-      <Link href="/signup">
-        <NavItem colorScheme="teal" variant={select === '/signup' ? 'solid' : 'ghost'}>
-          회원가입
-        </NavItem>
-      </Link>
       <Link href="/dictionary">
         <NavItem colorScheme="teal" variant={select === '/dictionary' ? 'solid' : 'ghost'}>
           사전
@@ -57,6 +47,11 @@ const HeaderNavigation = () => {
       <Link href="/lecture">
         <NavItem colorScheme="teal" variant={select === '/lecture' ? 'solid' : 'ghost'}>
           실습
+        </NavItem>
+      </Link>
+      <Link href="/signin">
+        <NavItem colorScheme="teal" variant={select === '/signin' ? 'solid' : 'ghost'}>
+          로그인
         </NavItem>
       </Link>
     </NavigationContainer>
