@@ -13,6 +13,9 @@ import {
 import axios from 'axios';
 import jwtDecode from 'jwt-decode';
 
+import FaceIcon from '@material-ui/icons/Face';
+import VpnKeyIcon from '@material-ui/icons/VpnKey';
+
 import useForm from '#/hooks/useForm';
 import SignInValidation from '#/components/signin/SignInValidation';
 import {
@@ -20,6 +23,7 @@ import {
   TOAST_DURATION,
   TOAST_STATUS_SUCCESS,
   TOAST_STATUS_ERROR,
+  ICON_STYLE,
 } from '#/constants';
 
 interface DecodeProps {
@@ -30,12 +34,13 @@ interface DecodeProps {
 
 const Container = chakra(Box, {
   baseStyle: {
+    position: 'relative',
+    top: '27%',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
     width: '100%',
-    height: '100%',
     rowGap: '50px',
   },
 });
@@ -55,8 +60,9 @@ const FormInput = chakra(Input, {
 
 const SubmitButton = chakra(Button, {
   baseStyle: {
-    width: '200px',
+    width: '100%',
     height: '50px',
+    borderRadius: '10px',
   },
 });
 
@@ -107,12 +113,18 @@ const SignInForm = () => {
   return (
     <Container as="form" onSubmit={handleSubmit}>
       <FormControlContainer isInvalid={errors.id}>
-        <FormLabel>아이디</FormLabel>
+        <FormLabel>
+          <FaceIcon style={ICON_STYLE} />
+          아이디
+        </FormLabel>
         <FormInput type="text" className="idInput" name="id" value={values.id} onChange={handleChange} />
         <FormErrorMessage id="idErrorText">{errors.id}</FormErrorMessage>
       </FormControlContainer>
       <FormControlContainer isInvalid={errors.password}>
-        <FormLabel>비밀번호</FormLabel>
+        <FormLabel>
+          <VpnKeyIcon style={ICON_STYLE} />
+          비밀번호
+        </FormLabel>
         <FormInput id="password" name="password" type="password" value={values.password} onChange={handleChange} />
         <FormErrorMessage>{errors.password}</FormErrorMessage>
       </FormControlContainer>

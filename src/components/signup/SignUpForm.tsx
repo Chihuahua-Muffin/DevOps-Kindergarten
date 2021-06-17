@@ -10,8 +10,17 @@ import {
   FormErrorMessage,
   useToast,
 } from '@chakra-ui/react';
+import FaceIcon from '@material-ui/icons/Face';
+import VpnKeyIcon from '@material-ui/icons/VpnKey';
+import PermIdentityIcon from '@material-ui/icons/PermIdentity';
+import EmailIcon from '@material-ui/icons/Email';
+
 import useForm from '#/hooks/useForm';
 import SignUpValidation from '#/components/signup/SignUpValidation';
+
+import {
+  ICON_STYLE,
+} from '#/constants';
 
 const Container = chakra(Box, {
   baseStyle: {
@@ -40,8 +49,9 @@ const FormInput = chakra(Input, {
 
 const SubmitButton = chakra(Button, {
   baseStyle: {
-    width: '200px',
+    width: '100%',
     height: '50px',
+    borderRadius: '10px',
   },
 });
 
@@ -76,22 +86,34 @@ const SignUpForm = () => {
   return (
     <Container as="form" onSubmit={handleSubmit}>
       <FormControlContainer isInvalid={errors.name}>
-        <FormLabel>이름</FormLabel>
+        <FormLabel>
+          <PermIdentityIcon style={ICON_STYLE} />
+          이름
+        </FormLabel>
         <FormInput id="name" name="name" value={values.name} onChange={handleChange} />
         <FormErrorMessage>{errors.name}</FormErrorMessage>
       </FormControlContainer>
       <FormControlContainer isInvalid={errors.email}>
-        <FormLabel>이메일</FormLabel>
+        <FormLabel>
+          <EmailIcon style={ICON_STYLE} />
+          이메일
+        </FormLabel>
         <FormInput id="email" name="email" type="email" value={values.email} onChange={handleChange} />
         <FormErrorMessage>{errors.email}</FormErrorMessage>
       </FormControlContainer>
       <FormControlContainer isInvalid={errors.id}>
-        <FormLabel>아이디</FormLabel>
+        <FormLabel>
+          <FaceIcon style={ICON_STYLE} />
+          아이디
+        </FormLabel>
         <FormInput id="id" name="id" value={values.id} onChange={handleChange} />
         <FormErrorMessage>{errors.id}</FormErrorMessage>
       </FormControlContainer>
       <FormControlContainer isInvalid={errors.password}>
-        <FormLabel>비밀번호</FormLabel>
+        <FormLabel>
+          <VpnKeyIcon style={ICON_STYLE} />
+          비밀번호        
+        </FormLabel>
         <FormInput id="password" name="password" type="password" value={values.password} onChange={handleChange} />
         <FormErrorMessage>{errors.password}</FormErrorMessage>
       </FormControlContainer>

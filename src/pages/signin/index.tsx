@@ -4,15 +4,17 @@ import {
   Box,
 } from '@chakra-ui/react';
 import SignInForm from '#/components/signin/SignInForm';
+import SignUpLinkButton from '#/components/signin/SignUpLinkButton';
+import { CONTENT_WIDTH } from '#/constants';
 
 const Container = chakra(Box, {
   baseStyle: {
-    display: 'flex',
+    display: 'relative',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
     margin: 'auto',
-    width: '600px',
+    width: CONTENT_WIDTH,
     height: '89vh',
   },
 });
@@ -20,6 +22,7 @@ const Container = chakra(Box, {
 const RoadMapPage = () => (
   <Container>
     <SignInForm />
+    <SignUpLinkButton />
   </Container>
 );
 
