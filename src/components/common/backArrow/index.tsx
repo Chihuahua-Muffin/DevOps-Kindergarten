@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   chakra,
   Box,
@@ -20,23 +21,21 @@ const Container = chakra(Box, {
     borderRadius: '10px',
     '&:hover': {
       cursor: 'pointer',
-      backgroundColor: '#EDF2F7' // gray 100
+      backgroundColor: '#EDF2F7', // gray 100
     },
   },
-})
+});
 
 interface BackArrowProps {
   href: string;
 }
 
-const BackArrow = ({ href }: BackArrowProps) => {
-  return (
-    <Link href={href}>
-      <Container>
-        <ArrowBackIcon style={ICON_STYLE} />
-      </Container>
-    </Link>
-  );
-}
+const BackArrow = ({ href }: BackArrowProps) => (
+  <Link href={href}>
+    <Container>
+      <ArrowBackIcon style={ICON_STYLE} />
+    </Container>
+  </Link>
+);
 
 export default BackArrow;

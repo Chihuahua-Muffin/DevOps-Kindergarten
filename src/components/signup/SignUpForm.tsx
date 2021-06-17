@@ -112,7 +112,7 @@ const SignUpForm = () => {
       <FormControlContainer isInvalid={errors.password}>
         <FormLabel>
           <VpnKeyIcon style={ICON_STYLE} />
-          비밀번호        
+          비밀번호
         </FormLabel>
         <FormInput id="password" name="password" type="password" value={values.password} onChange={handleChange} />
         <FormErrorMessage>{errors.password}</FormErrorMessage>

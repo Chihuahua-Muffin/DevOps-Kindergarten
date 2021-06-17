@@ -1,3 +1,4 @@
+import React from 'react';
 import Link from 'next/link';
 import {
   chakra,
@@ -17,7 +18,7 @@ const SignUpButton = chakra(Button, {
     whiteSpace: 'pre',
     border: '1px solid #E2E8F0',
   },
-})
+});
 
 const SignUpLinkText = chakra(Text, {
   baseStyle: {
@@ -33,19 +34,17 @@ const CaptionText = chakra(Text, {
   },
 });
 
-const SignUpLinkButton = () => {
-  return (
-    <Link href="/signup">
-      <SignUpButton>
-        <CaptionText>
-          아직 회원이 아니신가요?
-        </CaptionText>
-        <SignUpLinkText>
-          회원가입
-        </SignUpLinkText>
-      </SignUpButton>
-    </Link>
-  );
-}
+const SignUpLinkButton = () => (
+  <Link href="/signup">
+    <SignUpButton>
+      <CaptionText>
+        아직 회원이 아니신가요?
+      </CaptionText>
+      <SignUpLinkText>
+        회원가입
+      </SignUpLinkText>
+    </SignUpButton>
+  </Link>
+);
 
 export default SignUpLinkButton;
