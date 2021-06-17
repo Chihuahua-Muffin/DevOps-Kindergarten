@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import {
   chakra,
   Box,
@@ -11,10 +11,22 @@ import {
   useToast,
 } from '@chakra-ui/react';
 import axios from 'axios';
+import jwtDecode from 'jwt-decode';
 
 import useForm from '#/hooks/useForm';
 import SignInValidation from '#/components/signin/SignInValidation';
-import { SERVER_URL } from '#/constants';
+import {
+  LOGIN_API_URL,
+  TOAST_DURATION,
+  TOAST_STATUS_SUCCESS,
+  TOAST_STATUS_ERROR,
+} from '#/constants';
+
+interface DecodeProps {
+  sub: string;
+  auth: string;
+  exp: number;
+}
 
 const Container = chakra(Box, {
   baseStyle: {
@@ -50,6 +62,33 @@ const SubmitButton = chakra(Button, {
 
 const SignInForm = () => {
   const toast = useToast();
+  const onSubmit = useCallback(async (submitValues) => {
+    try {
+      // 성공 시
+      const result = await axios.post(LOGIN_API_URL, {
+        username: submitValues.id,
+        password: submitValues.password,
+      });
+      const loginData: DecodeProps = jwtDecode(result.data.token);
+      toast({
+        title: '로그인 되었습니다!',
+        description: `${loginData.sub}님 환영합니다!`,
+        status: TOAST_STATUS_SUCCESS,
+        duration: TOAST_DURATION,
+        isClosable: true,
+      });
+    } catch (error) {
+    // 실패 시
+      toast({
+        title: '로그인에 실패했습니다!',
+        description: '존재하지 않는 회원입니다.',
+        status: TOAST_STATUS_ERROR,
+        duration: TOAST_DURATION,
+        isClosable: true,
+      });
+    }
+  }, [toast]);
+
   const {
     values,
     errors,
@@ -61,28 +100,7 @@ const SignInForm = () => {
       id: '',
       password: '',
     },
-    onSubmit: async () => {
-      const result = await axios.post(`${SERVER_URL}/api/login`, {
-        username: 'admin',
-        password: 'admin',
-      });
-      // 성공 시
-      toast({
-        title: '로그인 되었습니다!',
-        description: `${result.data.token}님 환영합니다!`,
-        status: 'success',
-        duration: 2000,
-        isClosable: true,
-      });
-      // 실패 시
-      // toast({
-      //   title: `로그인에 실패했습니다!`,
-      //   description: '존재하지 않는 회원입니다.',
-      //   status: 'error',
-      //   duration: 9000,
-      //   isClosable: true,
-      // });
-    },
+    onSubmit,
     validate: SignInValidation,
   });
 
