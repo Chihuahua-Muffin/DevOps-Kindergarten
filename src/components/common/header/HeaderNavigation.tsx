@@ -8,6 +8,15 @@ import {
   Button,
 } from '@chakra-ui/react';
 
+import {
+  LOGIN_PAGE_URL,
+  LECTURE_PAGE_URL,
+  ROADMAP_PAGE_URL,
+  DICTIONARY_PAGE_URL,
+} from '#/constants';
+import { useLoginState } from '#/contexts/LoginContext';
+import LoginStatusMenu from './LoginStatusMenu';
+
 const NavigationContainer = chakra(Box, {
   baseStyle: {
     display: 'flex',
@@ -24,6 +33,7 @@ const NavItem = chakra(Button, {
 
 const HeaderNavigation = () => {
   const router = useRouter();
+  const loginState = useLoginState();
   const [select, setSelected] = useState(router.pathname);
 
   useEffect(() => {
@@ -33,28 +43,34 @@ const HeaderNavigation = () => {
   return (
     // SEO를 위한 HTML 태그
     <NavigationContainer as="nav">
-      <Link href="/roadmap">
-        <NavItem colorScheme="teal" variant={select === '/roadmap' ? 'solid' : 'ghost'}>
+      <Link href={ROADMAP_PAGE_URL}>
+        <NavItem colorScheme="teal" variant={select === ROADMAP_PAGE_URL ? 'solid' : 'ghost'}>
           로드맵
         </NavItem>
       </Link>
       <Spacer />
-      <Link href="/dictionary">
-        <NavItem colorScheme="teal" variant={select === '/dictionary' ? 'solid' : 'ghost'}>
+      <Link href={DICTIONARY_PAGE_URL}>
+        <NavItem colorScheme="teal" variant={select === DICTIONARY_PAGE_URL ? 'solid' : 'ghost'}>
           사전
         </NavItem>
       </Link>
-      <Link href="/lecture">
-        <NavItem colorScheme="teal" variant={select === '/lecture' ? 'solid' : 'ghost'}>
+      <Link href={LECTURE_PAGE_URL}>
+        <NavItem colorScheme="teal" variant={select === LECTURE_PAGE_URL ? 'solid' : 'ghost'}>
           실습
         </NavItem>
       </Link>
-      <Link href="/signin">
-        <NavItem colorScheme="teal" variant={select === '/signin' ? 'solid' : 'ghost'}>
-          로그인
-        </NavItem>
-      </Link>
+      {loginState.isLogin
+        ? <LoginStatusMenu />
+        : (
+          <Link href={LOGIN_PAGE_URL}>
+            <NavItem colorScheme="teal" variant={select === LOGIN_PAGE_URL ? 'solid' : 'ghost'}>
+              로그인
+            </NavItem>
+          </Link>
+        )
+      }
     </NavigationContainer>
+      
   );
 };
 

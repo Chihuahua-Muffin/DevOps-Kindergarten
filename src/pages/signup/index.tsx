@@ -6,7 +6,10 @@ import {
 
 import SignUpForm from '#/components/signup/SignUpForm';
 import BackArrow from '#/components/common/backArrow';
-import { CONTENT_WIDTH } from '#/constants';
+import {
+  CONTENT_WIDTH,
+  LOGIN_PAGE_URL,
+} from '#/constants';
 
 const Container = chakra(Box, {
   baseStyle: {
@@ -22,7 +25,7 @@ const Container = chakra(Box, {
 
 const SignUpPage = () => (
   <Container>
-    <BackArrow href="/signin" />
+    <BackArrow href={LOGIN_PAGE_URL} />
     <SignUpForm />
   </Container>
 );

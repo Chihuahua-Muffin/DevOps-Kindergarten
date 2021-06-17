@@ -4,7 +4,7 @@ export const HEADER_HEIGHT = '80px';
 
 export const ICON_STYLE = {
   color: '#2D3748', // gray 700
-  margin: '5px',
+  marginRight: '5px',
 };
 
 // URL
@@ -20,3 +20,15 @@ export const TOAST_STATUS_SUCCESS = 'success';
 export const TOAST_STATUS_ERROR = 'error';
 export const TOAST_STATUS_INFO = 'info';
 export const TOAST_STATUS_WARNING = 'warning';
+
+// ACTION TYPE
+export const LOGIN_ACTION = 'login';
+export const LOGOUT_ACTION = 'logout';
+
+// PAGE ROUTE
+export const DICTIONARY_PAGE_URL = '/dictionary';
+export const LOGIN_PAGE_URL = '/signin';
+export const SIGNUP_PAGE_URL = '/signup';
+export const ROADMAP_PAGE_URL = '/roadmap';
+export const LECTURE_PAGE_URL = '/lecture';
+export const LANDING_PAGE_URL = '/';
