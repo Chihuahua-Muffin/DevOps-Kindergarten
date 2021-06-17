@@ -1,6 +1,11 @@
 // CSS
-export const CONTENT_WIDTH = '800px';
+export const CONTENT_WIDTH = '600px';
 export const HEADER_HEIGHT = '80px';
+
+export const ICON_STYLE = {
+  color: '#2D3748', // gray 700
+  margin: '5px',
+};
 
 // URL
 export const DEV_SERVER_URL = process.env.NEXT_PUBLIC_DEV_SERVER_URL;
