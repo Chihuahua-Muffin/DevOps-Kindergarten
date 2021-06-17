@@ -6,7 +6,7 @@ import {
   Button,
   Box,
 } from '@chakra-ui/react';
-import HeaderNavigation from '#/components/common/HeaderNavigation';
+import HeaderNavigation from '#/components/common/header/HeaderNavigation';
 import { HEADER_HEIGHT } from '#/constants';
 
 const HeaderContainer = chakra(Box, {
