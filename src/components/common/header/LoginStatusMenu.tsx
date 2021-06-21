@@ -12,6 +12,7 @@ import {
   Text,
 } from '@chakra-ui/react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import FaceIcon from '@material-ui/icons/Face';
 
 import { useLoginState, useLoginDispatch } from '#/contexts/LoginContext';
@@ -19,6 +20,7 @@ import {
   ICON_STYLE,
   LOGOUT_ACTION,
   PROFILE_PAGE_URL,
+  LANDING_PAGE_URL,
 } from '#/constants';
 
 const UserNameText = chakra(Text, {
@@ -30,10 +32,12 @@ const UserNameText = chakra(Text, {
 const LoginStatusMenu = () => {
   const loginState = useLoginState();
   const loginDispatch = useLoginDispatch();
+  const router = useRouter();
 
   const logoutButtonHandler = useCallback(() => {
     loginDispatch({ type: LOGOUT_ACTION });
-  }, [loginDispatch]);
+    router.replace(LANDING_PAGE_URL);
+  }, [loginDispatch, router]);
 
   return (
     <Menu>

@@ -12,11 +12,12 @@ import {
 } from '@chakra-ui/react';
 import axios from 'axios';
 import jwtDecode from 'jwt-decode';
+import { useRouter } from 'next/router';
 
 import FaceIcon from '@material-ui/icons/Face';
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
 
-import { useLoginState, useLoginDispatch } from '#/contexts/LoginContext';
+import { useLoginDispatch } from '#/contexts/LoginContext';
 import useForm from '#/hooks/useForm';
 import SignInValidation from '#/components/signin/SignInValidation';
 import {
@@ -26,6 +27,7 @@ import {
   TOAST_STATUS_ERROR,
   ICON_STYLE,
   LOGIN_ACTION,
+  LANDING_PAGE_URL,
 } from '#/constants';
 
 interface DecodeProps {
@@ -71,6 +73,7 @@ const SubmitButton = chakra(Button, {
 const SignInForm = () => {
   const toast = useToast();
   const loginDispatch = useLoginDispatch();
+  const router = useRouter();
   const onSubmit = useCallback(async (submitValues) => {
     try {
       // 성공 시
@@ -87,6 +90,7 @@ const SignInForm = () => {
         isClosable: true,
       });
       loginDispatch({ type: LOGIN_ACTION, username: submitValues.id });
+      router.replace(LANDING_PAGE_URL);
     } catch (error) {
     // 실패 시
       toast({
@@ -97,7 +101,7 @@ const SignInForm = () => {
         isClosable: true,
       });
     }
-  }, [toast, loginDispatch]);
+  }, [toast, loginDispatch, router]);
 
   const {
     values,
