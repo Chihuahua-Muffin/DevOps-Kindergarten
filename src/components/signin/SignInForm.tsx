@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import {
   chakra,
   Box,
@@ -11,19 +11,40 @@ import {
   useToast,
 } from '@chakra-ui/react';
 import axios from 'axios';
+import jwtDecode from 'jwt-decode';
+import { useRouter } from 'next/router';
 
+import FaceIcon from '@material-ui/icons/Face';
+import VpnKeyIcon from '@material-ui/icons/VpnKey';
+
+import { useLoginDispatch } from '#/contexts/LoginContext';
 import useForm from '#/hooks/useForm';
 import SignInValidation from '#/components/signin/SignInValidation';
-import { SERVER_URL } from '#/constants';
+import {
+  LOGIN_API_URL,
+  TOAST_DURATION,
+  TOAST_STATUS_SUCCESS,
+  TOAST_STATUS_ERROR,
+  ICON_STYLE,
+  LOGIN_ACTION,
+  LANDING_PAGE_URL,
+} from '#/constants';
+
+interface DecodeProps {
+  sub: string;
+  auth: string;
+  exp: number;
+}
 
 const Container = chakra(Box, {
   baseStyle: {
+    position: 'relative',
+    top: '27%',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
     width: '100%',
-    height: '100%',
     rowGap: '50px',
   },
 });
@@ -43,13 +64,45 @@ const FormInput = chakra(Input, {
 
 const SubmitButton = chakra(Button, {
   baseStyle: {
-    width: '200px',
+    width: '100%',
     height: '50px',
+    borderRadius: '10px',
   },
 });
 
 const SignInForm = () => {
   const toast = useToast();
+  const loginDispatch = useLoginDispatch();
+  const router = useRouter();
+  const onSubmit = useCallback(async (submitValues) => {
+    try {
+      // 성공 시
+      const result = await axios.post(LOGIN_API_URL, {
+        username: submitValues.id,
+        password: submitValues.password,
+      });
+      const loginData: DecodeProps = jwtDecode(result.data.token);
+      toast({
+        title: '로그인 되었습니다!',
+        description: `${loginData.sub}님 환영합니다!`,
+        status: TOAST_STATUS_SUCCESS,
+        duration: TOAST_DURATION,
+        isClosable: true,
+      });
+      loginDispatch({ type: LOGIN_ACTION, username: submitValues.id });
+      router.replace(LANDING_PAGE_URL);
+    } catch (error) {
+    // 실패 시
+      toast({
+        title: '로그인에 실패했습니다!',
+        description: '존재하지 않는 회원입니다.',
+        status: TOAST_STATUS_ERROR,
+        duration: TOAST_DURATION,
+        isClosable: true,
+      });
+    }
+  }, [toast, loginDispatch, router]);
+
   const {
     values,
     errors,
@@ -61,40 +114,25 @@ const SignInForm = () => {
       id: '',
       password: '',
     },
-    onSubmit: async () => {
-      const result = await axios.post(`${SERVER_URL}/api/login`, {
-        username: 'admin',
-        password: 'admin',
-      });
-      // 성공 시
-      toast({
-        title: '로그인 되었습니다!',
-        description: `${result.data.token}님 환영합니다!`,
-        status: 'success',
-        duration: 2000,
-        isClosable: true,
-      });
-      // 실패 시
-      // toast({
-      //   title: `로그인에 실패했습니다!`,
-      //   description: '존재하지 않는 회원입니다.',
-      //   status: 'error',
-      //   duration: 9000,
-      //   isClosable: true,
-      // });
-    },
+    onSubmit,
     validate: SignInValidation,
   });
 
   return (
     <Container as="form" onSubmit={handleSubmit}>
       <FormControlContainer isInvalid={errors.id}>
-        <FormLabel>아이디</FormLabel>
+        <FormLabel>
+          <FaceIcon style={ICON_STYLE} />
+          아이디
+        </FormLabel>
         <FormInput type="text" className="idInput" name="id" value={values.id} onChange={handleChange} />
         <FormErrorMessage id="idErrorText">{errors.id}</FormErrorMessage>
       </FormControlContainer>
       <FormControlContainer isInvalid={errors.password}>
-        <FormLabel>비밀번호</FormLabel>
+        <FormLabel>
+          <VpnKeyIcon style={ICON_STYLE} />
+          비밀번호
+        </FormLabel>
         <FormInput id="password" name="password" type="password" value={values.password} onChange={handleChange} />
         <FormErrorMessage>{errors.password}</FormErrorMessage>
       </FormControlContainer>
