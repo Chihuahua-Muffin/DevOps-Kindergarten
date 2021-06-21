@@ -67,10 +67,9 @@ const HeaderNavigation = () => {
               로그인
             </NavItem>
           </Link>
-        )
-      }
+        )}
     </NavigationContainer>
-      
+
   );
 };
 
