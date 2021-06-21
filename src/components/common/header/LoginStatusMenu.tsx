@@ -1,24 +1,24 @@
+import React, {
+  useCallback,
+} from 'react';
 import {
   Menu,
   MenuButton,
   MenuList,
   MenuItem,
-  MenuItemOption,
-  MenuGroup,
-  MenuOptionGroup,
-  MenuIcon,
-  MenuCommand,
   MenuDivider,
   Button,
   chakra,
   Text,
-} from "@chakra-ui/react"
+} from '@chakra-ui/react';
+import Link from 'next/link';
 import FaceIcon from '@material-ui/icons/Face';
 
 import { useLoginState, useLoginDispatch } from '#/contexts/LoginContext';
 import {
   ICON_STYLE,
   LOGOUT_ACTION,
+  PROFILE_PAGE_URL,
 } from '#/constants';
 
 const UserNameText = chakra(Text, {
@@ -31,9 +31,9 @@ const LoginStatusMenu = () => {
   const loginState = useLoginState();
   const loginDispatch = useLoginDispatch();
 
-  const logoutButtonHandler = () => {
-    loginDispatch({ type: LOGOUT_ACTION })
-  }
+  const logoutButtonHandler = useCallback(() => {
+    loginDispatch({ type: LOGOUT_ACTION });
+  }, [loginDispatch]);
 
   return (
     <Menu>
@@ -49,12 +49,14 @@ const LoginStatusMenu = () => {
           님 안녕하세요 👋
         </MenuItem>
         <MenuDivider />
-        <MenuItem>프로필</MenuItem>
+        <Link href={PROFILE_PAGE_URL}>
+          <MenuItem>프로필</MenuItem>
+        </Link>
         <MenuDivider />
         <MenuItem onClick={logoutButtonHandler}>로그아웃</MenuItem>
       </MenuList>
     </Menu>
   );
-}
+};
 
 export default LoginStatusMenu;

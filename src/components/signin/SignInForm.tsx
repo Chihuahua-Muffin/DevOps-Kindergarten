@@ -97,7 +97,7 @@ const SignInForm = () => {
         isClosable: true,
       });
     }
-  }, [toast]);
+  }, [toast, loginDispatch]);
 
   const {
     values,
