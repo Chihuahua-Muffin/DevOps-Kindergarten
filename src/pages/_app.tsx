@@ -1,6 +1,5 @@
 import React from 'react';
 import type { AppProps /* , AppContext */ } from 'next/app';
-
 import { ChakraProvider } from '@chakra-ui/react';
 import { LoginProvider } from '#/contexts/LoginContext';
 
@@ -25,11 +24,14 @@ function MyApp({ Component, pageProps }: AppProps) {
 // perform automatic static optimization, causing every page in your app to
 // be server-side rendered.
 //
-// MyApp.getInitialProps = async (appContext: AppContext) => {
-//   // calls page's `getInitialProps` and fills `appProps.pageProps`
-//   const appProps = await App.getInitialProps(appContext);
-
-//   return { ...appProps }
-// }
+// MyApp.getInitialProps = () => {
+//   // try {
+//   //   /* to do: 유저 상태 체크하는 API 필요함 */
+//   // } catch (e) {
+//   //   // storage.remove('loggedInfo');
+//   //   // window.location.href = '/auth/login?expired';
+//   // }
+//   return { };
+// };
 
 export default MyApp;

@@ -22,8 +22,8 @@ export const TOAST_STATUS_INFO = 'info';
 export const TOAST_STATUS_WARNING = 'warning';
 
 // ACTION TYPE
-export const LOGIN_ACTION = 'login';
-export const LOGOUT_ACTION = 'logout';
+export const LOGIN_ACTION = 'auth/login';
+export const LOGOUT_ACTION = 'auth/logout';
 
 // PAGE ROUTE
 export const DICTIONARY_PAGE_URL = '/dictionary';
@@ -33,3 +33,6 @@ export const ROADMAP_PAGE_URL = '/roadmap';
 export const LECTURE_PAGE_URL = '/lecture';
 export const LANDING_PAGE_URL = '/';
 export const PROFILE_PAGE_URL = '/profile';
+
+// STORAGE
+export const LOGIN_STORAGE_KEY = 'loginData';
