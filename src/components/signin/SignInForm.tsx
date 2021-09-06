@@ -13,7 +13,6 @@ import {
 import axios from 'axios';
 import jwtDecode from 'jwt-decode';
 import { useRouter } from 'next/router';
-
 import FaceIcon from '@material-ui/icons/Face';
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
 
@@ -28,7 +27,9 @@ import {
   ICON_STYLE,
   LOGIN_ACTION,
   LANDING_PAGE_URL,
+  LOGIN_STORAGE_KEY,
 } from '#/constants';
+import storage from '#/lib/storage';
 
 interface DecodeProps {
   sub: string;
@@ -82,6 +83,7 @@ const SignInForm = () => {
         password: submitValues.password,
       });
       const loginData: DecodeProps = jwtDecode(result.data.token);
+      storage.set(LOGIN_STORAGE_KEY, loginData);
       toast({
         title: '로그인 되었습니다!',
         description: `${loginData.sub}님 환영합니다!`,

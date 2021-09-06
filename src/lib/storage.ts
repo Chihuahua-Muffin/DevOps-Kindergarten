@@ -5,13 +5,9 @@ storage.set('foobar', { foo: 'bar' });
 let foo = storage.get('foo'); // bar
 storage.remove('foo');
 */
-interface setProps {
-  key: string,
-  object: string | {[key: string]: string}
-}
-
 const storage = {
-  set: ({ key, object }: setProps) => {
+  // eslint-disable-next-line
+  set: (key: string, object: string | {[name: string]: string | number | any }) => {
     if (!localStorage) return;
     localStorage[key] = (typeof object) === 'string' ? object : JSON.stringify(object);
   },
@@ -35,6 +31,7 @@ const storage = {
     if (localStorage[key]) {
       localStorage.removeItem(key);
     }
+    return null;
   },
 };
 
