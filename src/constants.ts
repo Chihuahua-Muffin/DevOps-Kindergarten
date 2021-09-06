@@ -22,8 +22,8 @@ export const TOAST_STATUS_INFO = 'info';
 export const TOAST_STATUS_WARNING = 'warning';
 
 // ACTION TYPE
-export const LOGIN_ACTION = 'login';
-export const LOGOUT_ACTION = 'logout';
+export const LOGIN_ACTION = 'auth/login';
+export const LOGOUT_ACTION = 'auth/logout';
 
 // PAGE ROUTE
 export const DICTIONARY_PAGE_URL = '/dictionary';

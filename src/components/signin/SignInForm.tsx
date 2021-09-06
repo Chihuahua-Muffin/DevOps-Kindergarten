@@ -10,7 +10,6 @@ import {
   FormErrorMessage,
   useToast,
 } from '@chakra-ui/react';
-import axios from 'axios';
 import jwtDecode from 'jwt-decode';
 import { useRouter } from 'next/router';
 import FaceIcon from '@material-ui/icons/Face';
@@ -20,7 +19,6 @@ import { useLoginDispatch } from '#/contexts/LoginContext';
 import useForm from '#/hooks/useForm';
 import SignInValidation from '#/components/signin/SignInValidation';
 import {
-  LOGIN_API_URL,
   TOAST_DURATION,
   TOAST_STATUS_SUCCESS,
   TOAST_STATUS_ERROR,
@@ -30,6 +28,7 @@ import {
   LOGIN_STORAGE_KEY,
 } from '#/constants';
 import storage from '#/lib/storage';
+import { loginAPI } from '#/lib/api/auth';
 
 interface DecodeProps {
   sub: string;
@@ -76,12 +75,10 @@ const SignInForm = () => {
   const loginDispatch = useLoginDispatch();
   const router = useRouter();
   const onSubmit = useCallback(async (submitValues) => {
+    const { id, password } = submitValues;
     try {
       // 성공 시
-      const result = await axios.post(LOGIN_API_URL, {
-        username: submitValues.id,
-        password: submitValues.password,
-      });
+      const result = await loginAPI({ id, password });
       const loginData: DecodeProps = jwtDecode(result.data.token);
       storage.set(LOGIN_STORAGE_KEY, loginData);
       toast({
@@ -91,7 +88,7 @@ const SignInForm = () => {
         duration: TOAST_DURATION,
         isClosable: true,
       });
-      loginDispatch({ type: LOGIN_ACTION, username: submitValues.id });
+      loginDispatch({ type: LOGIN_ACTION, username: id });
       router.replace(LANDING_PAGE_URL);
     } catch (error) {
     // 실패 시
