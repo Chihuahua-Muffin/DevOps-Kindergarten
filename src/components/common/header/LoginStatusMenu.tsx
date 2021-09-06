@@ -10,6 +10,7 @@ import {
   Button,
   chakra,
   Text,
+  useToast,
 } from '@chakra-ui/react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -22,6 +23,8 @@ import {
   PROFILE_PAGE_URL,
   LANDING_PAGE_URL,
   LOGIN_STORAGE_KEY,
+  TOAST_DURATION,
+  TOAST_STATUS_ERROR,
 } from '#/constants';
 import storage from '#/lib/storage';
 
@@ -35,12 +38,19 @@ const LoginStatusMenu = () => {
   const loginState = useLoginState();
   const loginDispatch = useLoginDispatch();
   const router = useRouter();
+  const toast = useToast();
 
   const logoutButtonHandler = useCallback(() => {
     loginDispatch({ type: LOGOUT_ACTION });
     storage.remove(LOGIN_STORAGE_KEY);
     router.replace(LANDING_PAGE_URL);
-  }, [loginDispatch, router]);
+    toast({
+      title: '로그아웃 되었습니다!',
+      status: TOAST_STATUS_ERROR,
+      duration: TOAST_DURATION,
+      isClosable: true,
+    });
+  }, [loginDispatch, router, toast]);
 
   return (
     <Menu>
