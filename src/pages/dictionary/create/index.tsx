@@ -3,6 +3,7 @@ import {
   chakra,
   Box,
 } from '@chakra-ui/react';
+import EditorContainer from '#/components/common/editor';
 
 const Container = chakra(Box, {
   baseStyle: {
@@ -10,13 +11,13 @@ const Container = chakra(Box, {
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    height: '80vh',
+    height: '100vh',
   },
 });
 
 const DictionaryCreatePage = () => (
   <Container>
-    크리에이트 페이지
+    <EditorContainer />
   </Container>
 );
 
