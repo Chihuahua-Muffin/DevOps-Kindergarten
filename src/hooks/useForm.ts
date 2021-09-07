@@ -1,11 +1,15 @@
 import React, { useEffect, useState, useCallback } from 'react';
+import { ADMIN_ROLE, STUDENT_ROLE, EDUCATOR_ROLE } from '#/constants';
+
+type Role = typeof ADMIN_ROLE | typeof STUDENT_ROLE | typeof EDUCATOR_ROLE;
 
 type useFormProps = {
   initialValues: {
-    name?: string,
-    email?: string,
-    id: string,
-    password: string,
+    name?: string, // 유저의 이름
+    email?: string, // 이메일
+    role?: Role, // 역할
+    username: string, // 아이디와 같은 역할
+    password: string, // 비밀번호
   },
   onSubmit: (values: any) => any, // eslint-disable-line
   validate: any, // eslint-disable-line
@@ -14,7 +18,8 @@ type useFormProps = {
 type errorProps = {
   name?: string,
   email?: string,
-  id?: string,
+  role?: string,
+  username?: string,
   password?: string,
 };
 

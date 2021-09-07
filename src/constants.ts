@@ -7,12 +7,6 @@ export const ICON_STYLE = {
   marginRight: '5px',
 };
 
-// URL
-export const DEV_SERVER_URL = process.env.NEXT_PUBLIC_DEV_SERVER_URL;
-
-// API
-export const LOGIN_API_URL = `${DEV_SERVER_URL}/api/login`;
-
 // TOAST
 export const TOAST_DURATION = 3000;
 
@@ -36,3 +30,8 @@ export const PROFILE_PAGE_URL = '/profile';
 
 // STORAGE
 export const LOGIN_STORAGE_KEY = 'loginData';
+
+// ROLE
+export const ADMIN_ROLE = 'ROLE_ADMIN';
+export const STUDENT_ROLE = 'ROLE_STUDENT';
+export const EDUCATOR_ROLE = 'ROLE_EDUCATOR';

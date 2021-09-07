@@ -1,7 +1,7 @@
 interface SignUpValidationProps {
   name?: string;
   email?: string;
-  id?: string;
+  username?: string;
   password?: string;
 }
 
@@ -9,7 +9,7 @@ const NUMBER_ENGLISH_REGEX = /^[a-zA-Z0-9]+$/;
 const EMAIL_REGEX = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
 
 export default function SignUpValidation({
-  name, email, id, password,
+  name, email, username, password,
 }: SignUpValidationProps) {
   const errors: SignUpValidationProps = {};
 
@@ -23,14 +23,14 @@ export default function SignUpValidation({
     errors.email = '입력된 이메일이 유효하지 않습니다.';
   }
 
-  if (!id) {
-    errors.id = '아이디가 입력되지 않았습니다.';
-  } else if (id.length < 5) {
-    errors.id = '5자 이상의 아이디를 사용해야 합니다.';
-  } else if (id.length > 15) {
-    errors.id = '15자 이하의 아이디를 사용해야 합니다.';
-  } else if (!NUMBER_ENGLISH_REGEX.test(id)) {
-    errors.id = '아이디는 영문자 또는 숫자로 이루어져야 합니다.';
+  if (!username) {
+    errors.username = '아이디가 입력되지 않았습니다.';
+  } else if (username.length < 5) {
+    errors.username = '5자 이상의 아이디를 사용해야 합니다.';
+  } else if (username.length > 15) {
+    errors.username = '15자 이하의 아이디를 사용해야 합니다.';
+  } else if (!NUMBER_ENGLISH_REGEX.test(username)) {
+    errors.username = '아이디는 영문자 또는 숫자로 이루어져야 합니다.';
   }
 
   if (!password) {

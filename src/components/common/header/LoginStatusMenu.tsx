@@ -27,6 +27,7 @@ import {
   TOAST_STATUS_ERROR,
 } from '#/constants';
 import storage from '#/lib/storage';
+import { logoutAPI } from '#/lib/api/auth';
 
 const UserNameText = chakra(Text, {
   baseStyle: {
@@ -50,7 +51,8 @@ const LoginStatusMenu = () => {
       duration: TOAST_DURATION,
       isClosable: true,
     });
-  }, [loginDispatch, router, toast]);
+    logoutAPI(loginState.username);
+  }, [loginDispatch, loginState.username, router, toast]);
 
   return (
     <Menu>

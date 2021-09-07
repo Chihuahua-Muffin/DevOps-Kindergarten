@@ -10,6 +10,7 @@ import {
   FormErrorMessage,
   useToast,
 } from '@chakra-ui/react';
+import { useRouter } from 'next/router';
 import FaceIcon from '@material-ui/icons/Face';
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
 import PermIdentityIcon from '@material-ui/icons/PermIdentity';
@@ -20,6 +21,10 @@ import SignUpValidation from '#/components/signup/SignUpValidation';
 
 import {
   ICON_STYLE,
+  LANDING_PAGE_URL,
+  TOAST_STATUS_SUCCESS,
+  TOAST_DURATION,
+  STUDENT_ROLE,
 } from '#/constants';
 
 const Container = chakra(Box, {
@@ -30,7 +35,7 @@ const Container = chakra(Box, {
     alignItems: 'center',
     width: '100%',
     height: '100%',
-    rowGap: '50px',
+    rowGap: '15px',
   },
 });
 
@@ -57,6 +62,7 @@ const SubmitButton = chakra(Button, {
 
 const SignUpForm = () => {
   const toast = useToast();
+  const router = useRouter();
   const {
     values,
     errors,
@@ -67,24 +73,27 @@ const SignUpForm = () => {
     initialValues: {
       name: '',
       email: '',
-      id: '',
+      username: '',
       password: '',
+      role: STUDENT_ROLE,
     },
     onSubmit: async (submitValues) => {
       await new Promise((r) => setTimeout(r, 2000));
       toast({
         title: '회원가입 되었습니다!',
         description: `${submitValues.name}님 환영합니다!`,
-        status: 'success',
-        duration: 9000,
+        status: TOAST_STATUS_SUCCESS,
+        duration: TOAST_DURATION,
         isClosable: true,
       });
+      router.replace(LANDING_PAGE_URL);
     },
     validate: SignUpValidation,
   });
 
   return (
     <Container as="form" onSubmit={handleSubmit}>
+
       <FormControlContainer isInvalid={errors.name}>
         <FormLabel>
           <PermIdentityIcon style={ICON_STYLE} />
@@ -93,6 +102,7 @@ const SignUpForm = () => {
         <FormInput id="name" name="name" value={values.name} onChange={handleChange} />
         <FormErrorMessage>{errors.name}</FormErrorMessage>
       </FormControlContainer>
+
       <FormControlContainer isInvalid={errors.email}>
         <FormLabel>
           <EmailIcon style={ICON_STYLE} />
@@ -101,14 +111,16 @@ const SignUpForm = () => {
         <FormInput id="email" name="email" type="email" value={values.email} onChange={handleChange} />
         <FormErrorMessage>{errors.email}</FormErrorMessage>
       </FormControlContainer>
-      <FormControlContainer isInvalid={errors.id}>
+
+      <FormControlContainer isInvalid={errors.username}>
         <FormLabel>
           <FaceIcon style={ICON_STYLE} />
           아이디
         </FormLabel>
-        <FormInput id="id" name="id" value={values.id} onChange={handleChange} />
-        <FormErrorMessage>{errors.id}</FormErrorMessage>
+        <FormInput id="username" name="username" value={values.username} onChange={handleChange} />
+        <FormErrorMessage>{errors.username}</FormErrorMessage>
       </FormControlContainer>
+
       <FormControlContainer isInvalid={errors.password}>
         <FormLabel>
           <VpnKeyIcon style={ICON_STYLE} />
@@ -117,6 +129,7 @@ const SignUpForm = () => {
         <FormInput id="password" name="password" type="password" value={values.password} onChange={handleChange} />
         <FormErrorMessage>{errors.password}</FormErrorMessage>
       </FormControlContainer>
+
       <SubmitButton type="submit" disabled={isLoading} colorScheme="red">
         {isLoading ? <Spinner /> : '회원가입'}
       </SubmitButton>
