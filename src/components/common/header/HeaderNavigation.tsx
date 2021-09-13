@@ -12,7 +12,7 @@ import {
   LOGIN_PAGE_URL,
   LECTURE_PAGE_URL,
   ROADMAP_PAGE_URL,
-  DICTIONARY_PAGE_URL,
+  // DICTIONARY_PAGE_URL,
 } from '#/constants';
 import { useLoginState } from '#/contexts/LoginContext';
 import LoginStatusMenu from './LoginStatusMenu';

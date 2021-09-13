@@ -14,13 +14,10 @@ const Container = chakra(Box, {
   },
 });
 
-const EditorContainer = () => {
-  const hi = 'hi';
-  return (
-    <Container>
-      <Editor height="100vh" previewStyle="vertical" />
-    </Container>
-  );
-};
+const EditorContainer = () => (
+  <Container>
+    <Editor height="100vh" previewStyle="vertical" />
+  </Container>
+);
 
 export default EditorContainer;
