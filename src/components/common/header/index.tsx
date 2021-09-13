@@ -53,7 +53,7 @@ const Header = () => {
             <HeaderNavigation />
           </FlexItem>
         </HeaderContainer>
-      ) : ''
+      ) : <></>
   );
 };
 
