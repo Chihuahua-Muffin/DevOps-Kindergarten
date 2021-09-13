@@ -1,17 +1,17 @@
 type SignInValidationProps = {
-  id?: string,
+  username?: string,
   password?: string,
 }
 
-export default function SignUpValidation({ id, password }: SignInValidationProps) {
+export default function SignUpValidation({ username, password }: SignInValidationProps) {
   const errors: SignInValidationProps = {};
 
-  if (!id) {
-    errors.id = '아이디가 입력되지 않았습니다.';
-  } else if (id.length < 5) {
-    errors.id = '5자 이상의 아이디를 사용해야 합니다.';
-  } else if (id.length > 15) {
-    errors.id = '15자 이하의 아이디를 사용해야 합니다.';
+  if (!username) {
+    errors.username = '아이디가 입력되지 않았습니다.';
+  } else if (username.length < 5) {
+    errors.username = '5자 이상의 아이디를 사용해야 합니다.';
+  } else if (username.length > 15) {
+    errors.username = '15자 이하의 아이디를 사용해야 합니다.';
   }
 
   if (!password) {

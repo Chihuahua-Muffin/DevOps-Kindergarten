@@ -29,6 +29,7 @@ import {
 } from '#/constants';
 import storage from '#/lib/storage';
 import { loginAPI } from '#/lib/api/auth';
+import JSUtility from '#/lib/JSUtility';
 
 interface DecodeProps {
   sub: string;
@@ -75,12 +76,16 @@ const SignInForm = () => {
   const loginDispatch = useLoginDispatch();
   const router = useRouter();
   const onSubmit = useCallback(async (submitValues) => {
-    const { id, password } = submitValues;
+    const { username, password } = submitValues;
     try {
       // 성공 시
-      const result = await loginAPI({ id, password });
+      const result = await loginAPI({ username, password });
+      console.log('토큰', result);
       const loginData: DecodeProps = jwtDecode(result.data.token);
+      console.log('decode 토큰', loginData);
       storage.set(LOGIN_STORAGE_KEY, loginData);
+      const difftime = JSUtility.compareWithCurrentTimeAsMinute(loginData.exp);
+      console.log('convert time', difftime);
       toast({
         title: '로그인 되었습니다!',
         description: `${loginData.sub}님 환영합니다!`,
@@ -88,7 +93,7 @@ const SignInForm = () => {
         duration: TOAST_DURATION,
         isClosable: true,
       });
-      loginDispatch({ type: LOGIN_ACTION, username: id });
+      loginDispatch({ type: LOGIN_ACTION, username });
       router.replace(LANDING_PAGE_URL);
     } catch (error) {
     // 실패 시
@@ -110,7 +115,7 @@ const SignInForm = () => {
     handleSubmit,
   } = useForm({
     initialValues: {
-      id: '',
+      username: '',
       password: '',
     },
     onSubmit,
@@ -119,14 +124,15 @@ const SignInForm = () => {
 
   return (
     <Container as="form" onSubmit={handleSubmit}>
-      <FormControlContainer isInvalid={errors.id}>
+      <FormControlContainer isInvalid={errors.username}>
         <FormLabel>
           <FaceIcon style={ICON_STYLE} />
           아이디
         </FormLabel>
-        <FormInput type="text" className="idInput" name="id" value={values.id} onChange={handleChange} />
-        <FormErrorMessage id="idErrorText">{errors.id}</FormErrorMessage>
+        <FormInput type="text" className="usernameInput" name="username" value={values.username} onChange={handleChange} />
+        <FormErrorMessage id="usernameErrorText">{errors.username}</FormErrorMessage>
       </FormControlContainer>
+
       <FormControlContainer isInvalid={errors.password}>
         <FormLabel>
           <VpnKeyIcon style={ICON_STYLE} />
