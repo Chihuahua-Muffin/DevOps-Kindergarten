@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import {
   chakra,
   Spacer,
@@ -30,17 +31,30 @@ const FlexItem = chakra(Box, {
   },
 });
 
-const Header = () => (
-  // SEO를 위한 HTML 태그
-  <HeaderContainer as="header">
-    <FlexItem>
-      <Link href="/"><Button>로고</Button></Link>
-    </FlexItem>
-    <Spacer />
-    <FlexItem>
-      <HeaderNavigation />
-    </FlexItem>
-  </HeaderContainer>
-);
+const Header = () => {
+  const [isShowHeader, setIsShowHeader] = useState(true);
+  const router = useRouter();
+  const disapearHeaderPathList = useMemo(() => ['/dictionary/create'], []);
+
+  useEffect(() => {
+    if (disapearHeaderPathList.includes(router.pathname)) setIsShowHeader(false);
+    else setIsShowHeader(true);
+  }, [router.pathname, disapearHeaderPathList]);
+
+  return (
+    isShowHeader
+      ? (
+        <HeaderContainer as="header">
+          <FlexItem>
+            <Link href="/"><Button>로고</Button></Link>
+          </FlexItem>
+          <Spacer />
+          <FlexItem>
+            <HeaderNavigation />
+          </FlexItem>
+        </HeaderContainer>
+      ) : <></>
+  );
+};
 
 export default Header;
