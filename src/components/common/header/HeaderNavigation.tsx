@@ -49,11 +49,12 @@ const HeaderNavigation = () => {
         </NavItem>
       </Link>
       <Spacer />
-      <Link href={DICTIONARY_PAGE_URL}>
+      {/* 잠시 없앰 */}
+      {/* <Link href={DICTIONARY_PAGE_URL}>
         <NavItem colorScheme="teal" variant={select === DICTIONARY_PAGE_URL ? 'solid' : 'ghost'}>
           사전
         </NavItem>
-      </Link>
+      </Link> */}
       <Link href={LECTURE_PAGE_URL}>
         <NavItem colorScheme="teal" variant={select === LECTURE_PAGE_URL ? 'solid' : 'ghost'}>
           실습
