@@ -15,10 +15,6 @@ export const TOAST_STATUS_ERROR = 'error';
 export const TOAST_STATUS_INFO = 'info';
 export const TOAST_STATUS_WARNING = 'warning';
 
-// ACTION TYPE
-export const LOGIN_ACTION = 'auth/login';
-export const LOGOUT_ACTION = 'auth/logout';
-
 // PAGE ROUTE
 export const DICTIONARY_PAGE_URL = '/dictionary';
 export const LOGIN_PAGE_URL = '/signin';
@@ -29,7 +25,7 @@ export const LANDING_PAGE_URL = '/';
 export const PROFILE_PAGE_URL = '/profile';
 
 // STORAGE
-export const LOGIN_STORAGE_KEY = 'loginData';
+export const ACCESS_TOKEN = 'accessToken';
 
 // ROLE
 export const ADMIN_ROLE = 'ROLE_ADMIN';

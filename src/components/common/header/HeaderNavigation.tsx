@@ -7,6 +7,7 @@ import {
   Box,
   Button,
 } from '@chakra-ui/react';
+import { useSelector } from 'react-redux';
 
 import {
   LOGIN_PAGE_URL,
@@ -14,7 +15,7 @@ import {
   ROADMAP_PAGE_URL,
   DICTIONARY_PAGE_URL,
 } from '#/constants';
-import { useLoginState } from '#/contexts/LoginContext';
+import { AppState } from '#/redux/store';
 import LoginStatusMenu from './LoginStatusMenu';
 
 const NavigationContainer = chakra(Box, {
@@ -33,7 +34,7 @@ const NavItem = chakra(Button, {
 
 const HeaderNavigation = () => {
   const router = useRouter();
-  const loginState = useLoginState();
+  const loginState = useSelector((state: AppState) => state.auth);
   const [select, setSelected] = useState(router.pathname);
 
   useEffect(() => {
