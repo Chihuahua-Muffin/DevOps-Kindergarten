@@ -1,11 +1,11 @@
 import React from 'react';
-import { useLoginState } from '#/contexts/LoginContext';
+import { useAppSelector } from '#/hooks/useRedux';
 
 const ProfilePage = () => {
-  const loginState = useLoginState();
+  const authState = useAppSelector((state) => state.auth);
   return (
     <div>
-      {loginState.username}
+      {authState.username}
       프로필 페이지 입니다.
     </div>
   );

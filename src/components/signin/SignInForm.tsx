@@ -14,8 +14,9 @@ import jwtDecode from 'jwt-decode';
 import { useRouter } from 'next/router';
 import FaceIcon from '@material-ui/icons/Face';
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
+import { useAppDispatch } from '#/hooks/useRedux';
 
-import { useLoginDispatch } from '#/contexts/LoginContext';
+import { login } from '#/redux/reducers/auth';
 import useForm from '#/hooks/useForm';
 import SignInValidation from '#/components/signin/SignInValidation';
 import {
@@ -23,9 +24,8 @@ import {
   TOAST_STATUS_SUCCESS,
   TOAST_STATUS_ERROR,
   ICON_STYLE,
-  LOGIN_ACTION,
   LANDING_PAGE_URL,
-  LOGIN_STORAGE_KEY,
+  ACCESS_TOKEN,
 } from '#/constants';
 import storage from '#/lib/storage';
 import { loginAPI } from '#/lib/api/auth';
@@ -73,19 +73,20 @@ const SubmitButton = chakra(Button, {
 
 const SignInForm = () => {
   const toast = useToast();
-  const loginDispatch = useLoginDispatch();
+  const authDispatch = useAppDispatch();
   const router = useRouter();
   const onSubmit = useCallback(async (submitValues) => {
     const { username, password } = submitValues;
     try {
       // 성공 시
+      // Todo: 액세스토큰 자체를 로컬스토리지에 저장
       const result = await loginAPI({ username, password });
-      console.log('토큰', result);
       const loginData: DecodeProps = jwtDecode(result.data.token);
-      console.log('decode 토큰', loginData);
-      storage.set(LOGIN_STORAGE_KEY, loginData);
-      const difftime = JSUtility.compareWithCurrentTimeAsMinute(loginData.exp);
-      console.log('convert time', difftime);
+      storage.set(ACCESS_TOKEN, loginData);
+      // const difftime = JSUtility.compareWithCurrentTimeAsMinute(loginData.exp);
+      // console.log('convert time', difftime);
+      authDispatch(login(username));
+      router.replace(LANDING_PAGE_URL);
       toast({
         title: '로그인 되었습니다!',
         description: `${loginData.sub}님 환영합니다!`,
@@ -93,8 +94,6 @@ const SignInForm = () => {
         duration: TOAST_DURATION,
         isClosable: true,
       });
-      loginDispatch({ type: LOGIN_ACTION, username });
-      router.replace(LANDING_PAGE_URL);
     } catch (error) {
     // 실패 시
       toast({
@@ -105,7 +104,7 @@ const SignInForm = () => {
         isClosable: true,
       });
     }
-  }, [toast, loginDispatch, router]);
+  }, [toast, authDispatch, router]);
 
   const {
     values,

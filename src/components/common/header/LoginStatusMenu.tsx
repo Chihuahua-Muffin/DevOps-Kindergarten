@@ -15,14 +15,13 @@ import {
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import FaceIcon from '@material-ui/icons/Face';
-
-import { useLoginState, useLoginDispatch } from '#/contexts/LoginContext';
+import { useAppSelector, useAppDispatch } from '#/hooks/useRedux';
+import { logout } from '#/redux/reducers/auth';
 import {
   ICON_STYLE,
-  LOGOUT_ACTION,
   PROFILE_PAGE_URL,
   LANDING_PAGE_URL,
-  LOGIN_STORAGE_KEY,
+  ACCESS_TOKEN,
   TOAST_DURATION,
   TOAST_STATUS_ERROR,
 } from '#/constants';
@@ -36,14 +35,14 @@ const UserNameText = chakra(Text, {
 });
 
 const LoginStatusMenu = () => {
-  const loginState = useLoginState();
-  const loginDispatch = useLoginDispatch();
+  const authState = useAppSelector((state) => state.auth);
+  const authDispatch = useAppDispatch();
   const router = useRouter();
   const toast = useToast();
 
   const logoutButtonHandler = useCallback(() => {
-    loginDispatch({ type: LOGOUT_ACTION });
-    storage.remove(LOGIN_STORAGE_KEY);
+    authDispatch(logout());
+    storage.remove(ACCESS_TOKEN);
     router.replace(LANDING_PAGE_URL);
     toast({
       title: '로그아웃 되었습니다!',
@@ -51,8 +50,8 @@ const LoginStatusMenu = () => {
       duration: TOAST_DURATION,
       isClosable: true,
     });
-    logoutAPI(loginState.username);
-  }, [loginDispatch, loginState.username, router, toast]);
+    logoutAPI(authState.username);
+  }, [authDispatch, authState.username, router, toast]);
 
   return (
     <Menu>
@@ -63,7 +62,7 @@ const LoginStatusMenu = () => {
       <MenuList>
         <MenuItem>
           <UserNameText>
-            {loginState.username}
+            {authState.username}
           </UserNameText>
           님 안녕하세요 👋
         </MenuItem>
