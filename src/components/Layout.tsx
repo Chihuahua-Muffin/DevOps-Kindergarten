@@ -25,7 +25,6 @@ const Layout = ({ children }: LayoutProps) => {
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const accessToken = storage.get(ACCESS_TOKEN); // 로그인 정보를 로컬스토리지에서 가져옵니다.
-      console.log('로그인 정보:', accessToken);
       if (!accessToken) return;
 
       // Todo: 액세스 토큰 자체를 로컬스토리지에 저장 후, 토큰을 디코드해서 로그인 정보를 가져오도록 변경
