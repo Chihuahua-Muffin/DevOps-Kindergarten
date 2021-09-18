@@ -26,4 +26,4 @@
 // );
 
 // export default DictionaryPage;
-export { };
+export default { };

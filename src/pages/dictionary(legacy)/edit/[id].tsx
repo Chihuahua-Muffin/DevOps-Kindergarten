@@ -25,4 +25,4 @@
 // };
 
 // export default DictionaryEditPage;
-export { };
+export default { };

@@ -28,4 +28,4 @@
 // };
 
 // export default SearchBox;
-export { };
+export default { };

@@ -73,4 +73,4 @@
 // );
 
 // export default Card;
-export { };
+export default { };

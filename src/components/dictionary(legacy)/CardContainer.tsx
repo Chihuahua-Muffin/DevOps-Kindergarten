@@ -29,4 +29,4 @@
 // );
 
 // export default CardContainer;
-export { };
+export default { };

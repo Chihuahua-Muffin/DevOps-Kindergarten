@@ -40,4 +40,4 @@
 // );
 
 // export default CardTag;
-export { };
+export default { };

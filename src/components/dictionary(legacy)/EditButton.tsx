@@ -33,4 +33,4 @@
 // );
 
 // export default EditButton;
-export { };
+export default { };
