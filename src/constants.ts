@@ -16,7 +16,6 @@ export const TOAST_STATUS_INFO = 'info';
 export const TOAST_STATUS_WARNING = 'warning';
 
 // PAGE ROUTE
-export const DICTIONARY_PAGE_URL = '/dictionary';
 export const LOGIN_PAGE_URL = '/signin';
 export const SIGNUP_PAGE_URL = '/signup';
 export const ROADMAP_PAGE_URL = '/roadmap';
