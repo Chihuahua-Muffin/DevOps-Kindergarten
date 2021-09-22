@@ -5,7 +5,7 @@ import {
 } from '@chakra-ui/react';
 
 import SignUpForm from '#/components/UI/organisms/SignupForm';
-import BackArrow from '#/components/atomics/BackArrow';
+import BackArrow from '#/components/UI/atomics/BackArrow';
 import {
   CONTENT_WIDTH,
   LOGIN_PAGE_URL,
