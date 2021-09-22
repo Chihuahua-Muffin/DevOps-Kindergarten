@@ -19,7 +19,7 @@ interface LayoutProps {
 // }
 
 // 모든 페이지에 적용되는 컴포넌트
-const Layout = ({ children }: LayoutProps) => {
+const MainLayout = ({ children }: LayoutProps) => {
   const authDispatch = useAppDispatch();
   /* 새로고침 후에도 로그인 정보 확인 후 로그인 유지 */
   useEffect(() => {
@@ -49,4 +49,4 @@ const Layout = ({ children }: LayoutProps) => {
   );
 };
 
-export default Layout;
+export default MainLayout;

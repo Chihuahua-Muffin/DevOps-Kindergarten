@@ -1,6 +1,7 @@
 import React from 'react';
 
-import ExplainContainer from '#/components/explain/ExplainContainer';
+import ExplainLayout from '#/components/layouts/Explain';
+
 import ExplainTitle from '#/components/explain/ExplainTitle';
 import ExplainSubTitle from '#/components/explain/ExplainSubTitle';
 import ExplainContent from '#/components/explain/ExplainContent';
@@ -10,7 +11,7 @@ import ExplainContent from '#/components/explain/ExplainContent';
 // ExplainContent   : p
 
 const MonitorPage = () => (
-  <ExplainContainer>
+  <>
     <ExplainTitle>MONITOR</ExplainTitle>
     <ExplainContent>
       MONITOR?
@@ -19,7 +20,13 @@ const MonitorPage = () => (
     <ExplainContent>
       대표 툴에 대한 설명
     </ExplainContent>
-  </ExplainContainer>
+  </>
+);
+
+MonitorPage.getLayout = (page: React.ReactElement) => (
+  <ExplainLayout>
+    {page}
+  </ExplainLayout>
 );
 
 export default MonitorPage;

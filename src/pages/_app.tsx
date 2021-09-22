@@ -1,22 +1,34 @@
 import React from 'react';
-import type {
-  AppProps,
-  /* AppContext */
-} from 'next/app';
 import { ChakraProvider } from '@chakra-ui/react';
 import { Provider } from 'react-redux';
+
+import type { ReactElement, ReactNode } from 'react';
+import type { AppProps } from 'next/app';
+import type { NextPage } from 'next';
+
 import store from '#/redux/store';
-import Layout from '#/components/Layout';
 import theme from '#/utils/theme';
 
-function MyApp({ Component, pageProps }: AppProps) {
+import MainLayout from '#/components/layouts/Main';
+
+type NextPageWithLayout = NextPage & {
+  getLayout?: (page: ReactElement) => ReactNode
+}
+
+type AppPropsWithLayout = AppProps & {
+  Component: NextPageWithLayout
+}
+
+function MyApp({ Component, pageProps }: AppPropsWithLayout) {
+  /* ExplainLayout 적용 되어있으면 우선 적용 */
+  const getLayout = Component.getLayout ?? ((page) => page);
   return (
     <ChakraProvider theme={theme}>
       <Provider store={store}>
-        <Layout>
+        <MainLayout>
           {/* eslint-disable-next-line */}
-          <Component {...pageProps} />
-        </Layout>
+          {getLayout(<Component {...pageProps} />)}
+        </MainLayout>
       </Provider>
     </ChakraProvider>
   );
