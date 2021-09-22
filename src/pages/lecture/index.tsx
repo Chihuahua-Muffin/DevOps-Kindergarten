@@ -1,24 +1,12 @@
 import React from 'react';
-import {
-  chakra,
-  Box,
-} from '@chakra-ui/react';
-import LectureCardContainer from '#/components/UI/organisms/LectureCardContainer';
 
-const Container = chakra(Box, {
-  baseStyle: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: '100%',
-  },
-});
+import LectureCardContainer from '#/components/UI/organisms/LectureCardContainer';
+import * as Styled from './styled';
 
 const LecturePage = () => (
-  <Container>
+  <Styled.Container>
     <LectureCardContainer />
-  </Container>
+  </Styled.Container>
 );
 
 export default LecturePage;
