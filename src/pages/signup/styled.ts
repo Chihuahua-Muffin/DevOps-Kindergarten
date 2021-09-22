@@ -12,3 +12,5 @@ export const Container = chakra(Box, {
     height: '89vh',
   },
 });
+
+export default {};
