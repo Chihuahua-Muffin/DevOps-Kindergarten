@@ -15,12 +15,14 @@ import {
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
 import RecommentForm from './RecommentForm';
 
+import { CONTENT_WIDTH } from '#/constants';
+
 // 전체 컨테이너
 const CommentContainer = chakra(Box, {
   baseStyle: {
     display: 'flex',
     flexDirection: 'column',
-    width: '100%',
+    width: CONTENT_WIDTH,
   },
 });
 
