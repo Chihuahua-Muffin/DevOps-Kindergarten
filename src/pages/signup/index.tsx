@@ -1,17 +1,10 @@
 import React from 'react';
-import {
-  chakra,
-  Box,
-} from '@chakra-ui/react';
+import { chakra, Box } from '@chakra-ui/react';
+import SignUpForm from '#/components/UI/organisms/SignupForm';
+import BackArrow from '#/components/UI/atomics/BackArrow';
+import { LOGIN_PAGE_URL, CONTENT_WIDTH } from '#/constants';
 
-import SignUpForm from '#/components/signup/SignUpForm';
-import BackArrow from '#/components/common/backArrow';
-import {
-  CONTENT_WIDTH,
-  LOGIN_PAGE_URL,
-} from '#/constants';
-
-const Container = chakra(Box, {
+export const Container = chakra(Box, {
   baseStyle: {
     display: 'flex',
     flexDirection: 'column',

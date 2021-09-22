@@ -1,11 +1,9 @@
 import React from 'react';
-import {
-  chakra,
-  Box,
-} from '@chakra-ui/react';
-import LectureCardContainer from '#/components/lecture/LectureCardContainer';
+import { chakra, Box } from '@chakra-ui/react';
 
-const Container = chakra(Box, {
+import LectureCardContainer from '#/components/UI/organisms/LectureCardContainer';
+
+export const Container = chakra(Box, {
   baseStyle: {
     display: 'flex',
     flexDirection: 'column',
