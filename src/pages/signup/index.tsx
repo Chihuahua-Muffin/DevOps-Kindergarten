@@ -1,33 +1,14 @@
 import React from 'react';
-import {
-  chakra,
-  Box,
-} from '@chakra-ui/react';
-
+import * as Styled from './styled';
 import SignUpForm from '#/components/UI/organisms/SignupForm';
 import BackArrow from '#/components/UI/atomics/BackArrow';
-import {
-  CONTENT_WIDTH,
-  LOGIN_PAGE_URL,
-} from '#/constants';
-
-const Container = chakra(Box, {
-  baseStyle: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    margin: 'auto',
-    width: CONTENT_WIDTH,
-    height: '89vh',
-  },
-});
+import { LOGIN_PAGE_URL } from '#/constants';
 
 const SignUpPage = () => (
-  <Container>
+  <Styled.Container>
     <BackArrow href={LOGIN_PAGE_URL} />
     <SignUpForm />
-  </Container>
+  </Styled.Container>
 );
 
 export default SignUpPage;
