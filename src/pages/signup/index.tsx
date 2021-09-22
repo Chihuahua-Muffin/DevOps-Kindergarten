@@ -4,8 +4,8 @@ import {
   Box,
 } from '@chakra-ui/react';
 
-import SignUpForm from '#/components/signup/SignUpForm';
-import BackArrow from '#/components/common/backArrow';
+import SignUpForm from '#/components/UI/organisms/SignupForm';
+import BackArrow from '#/components/atomics/BackArrow';
 import {
   CONTENT_WIDTH,
   LOGIN_PAGE_URL,

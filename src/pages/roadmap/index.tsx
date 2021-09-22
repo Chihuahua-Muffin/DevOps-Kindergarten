@@ -17,8 +17,8 @@ import ReleaseIcon from '@material-ui/icons/Settings';
 import DeployIcon from '@material-ui/icons/FlightTakeoff';
 import OperateIcon from '@material-ui/icons/Computer';
 import MonitorIcon from '@material-ui/icons/Dvr';
-import Field from '#/components/roadmap/Field';
-import RoadmapSvg from '#/components/roadmap/Svg';
+import Field from '#/components/UI/molecules/RoadmapField';
+import RoadmapSvg from '#/components/UI/atomics/RoadmapSVG';
 
 // 분야 상수
 const fields = [

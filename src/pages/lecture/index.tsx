@@ -3,7 +3,7 @@ import {
   chakra,
   Box,
 } from '@chakra-ui/react';
-import LectureCardContainer from '#/components/lecture/LectureCardContainer';
+import LectureCardContainer from '#/components/UI/organisms/LectureCardContainer';
 
 const Container = chakra(Box, {
   baseStyle: {
