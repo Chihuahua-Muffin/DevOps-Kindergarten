@@ -1,10 +1,13 @@
 import React from 'react';
-import { chakra, Box } from '@chakra-ui/react';
-import SignInForm from '#/components/UI/organisms/SigninForm';
-import SignUpLinkButton from '#/components/UI/molecules/SingupLinkButton';
+import {
+  chakra,
+  Box,
+} from '@chakra-ui/react';
+import SignInForm from '#/components/signin/SignInForm';
+import SignUpLinkButton from '#/components/signin/SignUpLinkButton';
 import { CONTENT_WIDTH } from '#/constants';
 
-export const Container = chakra(Box, {
+const Container = chakra(Box, {
   baseStyle: {
     display: 'relative',
     flexDirection: 'column',
