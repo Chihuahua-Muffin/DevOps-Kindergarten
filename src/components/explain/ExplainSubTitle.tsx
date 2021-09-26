@@ -13,10 +13,10 @@ interface ExplainSubTitleProps {
 const SubTitle = chakra(Text, {
   baseStyle: {
     display: 'flex',
-    fontSize: '28px',
+    fontSize: '1.8rem',
     fontWeight: '600',
-    margin: '20px 0',
-    scrollMarginTop: '90px',
+    margin: '1.2rem 0',
+    scrollMarginTop: '5.6rem',
     '&:hover a': {
       display: 'block',
     },

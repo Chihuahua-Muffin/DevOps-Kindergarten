@@ -10,9 +10,9 @@ interface ExplainTitleProps {
 
 const Title = chakra(Text, {
   baseStyle: {
-    fontSize: '40px',
+    fontSize: '2.8rem',
     fontWeight: 'bold',
-    margin: '30px 0',
+    margin: '1.6rem 0',
   },
 });
 

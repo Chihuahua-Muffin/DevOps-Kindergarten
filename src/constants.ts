@@ -1,6 +1,6 @@
 // CSS
-export const CONTENT_WIDTH = '600px';
-export const HEADER_HEIGHT = '80px';
+export const CONTENT_WIDTH = '37.5rem';
+export const HEADER_HEIGHT = '5rem';
 
 export const ICON_STYLE = {
   color: '#2D3748', // gray 700

@@ -14,6 +14,13 @@ const theme = extendTheme({
   styles: {
     // 글로벌 CSS
     global: {
+      html: {
+        ':root': {
+          // https://stackoverflow.com/questions/11799236/should-i-use-px-or-rem-value-units-in-my-css
+          // 1rem = 16px
+          fontSize: '100%',
+        },
+      },
       body: {
         fontFamily: 'Noto Sans KR',
       },

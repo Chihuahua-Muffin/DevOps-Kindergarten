@@ -26,7 +26,7 @@ const HeaderContainer = chakra(Box, {
 
 const FlexItem = chakra(Box, {
   baseStyle: {
-    padding: '1.5em',
+    padding: '1.5rem',
   },
 });
 

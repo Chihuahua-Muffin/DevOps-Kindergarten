@@ -28,7 +28,8 @@ const NavigationContainer = chakra(Box, {
 
 const NavItem = chakra(Button, {
   baseStyle: {
-    margin: '10px',
+    margin: '1rem',
+    fontSize: '1rem',
   },
 });
 
