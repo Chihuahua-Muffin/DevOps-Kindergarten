@@ -11,6 +11,7 @@ const CommentListContainer = chakra(Box, {
     display: 'flex',
     margin: 'auto',
     flexDirection: 'column',
+    rowGap: '1.4rem',
     width: CONTENT_WIDTH,
   },
 });
@@ -19,6 +20,7 @@ const CommentListContainer = chakra(Box, {
 // Todo: props로 url 넘어오면 axios로 데이터 받아와서 코멘트 출력
 const CommentList = () => (
   <CommentListContainer>
+    <Comment />
     <Comment />
   </CommentListContainer>
 );

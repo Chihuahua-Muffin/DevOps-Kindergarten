@@ -14,8 +14,6 @@ const Container = chakra(Box, {
     display: 'flex',
     flexDirection: 'column',
     width: CONTENT_WIDTH,
-    marginBottom: '50px',
-    marginTop: '50px',
   },
 });
 
@@ -23,12 +21,23 @@ const FormContainer = chakra(Box, {
   baseStyle: {
     display: 'flex',
     flexDirection: 'column',
+    alignItems: 'end',
+    width: '100%',
   },
 });
 
 const CommentHeaderText = chakra(Text, {
   baseStyle: {
-    fontSize: '24px',
+    fontSize: '1.2rem',
+    margin: '1rem 0',
+  },
+});
+
+const CommentButton = chakra(Button, {
+  baseStyle: {
+    fontSize: '1rem',
+    margin: '1rem 0',
+    width: '7rem',
   },
 });
 
@@ -37,9 +46,9 @@ const CommentForm = () => (
     <Divider />
     <CommentHeaderText>댓글</CommentHeaderText>
     <FormContainer as="form">
-      <Textarea />
+      <Textarea placeholder="댓글을 입력하세요." />
       {/* Todo: 코멘트 API 연결 */}
-      <Button>댓글 달기</Button>
+      <CommentButton colorScheme="teal">댓글 달기</CommentButton>
     </FormContainer>
   </Container>
 );
