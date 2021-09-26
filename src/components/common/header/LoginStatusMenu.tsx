@@ -57,7 +57,7 @@ const LoginStatusMenu = () => {
     <Menu>
       <MenuButton display="flex" alignItems="center" as={Button}>
         <FaceIcon style={ICON_STYLE} />
-        프로필
+        {authState.username}
       </MenuButton>
       <MenuList>
         <MenuItem>
