@@ -21,7 +21,6 @@ const CommentListContainer = chakra(Box, {
 const CommentList = () => (
   <CommentListContainer>
     <Comment />
-    <Comment />
   </CommentListContainer>
 );
 
