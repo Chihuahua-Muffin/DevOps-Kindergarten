@@ -5,7 +5,7 @@ import '@fontsource/noto-sans-kr';
 const breakpoints = createBreakpoints({
   sm: '320px',
   md: '768px',
-  lg: '960px',
+  lg: '1000px',
   xl: '1200px',
 });
 

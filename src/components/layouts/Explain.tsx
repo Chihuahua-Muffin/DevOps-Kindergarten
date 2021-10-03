@@ -1,6 +1,6 @@
 import React from 'react';
 import { useRouter } from 'next/router';
-import { chakra, VStack } from '@chakra-ui/react';
+import { chakra, Box } from '@chakra-ui/react';
 
 import CommentList from '#/components/common/comment/CommentList';
 import CommentForm from '#/components/common/comment/CommentForm';
@@ -11,8 +11,11 @@ interface LayoutProps {
 }
 
 // 이론 설명 페이지의 전체 컨테이너 아래 여백
-const ContainerStack = chakra(VStack, {
+const ContainerStack = chakra(Box, {
   baseStyle: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
     marginBottom: '100px',
   },
 });
@@ -27,9 +30,7 @@ const ExplainLayout = ({ children }: LayoutProps) => {
       <ExplainContainer>
         {children}
       </ExplainContainer>
-
       <CommentForm />
-
       {/* Todo: 코멘트s API 완성되면 list에 페이지 정보 넘겨야 함 */}
       <CommentList />
     </ContainerStack>

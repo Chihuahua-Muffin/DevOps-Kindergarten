@@ -5,12 +5,12 @@ import {
 } from '@chakra-ui/react';
 import ExplainAnchor from '#/components/explain/ExplainAnchor';
 
-interface ExplainSubTitleProps {
+interface ExplainTitleProps {
   children: React.ReactNode;
   id: string;
 }
 
-const SubTitle = chakra(Text, {
+const Title = chakra(Text, {
   baseStyle: {
     display: 'flex',
     fontSize: '2rem',
@@ -23,11 +23,11 @@ const SubTitle = chakra(Text, {
   },
 });
 
-const ExplainSubTitle = ({ children, id }: ExplainSubTitleProps) => (
-  <SubTitle id={id} as="h1">
+const ExplainTitle = ({ children, id }: ExplainTitleProps) => (
+  <Title id={id} as="h1">
     {children}
     <ExplainAnchor id={id} />
-  </SubTitle>
+  </Title>
 );
 
-export default ExplainSubTitle;
+export default ExplainTitle;

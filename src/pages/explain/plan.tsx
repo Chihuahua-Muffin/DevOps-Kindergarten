@@ -1,5 +1,6 @@
 import React from 'react';
 
+import TableOfContents from '#/components/common/TableOfContents';
 import ExplainLayout from '#/components/layouts/Explain';
 
 import ExplainTitle from '#/components/explain/ExplainTitle';
@@ -8,12 +9,13 @@ import ExplainTool from '#/components/explain/ExplainTool';
 
 const PlanPage = () => (
   <>
-    <ExplainTitle id="plan">Plan</ExplainTitle>
+    <TableOfContents />
+    <ExplainTitle id="Plan">Plan</ExplainTitle>
     <ExplainContent>
       프로젝트의 사업 가치와 요구사항들을 정의하는 중요한 단계입니다.
     </ExplainContent>
 
-    <ExplainTitle id="tools">Tools</ExplainTitle>
+    <ExplainTitle id="Tools">Tools</ExplainTitle>
     <ExplainTool
       title="Jira"
       src="/jira.jpeg"

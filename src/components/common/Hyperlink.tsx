@@ -14,7 +14,6 @@ const LinkText = chakra(Text, {
     fontSize: '1.6rem',
     fontWeight: 'bold',
     color: 'teal.500',
-
     _hover: {
       textDecoration: 'underline',
     },
@@ -27,6 +26,7 @@ const ExplainSubTitle = ({ children, href }: Props) => (
     href={href}
     target="_blank"
     rel="noreferrer"
+    className="tool_title"
   >
     {children}
   </LinkText>

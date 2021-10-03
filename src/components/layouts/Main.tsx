@@ -42,9 +42,7 @@ const MainLayout = ({ children }: LayoutProps) => {
         />
       </Head>
       <Header />
-      <main>
-        {children}
-      </main>
+      {children}
     </div>
   );
 };

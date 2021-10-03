@@ -33,7 +33,7 @@ const ToolTitleContainer = chakra(Box, {
 const ExplainToolExplaination = chakra(Box, {
   baseStyle: {
     margin: '1rem 0',
-    fontsize: '1rem',
+    fontSize: '1rem',
   },
 });
 
@@ -58,7 +58,9 @@ const ExplainTool = ({ title, src, titleHref, explaination, features }: ExplainT
       <Hyperlink
         href={titleHref}
       >
-        {title}
+        <h2 style={{ scrollMarginTop: '7rem' }} id={title}>
+          {title}
+        </h2>
       </Hyperlink>
     </ToolTitleContainer>
     <ExplainToolExplaination>
