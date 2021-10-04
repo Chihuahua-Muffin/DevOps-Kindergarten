@@ -10,7 +10,7 @@ interface ExplainContentProps {
 
 const Content = chakra(Text, {
   baseStyle: {
-    fontSize: '16px',
+    fontSize: '1rem',
   },
 });
 

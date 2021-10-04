@@ -38,7 +38,7 @@ const LectureCardContainer = () => (
     templateColumns={{
       sm: 'repeat(1, 1fr)', // 320
       md: 'repeat(2, 1fr)', // 768
-      lg: 'repeat(2, 1fr)', // 960
+      lg: 'repeat(2, 1fr)', // 1000
       xl: 'repeat(3, 1fr)', // 1200
     }}
     gap={6}

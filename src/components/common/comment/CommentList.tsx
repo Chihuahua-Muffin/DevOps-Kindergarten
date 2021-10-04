@@ -11,6 +11,7 @@ const CommentListContainer = chakra(Box, {
     display: 'flex',
     margin: 'auto',
     flexDirection: 'column',
+    rowGap: '1.4rem',
     width: CONTENT_WIDTH,
   },
 });

@@ -30,9 +30,10 @@ const CommentContainer = chakra(Box, {
 const TopContainer = chakra(Box, {
   baseStyle: {
     display: 'flex',
+    marginTop: '1rem',
     width: '100%',
-    columnGap: '15px',
-    padding: '10px',
+    columnGap: '1rem',
+    padding: '0.6rem',
     alignItems: 'center',
   },
 });
@@ -55,7 +56,7 @@ const UserDataContainer = chakra(Box, {
 // 유저 이름
 const UserName = chakra(Text, {
   baseStyle: {
-    fontSize: '15px',
+    fontSize: '1rem',
     fontWeight: '600',
     color: 'gray.800',
   },
@@ -64,7 +65,7 @@ const UserName = chakra(Text, {
 // 유저 댓글 생성 날짜
 const CreatedAt = chakra(Text, {
   baseStyle: {
-    fontSize: '13px',
+    fontSize: '0.8rem',
     fontWeight: '200',
     color: 'gary.500',
   },
@@ -81,8 +82,8 @@ const MidContainer = chakra(Box, {
 // 유저 댓글
 const CommentText = chakra(Text, {
   baseStyle: {
-    fontSize: '16px',
-    padding: '10px',
+    fontSize: '1rem',
+    padding: '0.6rem',
   },
 });
 
@@ -93,7 +94,7 @@ const BottomContainer = chakra(Box, {
     justifyContent: 'space-between',
     alignItems: 'center',
     width: '100%',
-    padding: '5px 10px', // 상하 좌우
+    padding: '0.4rem 0.6rem', // 상하 좌우
   },
 });
 
@@ -107,7 +108,7 @@ const RecommentButton = chakra(Button, {
 const ButtonContainer = chakra(Box, {
   baseStyle: {
     display: 'flex',
-    columnGap: '10px',
+    columnGap: '0.6rem',
     alignItems: 'center',
   },
 });
@@ -115,7 +116,7 @@ const ButtonContainer = chakra(Box, {
 // 좋아요 수
 const LikeCount = chakra(Text, {
   baseStyle: {
-    fontSize: '14px',
+    fontSize: '0.8rem',
     fontWeight: '600',
     color: 'gray.500',
   },

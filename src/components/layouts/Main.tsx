@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import Head from 'next/head';
-import Header from '#/components/common/header';
+import Header from '#/components/common/header/Header';
 
 // import jwtDecode from 'jwt-decode';
 import storage from '#/lib/storage';
@@ -42,9 +42,7 @@ const MainLayout = ({ children }: LayoutProps) => {
         />
       </Head>
       <Header />
-      <main>
-        {children}
-      </main>
+      {children}
     </div>
   );
 };

@@ -41,6 +41,7 @@ const LoginStatusMenu = () => {
   const toast = useToast();
 
   const logoutButtonHandler = useCallback(() => {
+    logoutAPI(authState.username);
     authDispatch(logout());
     storage.remove(ACCESS_TOKEN);
     router.replace(LANDING_PAGE_URL);
@@ -50,14 +51,13 @@ const LoginStatusMenu = () => {
       duration: TOAST_DURATION,
       isClosable: true,
     });
-    logoutAPI(authState.username);
   }, [authDispatch, authState.username, router, toast]);
 
   return (
     <Menu>
       <MenuButton display="flex" alignItems="center" as={Button}>
         <FaceIcon style={ICON_STYLE} />
-        프로필
+        {authState.username}
       </MenuButton>
       <MenuList>
         <MenuItem>

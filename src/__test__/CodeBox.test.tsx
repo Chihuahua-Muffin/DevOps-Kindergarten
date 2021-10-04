@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import CodeBox from '#/components/common/codeBox';
+import CodeBox from '#/components/common/codeBox/CodeBox';
 
 document.execCommand = jest.fn();
 

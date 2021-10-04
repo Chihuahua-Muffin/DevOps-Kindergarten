@@ -8,7 +8,7 @@ interface ExplainAnchorProps {
 const Anchor = chakra(Text, {
   baseStyle: {
     display: 'none',
-    margin: '0 5px',
+    margin: '0 0.3rem',
     color: '#88d8b0',
   },
 });
