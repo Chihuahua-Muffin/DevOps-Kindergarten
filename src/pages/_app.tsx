@@ -9,7 +9,7 @@ import type { NextPage } from 'next';
 import store from '#/redux/store';
 import theme from '#/utils/theme';
 
-import MainLayout from '#/components/Layout/Main';
+import MainLayout from '#/components/layouts/Main';
 
 type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode

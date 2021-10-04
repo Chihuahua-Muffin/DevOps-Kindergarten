@@ -1,25 +1,45 @@
 import React from 'react';
 
-import ExplainLayout from '#/components/Layout/Explain';
+import TableOfContents from '#/components/common/TableOfContents';
+import ExplainLayout from '#/components/layouts/Explain';
 
-import ExplainTitle from '#/components/UI/atomics/TitleText';
-import ExplainSubTitle from '#/components/UI/atomics/SubtitleText';
-import ExplainContent from '#/components/UI/atomics/ContentText';
-
-// ExplainTitle     : h1
-// ExplainSubTitle  : h2   /#{id} 이런식으로 들어감
-// ExplainContent   : p
+import ExplainTitle from '#/components/explain/ExplainTitle';
+import ExplainContent from '#/components/explain/ExplainContent';
+import ExplainTool from '#/components/explain/ExplainTool';
 
 const PlanPage = () => (
   <>
-    <ExplainTitle>PLAN</ExplainTitle>
+    <TableOfContents />
+    <ExplainTitle id="Plan">Plan</ExplainTitle>
     <ExplainContent>
-      PLAN?
+      프로젝트의 사업 가치와 요구사항들을 정의하는 중요한 단계입니다.
     </ExplainContent>
-    <ExplainSubTitle id="tools">Tools</ExplainSubTitle>
-    <ExplainContent>
-      대표 툴에 대한 설명
-    </ExplainContent>
+
+    <ExplainTitle id="Tools">Tools</ExplainTitle>
+    <ExplainTool
+      title="Jira"
+      src="/jira.jpeg"
+      titleHref="https://www.atlassian.com/software/jira"
+      explaination={(
+        <>
+          Jira는 이러이러한 툴입니다. Jira는 이러이러한 툴입니다. Jira는 이러이러한 툴입니다. Jira는 이러이러한 툴입니다.
+          Jira는 이러이러한 툴입니다. Jira는 이러이러한 툴입니다. Jira는 이러이러한 툴입니다. Jira는 이러이러한 툴입니다.
+        </>
+      )}
+      features={['아주 좋아요', '아주 섹시해요', '아주 어썸해요']}
+    />
+    <ExplainTool
+      title="Git"
+      src="/git.png"
+      titleHref="https://git-scm.com/"
+      explaination={(
+        <>
+          Jira는 이러이러한 툴입니다. Jira는 이러이러한 툴입니다. Jira는 이러이러한 툴입니다. Jira는 이러이러한 툴입니다.
+          Jira는 이러이러한 툴입니다. Jira는 이러이러한 툴입니다. Jira는 이러이러한 툴입니다. Jira는 이러이러한 툴입니다.
+        </>
+      )}
+      features={['1', '2', '3']}
+    />
   </>
 );
 

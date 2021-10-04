@@ -1,22 +1,17 @@
 import React from 'react';
 
-import ExplainLayout from '#/components/Layout/Explain';
+import ExplainLayout from '#/components/layouts/Explain';
 
-import ExplainTitle from '#/components/UI/atomics/TitleText';
-import ExplainSubTitle from '#/components/UI/atomics/SubtitleText';
-import ExplainContent from '#/components/UI/atomics/ContentText';
-
-// ExplainTitle     : h1
-// ExplainSubTitle  : h2   /#{id} 이런식으로 들어감
-// ExplainContent   : p
+import ExplainTitle from '#/components/explain/ExplainTitle';
+import ExplainContent from '#/components/explain/ExplainContent';
 
 const MonitorPage = () => (
   <>
-    <ExplainTitle>MONITOR</ExplainTitle>
+    <ExplainTitle id="monitor">Monitor</ExplainTitle>
     <ExplainContent>
       MONITOR?
     </ExplainContent>
-    <ExplainSubTitle id="tools">Tools</ExplainSubTitle>
+    <ExplainTitle id="tools">Tools</ExplainTitle>
     <ExplainContent>
       대표 툴에 대한 설명
     </ExplainContent>
