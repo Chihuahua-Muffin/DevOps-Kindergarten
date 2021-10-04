@@ -1,9 +1,10 @@
 import React from 'react';
-import {
-  chakra,
-  Box,
-} from '@chakra-ui/react';
+import { chakra, Box } from '@chakra-ui/react';
+import SignUpForm from '#/components/UI/organisms/SignupForm';
+import BackArrow from '#/components/UI/atomics/BackArrow';
+import { LOGIN_PAGE_URL, CONTENT_WIDTH } from '#/constants';
 
+<<<<<<< HEAD
 import SignUpForm from '#/components/signup/SignUpForm';
 import BackArrow from '#/components/common/backArrow';
 import {
@@ -12,6 +13,9 @@ import {
 } from '#/constants';
 
 const Container = chakra(Box, {
+=======
+export const Container = chakra(Box, {
+>>>>>>> parent of dc475a7 (TableOfContents 생성 & 댓글 생성 폼 생성 & 이론 페이지 Tool 컴포넌트 생성 (#68))
   baseStyle: {
     display: 'flex',
     flexDirection: 'column',
