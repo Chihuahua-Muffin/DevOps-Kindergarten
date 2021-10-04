@@ -81,7 +81,6 @@ const SignInForm = () => {
       // 성공 시
       // Todo: 액세스토큰 자체를 로컬스토리지에 저장
       const result = await loginAPI({ username, password });
-      console.log('login result', result);
       const loginData: DecodeProps = jwtDecode(result.data.token);
       storage.set(ACCESS_TOKEN, loginData);
       // const difftime = JSUtility.compareWithCurrentTimeAsMinute(loginData.exp);
