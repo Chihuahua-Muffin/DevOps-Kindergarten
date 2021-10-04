@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import SignUpForm from '#/components/UI/organisms/SignupForm';
+import SignUpForm from '#/components/signup/SignUpForm';
 
 const NAME_INPUT = 0;
 const EMAIL_INPUT = 1;

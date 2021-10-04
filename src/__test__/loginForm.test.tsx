@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import LoginForm from '#/components/UI/organisms/SigninForm';
+import LoginForm from '#/components/signin/SignInForm';
 
 describe('<LoginForm /> 테스트', () => {
   const wrapper = mount(<LoginForm />);
