@@ -1,6 +1,10 @@
 import React from 'react';
 import { mount } from 'enzyme';
+<<<<<<< HEAD
 import CodeBox from '#/components/common/codeBox';
+=======
+import CodeBox from '#/components/atomics/CodeBox';
+>>>>>>> parent of dc475a7 (TableOfContents 생성 & 댓글 생성 폼 생성 & 이론 페이지 Tool 컴포넌트 생성 (#68))
 
 document.execCommand = jest.fn();
 
