@@ -1,5 +1,6 @@
 import React from 'react';
 import { useRouter } from 'next/router';
+import LectureLayout from '#/components/layouts/Lecture';
 
 const LectureContentPage = () => {
   const router = useRouter();
@@ -13,5 +14,11 @@ const LectureContentPage = () => {
     </div>
   );
 };
+
+LectureContentPage.getLayout = (page: React.ReactElement) => (
+  <LectureLayout>
+    {page}
+  </LectureLayout>
+);
 
 export default LectureContentPage;

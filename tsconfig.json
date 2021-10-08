@@ -23,5 +23,5 @@
     }
   },
   "exclude": ["node_modules"],
-  "include": ["**/*.ts", "**/*.tsx", "src/setupTests.js", "src/__test__/loginForm.test.js", "src/components/common/TableOfContents.jsx"]
+  "include": ["**/*.ts", "**/*.tsx", "src/setupTests.js", "src/__test__/loginForm.test.js", "src/components/common/TableOfContents.jsx", "src/components/lecture/terminal/Terminal.jsx"]
 }
