@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 // import { Terminal } from 'xterm';
 import { XTerm } from 'xterm-for-react';
 import { io } from 'socket.io-client';
@@ -18,6 +18,8 @@ const Container = chakra(Box, {
 
 export const Terminal = () => {
   const xtermRef = useRef(null);
+  const socketClient = useRef(null);
+  const [chatMessage, setChatMessage] = useState();
 
   const onData = (string) => {
     xtermRef.current.terminal.write(string);
@@ -37,28 +39,56 @@ export const Terminal = () => {
   };
 
   useEffect(() => {
-    // You can call any method in XTerm.js by using
-    // 'xterm xtermRef.current.terminal.[What you want to call
     const socket = io('http://13.124.116.53:3000', {
-      withCredentials: true,
+      transports: ['websocket', 'polling'],
     });
-    console.log('socket', socket);
+
     socket.on('connect', () => {
-      console.log(socket.connected); // true
+      console.log('연결완료', socket.id);
+      socketClient.current = socket;
     });
+
+    socket.on('chat message', (res) => {
+      console.log('chat message res', res);
+      setChatMessage(res);
+    });
+
     prompt();
   }, []);
 
+  const onClickButton = () => {
+    const res = socketClient.current.emit('chat message', 'ls -l');
+    console.log('res', res);
+  };
+
   return (
-    <Container>
-      {/* Create a new terminal and set it's ref. */}
-      <XTerm
-        ref={xtermRef}
-        onData={onData}
-        onKey={onKey}
-        onLineFeed={onLineFeed}
-      />
-    </Container>
+    <>
+      <button type="button" onClick={onClickButton}>
+        Button
+      </button>
+      <div>
+        {chatMessage
+          ? (
+            <div>
+              {chatMessage}
+            </div>
+          ) : (
+            <div>
+              No chat message
+            </div>
+          )
+        }
+      </div>
+      <Container>
+        {/* Create a new terminal and set it's ref. */}
+        <XTerm
+          ref={xtermRef}
+          onData={onData}
+          onKey={onKey}
+          onLineFeed={onLineFeed}
+        />
+      </Container>
+    </>
   );
 };
 
