@@ -73,7 +73,7 @@ const SubmitButton = chakra(Button, {
 
 const SignInForm = () => {
   const toast = useToast();
-  const authDispatch = useAppDispatch();
+  const appDispatch = useAppDispatch();
   const router = useRouter();
   const onSubmit = useCallback(async (submitValues) => {
     const { username, password } = submitValues;
@@ -85,7 +85,7 @@ const SignInForm = () => {
       storage.set(ACCESS_TOKEN, loginData);
       // const difftime = JSUtility.compareWithCurrentTimeAsMinute(loginData.exp);
       // console.log('convert time', difftime);
-      authDispatch(login(username));
+      appDispatch(login(username));
       router.replace(LANDING_PAGE_URL);
       toast({
         title: '로그인 되었습니다!',
@@ -104,7 +104,7 @@ const SignInForm = () => {
         isClosable: true,
       });
     }
-  }, [toast, authDispatch, router]);
+  }, [toast, appDispatch, router]);
 
   const {
     values,
