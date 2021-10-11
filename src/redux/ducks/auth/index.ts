@@ -23,6 +23,7 @@ export const refreshAsync = createAsyncThunk(
   'auth/refreshAsync',
   async (refreshTokenIncome: string) => {
     const result = await refreshAPI(refreshTokenIncome);
+    console.log('refreshAsync createAsyncThunk result.data', result.data);
     const { accessToken, refreshToken } = result.data;
     const refreshTokenWithExpire = {
       refreshToken,
@@ -39,10 +40,8 @@ export const refreshAsync = createAsyncThunk(
 export const loginAsync = createAsyncThunk(
   'auth/loginAsync',
   async ({ username, password }: { username: string, password: string }) => {
-    const JWT_EXPIRY_TIME = 2 * 3600 * 1000; // 만료 시간 (2시간 밀리 초로 표현)
     const result = await loginAPI({ username, password });
-    console.log('createAsyncThunk result.data', result.data);
-
+    console.log('loginAsync createAsyncThunk result.data', result.data);
     const { accessToken, refreshToken } = result.data;
     const refreshTokenWithExpire = {
       refreshToken,
@@ -50,7 +49,6 @@ export const loginAsync = createAsyncThunk(
     };
 
     axios.defaults.headers.common.Authorization = `Bearer ${accessToken}`; // 액세스 토큰을 모든 API 마다 보내도록 설정
-    setTimeout(() => refreshAPI(refreshToken), JWT_EXPIRY_TIME - 60000); // 액세스 토큰 만료 1분전에 다시 갱신
     storage.set(REFRESH_TOKEN, refreshTokenWithExpire); // 리프레시 토큰은 로컬스토리지에 저장
 
     return result.data;
@@ -61,11 +59,12 @@ export const logoutAsync = createAsyncThunk(
   'auth/logoutAsync',
   async (username: string) => {
     const result = await logoutAPI(username); // 로그아웃 API 요청
+    console.log('logoutAsync createAsyncThunk result.data', result.data);
 
     storage.remove(REFRESH_TOKEN); // 리프레시 토큰 삭제
     delete axios.defaults.headers.common.Authorization; // 액세스 토큰 헤더에서 삭제
 
-    return result;
+    return result.data;
   },
 );
 
