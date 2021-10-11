@@ -1,22 +1,18 @@
 import React, { useEffect } from 'react';
 import Head from 'next/head';
-import Header from '#/components/common/header/Header';
+import moment from 'moment';
 
 // import jwtDecode from 'jwt-decode';
 import storage from '#/lib/storage';
+import Header from '#/components/common/header/Header';
 import { useAppDispatch } from '#/hooks/useRedux';
-import { ACCESS_TOKEN } from '#/constants';
-import { login } from '#/redux/reducers/auth';
+import { REFRESH_TOKEN } from '#/constants';
+import JSUtility from '#/lib/JSUtility';
+import { loginAsync } from '#/redux/ducks/auth';
 
 interface LayoutProps {
   children: React.ReactNode;
 }
-
-// interface DecodeProps {
-//   sub: string;
-//   auth: string;
-//   exp: number;
-// }
 
 // 모든 페이지에 적용되는 컴포넌트
 const MainLayout = ({ children }: LayoutProps) => {
@@ -24,14 +20,22 @@ const MainLayout = ({ children }: LayoutProps) => {
   /* 새로고침 후에도 로그인 정보 확인 후 로그인 유지 */
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      const accessToken = storage.get(ACCESS_TOKEN); // 로그인 정보를 로컬스토리지에서 가져옵니다.
-      if (!accessToken) return;
+      const tokenObject = storage.get(REFRESH_TOKEN); // 로그인 정보를 로컬스토리지에서 가져옵니다.
+      if (!tokenObject) return;
 
-      // Todo: 액세스 토큰 자체를 로컬스토리지에 저장 후, 토큰을 디코드해서 로그인 정보를 가져오도록 변경
-      // const loginData: DecodeProps = jwtDecode(accessToken.data.token);
-      authDispatch(login(accessToken.sub));
+      const { refreshToken, expire } = tokenObject;
+      // 리프레시 토큰은 있고 유효기간이 지났을 때
+      if (refreshToken && JSUtility.isExpiredTokenCompareWithCurrentTime(expire)) {
+        storage.remove(REFRESH_TOKEN);
+        return;
+      }
+
+      console.log('MainLayout');
+      
+
+      // Todo: refreshToken 가지고 리프레시 API 호출하기
     }
-  });
+  }, []);
 
   return (
     <div>

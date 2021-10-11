@@ -9,6 +9,10 @@ import {
 } from '@chakra-ui/react';
 import { useSelector } from 'react-redux';
 
+import { useAppDispatch } from '#/hooks/useRedux';
+import { logoutAsync, loginAsync } from '#/redux/ducks/auth';
+import { logoutAPI, loginAPI } from '#/lib/api/auth';
+
 import {
   LOGIN_PAGE_URL,
   LECTURE_PAGE_URL,
@@ -34,6 +38,8 @@ const NavItem = chakra(Button, {
 });
 
 const HeaderNavigation = () => {
+  // temp
+  const dipatch = useAppDispatch();
   const router = useRouter();
   const loginState = useSelector((state: AppState) => state.auth);
   const [select, setSelected] = useState(router.pathname);
@@ -41,6 +47,26 @@ const HeaderNavigation = () => {
   useEffect(() => {
     setSelected(router.pathname);
   }, [router]);
+
+  const onClickLogoutTemp = async () => {
+    try {
+      // const data = await dipatch(logoutAsync('admin'));
+      const data = await logoutAPI('admin');
+      console.log('logout', data);
+    } catch (error) {
+      console.log('logout error', error);
+    }
+  };
+
+  const onClickLoginTemp = async () => {
+    try {
+      // const data = await dipatch(loginAsync({ username: 'admin', password: 'admin' }));
+      const data = await loginAPI({ username: 'admin', password: 'admin' });
+      console.log('loginAPI', data);
+    } catch (error) {
+      console.log('loginAPI error', error);
+    }
+  };
 
   return (
     // SEO를 위한 HTML 태그
@@ -61,6 +87,12 @@ const HeaderNavigation = () => {
           실습
         </NavItem>
       </Link>
+      <NavItem onClick={onClickLogoutTemp} colorScheme="teal" variant="ghost">
+        로그아웃테스트
+      </NavItem>
+      <NavItem onClick={onClickLoginTemp} colorScheme="teal" variant="ghost">
+        로그인테스트
+      </NavItem>
       {loginState.isLogin
         ? <LoginStatusMenu />
         : (
