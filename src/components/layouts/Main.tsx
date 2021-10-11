@@ -8,7 +8,7 @@ import Header from '#/components/common/header/Header';
 import { useAppDispatch } from '#/hooks/useRedux';
 import { REFRESH_TOKEN } from '#/constants';
 import JSUtility from '#/lib/JSUtility';
-import { loginAsync } from '#/redux/ducks/auth';
+import { refreshAsync } from '#/redux/ducks/auth';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -16,7 +16,7 @@ interface LayoutProps {
 
 // 모든 페이지에 적용되는 컴포넌트
 const MainLayout = ({ children }: LayoutProps) => {
-  const authDispatch = useAppDispatch();
+  const dispatch = useAppDispatch();
   /* 새로고침 후에도 로그인 정보 확인 후 로그인 유지 */
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -30,12 +30,20 @@ const MainLayout = ({ children }: LayoutProps) => {
         return;
       }
 
-      console.log('MainLayout');
-      
+      // (async () => {
+      //   const result = await dispatch(refreshAsync(refreshToken));
 
-      // Todo: refreshToken 가지고 리프레시 API 호출하기
+      //   if (result.type === 'auth/refreshAsync/fulfilled') {
+      //     const JWT_EXPIRY_TIME = 2 * 3600 * 1000; // 만료 시간 (2시간 밀리 초로 표현)
+      //     setTimeout(() => {
+      //       dispatch(refreshAsync(refreshToken));
+      //     }, JWT_EXPIRY_TIME - 60000); // 액세스 토큰 만료 1분전에 다시 갱신
+      //   } else if (result.type === 'auth/refreshAsync/rejected') {
+      //     console.log('auth/refreshAsync/rejected');
+      //   }
+      // })();
     }
-  }, []);
+  }, [dispatch]);
 
   return (
     <div>

@@ -15,7 +15,7 @@ import FaceIcon from '@material-ui/icons/Face';
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
 
 import { useAppDispatch } from '#/hooks/useRedux';
-import { loginAsync } from '#/redux/ducks/auth';
+import { loginAsync, refreshAsync } from '#/redux/ducks/auth';
 import useForm from '#/hooks/useForm';
 import SignInValidation from '#/components/signin/SignInValidation';
 import {
@@ -25,7 +25,7 @@ import {
   ICON_STYLE,
   LANDING_PAGE_URL,
 } from '#/constants';
-import { loginAPI } from '#/lib/api/auth';
+import { refreshAPI } from '#/lib/api/auth';
 // import JSUtility from '#/lib/JSUtility';
 
 interface DecodeProps {
@@ -79,7 +79,14 @@ const SignInForm = () => {
     const result = await dispatch(loginAsync({ username, password }));
     router.replace(LANDING_PAGE_URL);
 
+    console.log('await dispatch(loginAsync({ username, password }))', result);
+
     if (result.type === 'auth/loginAsync/fulfilled') {
+      const JWT_EXPIRY_TIME = 2 * 3600 * 1000; // 만료 시간 (2시간 밀리 초로 표현)
+      setTimeout(() => {
+        dispatch(refreshAsync(result.payload.refreshToken));
+      }, JWT_EXPIRY_TIME - 60000); // 액세스 토큰 만료 1분전에 다시 갱신
+
       toast({
         title: '로그인 되었습니다.',
         description: `${username}님 환영합니다.`,

@@ -40,17 +40,27 @@ const LoginStatusMenu = () => {
   const router = useRouter();
   const toast = useToast();
 
-  const logoutButtonHandler = useCallback(() => {
+  const logoutButtonHandler = useCallback(async () => {
     // logoutAPI(authState.username);
-    dispatch(logoutAsync('admin'));
-    storage.remove(REFRESH_TOKEN);
-    router.replace(LANDING_PAGE_URL);
-    toast({
-      title: '로그아웃 되었습니다!',
-      status: TOAST_STATUS_ERROR,
-      duration: TOAST_DURATION,
-      isClosable: true,
-    });
+    const result = await dispatch(logoutAsync(authState.username));
+
+    if (result.type === 'auth/logoutAsync/fulfilled') {
+      storage.remove(REFRESH_TOKEN);
+      router.replace(LANDING_PAGE_URL);
+      toast({
+        title: '로그아웃 되었습니다!',
+        status: TOAST_STATUS_ERROR,
+        duration: TOAST_DURATION,
+        isClosable: true,
+      });
+    } else if (result.type === 'auth/loginAsync/rejected') {
+      toast({
+        title: '로그아웃에 실패했습니다!',
+        status: TOAST_STATUS_ERROR,
+        duration: TOAST_DURATION,
+        isClosable: true,
+      });
+    }
   }, [dispatch, authState.username, router, toast]);
 
   return (
