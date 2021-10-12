@@ -23,7 +23,8 @@ export const refreshAsync = createAsyncThunk(
   'auth/refreshAsync',
   async (refreshTokenIncome: string) => {
     const result = await refreshAPI(refreshTokenIncome);
-    console.log('refreshAsync createAsyncThunk result.data', result.data);
+    // eslint-disable-next-line no-console
+    if (JSUtility.isDevelopment()) console.log('refreshAsync createAsyncThunk result.data', result.data);
     const { accessToken, refreshToken } = result.data;
     const refreshTokenWithExpire = {
       refreshToken,
@@ -41,7 +42,8 @@ export const loginAsync = createAsyncThunk(
   'auth/loginAsync',
   async ({ username, password }: { username: string, password: string }) => {
     const result = await loginAPI({ username, password });
-    console.log('loginAsync createAsyncThunk result.data', result.data);
+    // eslint-disable-next-line no-console
+    if (JSUtility.isDevelopment()) console.log('loginAsync createAsyncThunk result.data', result.data);
     const { accessToken, refreshToken } = result.data;
     const refreshTokenWithExpire = {
       refreshToken,
@@ -59,7 +61,8 @@ export const logoutAsync = createAsyncThunk(
   'auth/logoutAsync',
   async (username: string) => {
     const result = await logoutAPI(username); // 로그아웃 API 요청
-    console.log('logoutAsync createAsyncThunk result.data', result.data);
+    // eslint-disable-next-line no-console
+    if (JSUtility.isDevelopment()) console.log('logoutAsync createAsyncThunk result.data', result.data);
 
     storage.remove(REFRESH_TOKEN); // 리프레시 토큰 삭제
     delete axios.defaults.headers.common.Authorization; // 액세스 토큰 헤더에서 삭제

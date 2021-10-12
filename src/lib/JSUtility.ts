@@ -1,14 +1,8 @@
 import moment from 'moment';
 
 const JSUtility = {
-  compareWithCurrentTimeAsMinute: (unixTime: number) => {
-    const getTime = moment.unix(unixTime);
-    const currentTime = moment();
-
-    const diff = moment.duration(getTime.diff(currentTime)).asMinutes();
-
-    return Math.round(diff);
-  },
+  isDevelopment: () => process.env.NODE_ENV === 'development',
+  isProduction: () => process.env.NODE_ENV === 'production',
   // usage: 현재시간에서 14일뒤 날짜를 unix로 계산
   convertCurrentTimeToTwoWeeksLaterInUnix: () => {
     const currentTime = new Date();

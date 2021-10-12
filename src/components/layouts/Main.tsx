@@ -19,8 +19,6 @@ const MainLayout = ({ children }: LayoutProps) => {
   const dispatch = useAppDispatch();
   /* 새로고침 후에도 로그인 정보 확인 후 로그인 유지 */
   useEffect(() => {
-    console.log('로그인 정보 확인');
-
     if (typeof window !== 'undefined') {
       const tokenObject = storage.get(REFRESH_TOKEN); // 로그인 정보를 로컬스토리지에서 가져옵니다.
       if (!tokenObject) return;
@@ -41,6 +39,7 @@ const MainLayout = ({ children }: LayoutProps) => {
             dispatch(refreshAsync(refreshToken));
           }, JWT_EXPIRY_TIME - 60000); // 액세스 토큰 만료 1분전에 다시 갱신
         } else if (result.type === 'auth/refreshAsync/rejected') {
+          // eslint-disable-next-line no-console
           console.log('auth/refreshAsync/rejected');
         }
       })();
