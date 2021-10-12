@@ -33,7 +33,7 @@ export const refreshAsync = createAsyncThunk(
     axios.defaults.headers.common.Authorization = `Bearer ${accessToken}`; // 액세스 토큰을 모든 API 마다 보내도록 설정
     storage.set(REFRESH_TOKEN, refreshTokenWithExpire); // 리프레시 토큰은 로컬스토리지에 저장
 
-    // Todo: 유저 정보 받아오면 리턴해서 데이터로 지정해야함
+    return result.data;
   },
 );
 
@@ -92,9 +92,9 @@ export const authSlice = createSlice({
         state.isLogin = false;
         state.username = '';
       })
-      .addCase(refreshAsync.fulfilled, (state) => {
+      .addCase(refreshAsync.fulfilled, (state, action) => {
         state.isLogin = true;
-        state.username = '';
+        state.username = action.payload.username;
       });
   },
 });

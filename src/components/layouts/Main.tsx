@@ -19,6 +19,8 @@ const MainLayout = ({ children }: LayoutProps) => {
   const dispatch = useAppDispatch();
   /* 새로고침 후에도 로그인 정보 확인 후 로그인 유지 */
   useEffect(() => {
+    console.log('로그인 정보 확인');
+
     if (typeof window !== 'undefined') {
       const tokenObject = storage.get(REFRESH_TOKEN); // 로그인 정보를 로컬스토리지에서 가져옵니다.
       if (!tokenObject) return;
@@ -30,18 +32,18 @@ const MainLayout = ({ children }: LayoutProps) => {
         return;
       }
 
-      // (async () => {
-      //   const result = await dispatch(refreshAsync(refreshToken));
+      (async () => {
+        const result = await dispatch(refreshAsync(refreshToken));
 
-      //   if (result.type === 'auth/refreshAsync/fulfilled') {
-      //     const JWT_EXPIRY_TIME = 2 * 3600 * 1000; // 만료 시간 (2시간 밀리 초로 표현)
-      //     setTimeout(() => {
-      //       dispatch(refreshAsync(refreshToken));
-      //     }, JWT_EXPIRY_TIME - 60000); // 액세스 토큰 만료 1분전에 다시 갱신
-      //   } else if (result.type === 'auth/refreshAsync/rejected') {
-      //     console.log('auth/refreshAsync/rejected');
-      //   }
-      // })();
+        if (result.type === 'auth/refreshAsync/fulfilled') {
+          const JWT_EXPIRY_TIME = 2 * 3600 * 1000; // 만료 시간 (2시간 밀리 초로 표현)
+          setTimeout(() => {
+            dispatch(refreshAsync(refreshToken));
+          }, JWT_EXPIRY_TIME - 60000); // 액세스 토큰 만료 1분전에 다시 갱신
+        } else if (result.type === 'auth/refreshAsync/rejected') {
+          console.log('auth/refreshAsync/rejected');
+        }
+      })();
     }
   }, [dispatch]);
 
