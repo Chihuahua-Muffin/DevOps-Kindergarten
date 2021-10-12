@@ -7,7 +7,7 @@ import type { AppProps } from 'next/app';
 import type { NextPage } from 'next';
 
 import store from '#/redux/store';
-import theme from '#/utils/theme';
+import theme from '#/styles/theme';
 
 import MainLayout from '#/components/layouts/Main';
 

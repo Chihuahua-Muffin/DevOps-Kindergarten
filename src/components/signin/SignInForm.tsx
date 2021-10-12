@@ -10,13 +10,12 @@ import {
   FormErrorMessage,
   useToast,
 } from '@chakra-ui/react';
-import jwtDecode from 'jwt-decode';
 import { useRouter } from 'next/router';
 import FaceIcon from '@material-ui/icons/Face';
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
-import { useAppDispatch } from '#/hooks/useRedux';
 
-import { login } from '#/redux/reducers/auth';
+import { useAppDispatch } from '#/hooks/useRedux';
+import { loginAsync, refreshAsync } from '#/redux/ducks/auth';
 import useForm from '#/hooks/useForm';
 import SignInValidation from '#/components/signin/SignInValidation';
 import {
@@ -25,17 +24,8 @@ import {
   TOAST_STATUS_ERROR,
   ICON_STYLE,
   LANDING_PAGE_URL,
-  ACCESS_TOKEN,
 } from '#/constants';
-import storage from '#/lib/storage';
-import { loginAPI } from '#/lib/api/auth';
-// import JSUtility from '#/lib/JSUtility';
-
-interface DecodeProps {
-  sub: string;
-  auth: string;
-  exp: number;
-}
+import { LOGIN_ASYNC_FULFILLED, LOGIN_ASYNC_REJECTED } from '#/redux/ducks/auth/actions';
 
 const Container = chakra(Box, {
   baseStyle: {
@@ -73,38 +63,38 @@ const SubmitButton = chakra(Button, {
 
 const SignInForm = () => {
   const toast = useToast();
-  const authDispatch = useAppDispatch();
+  const dispatch = useAppDispatch();
   const router = useRouter();
+
   const onSubmit = useCallback(async (submitValues) => {
     const { username, password } = submitValues;
-    try {
-      // 성공 시
-      // Todo: 액세스토큰 자체를 로컬스토리지에 저장
-      const result = await loginAPI({ username, password });
-      const loginData: DecodeProps = jwtDecode(result.data.token);
-      storage.set(ACCESS_TOKEN, loginData);
-      // const difftime = JSUtility.compareWithCurrentTimeAsMinute(loginData.exp);
-      // console.log('convert time', difftime);
-      authDispatch(login(username));
-      router.replace(LANDING_PAGE_URL);
+
+    const result = await dispatch(loginAsync({ username, password }));
+    router.replace(LANDING_PAGE_URL);
+
+    if (result.type === LOGIN_ASYNC_FULFILLED) {
+      const JWT_EXPIRY_TIME = 2 * 3600 * 1000; // 만료 시간 (2시간 밀리 초로 표현)
+      setTimeout(() => {
+        dispatch(refreshAsync(result.payload.refreshToken));
+      }, JWT_EXPIRY_TIME - 60000); // 액세스 토큰 만료 1분전에 다시 갱신
+
       toast({
-        title: '로그인 되었습니다!',
-        description: `${loginData.sub}님 환영합니다!`,
+        title: '로그인 되었습니다.',
+        description: `${username}님 환영합니다.`,
         status: TOAST_STATUS_SUCCESS,
         duration: TOAST_DURATION,
         isClosable: true,
       });
-    } catch (error) {
-    // 실패 시
+    } else if (result.type === LOGIN_ASYNC_REJECTED) {
       toast({
-        title: '로그인에 실패했습니다!',
-        description: '존재하지 않는 회원입니다.',
+        title: '로그인에 실패했습니다.',
+        description: '다시 로그인을 해주세요.',
         status: TOAST_STATUS_ERROR,
         duration: TOAST_DURATION,
         isClosable: true,
       });
     }
-  }, [toast, authDispatch, router]);
+  }, [toast, dispatch, router]);
 
   const {
     values,

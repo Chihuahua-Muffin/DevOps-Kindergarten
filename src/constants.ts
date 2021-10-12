@@ -24,7 +24,7 @@ export const LANDING_PAGE_URL = '/';
 export const PROFILE_PAGE_URL = '/profile';
 
 // STORAGE
-export const ACCESS_TOKEN = 'accessToken';
+export const REFRESH_TOKEN = 'refreshToken';
 
 // ROLE
 export const ADMIN_ROLE = 'ROLE_ADMIN';

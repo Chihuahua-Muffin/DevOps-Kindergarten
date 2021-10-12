@@ -1,22 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useSelector } from 'react-redux';
 import {
   chakra,
   Spacer,
   Box,
   Button,
 } from '@chakra-ui/react';
-import { useSelector } from 'react-redux';
 
+import { AppState } from '#/redux/store';
+import LoginStatusMenu from './LoginStatusMenu';
 import {
   LOGIN_PAGE_URL,
   LECTURE_PAGE_URL,
   ROADMAP_PAGE_URL,
-  // DICTIONARY_PAGE_URL, 사전 페이지 삭제
 } from '#/constants';
-import { AppState } from '#/redux/store';
-import LoginStatusMenu from './LoginStatusMenu';
 
 const NavigationContainer = chakra(Box, {
   baseStyle: {

@@ -15,18 +15,19 @@ import {
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import FaceIcon from '@material-ui/icons/Face';
+
 import { useAppSelector, useAppDispatch } from '#/hooks/useRedux';
-import { logout } from '#/redux/reducers/auth';
+import { logoutAsync } from '#/redux/ducks/auth';
+import storage from '#/lib/storage';
+import { LOGOUT_ASYNC_FULFILLED, LOGOUT_ASYNC_REJECTED } from '#/redux/ducks/auth/actions';
 import {
   ICON_STYLE,
   PROFILE_PAGE_URL,
   LANDING_PAGE_URL,
-  ACCESS_TOKEN,
   TOAST_DURATION,
   TOAST_STATUS_ERROR,
+  REFRESH_TOKEN,
 } from '#/constants';
-import storage from '#/lib/storage';
-import { logoutAPI } from '#/lib/api/auth';
 
 const UserNameText = chakra(Text, {
   baseStyle: {
@@ -36,22 +37,31 @@ const UserNameText = chakra(Text, {
 
 const LoginStatusMenu = () => {
   const authState = useAppSelector((state) => state.auth);
-  const authDispatch = useAppDispatch();
+  const dispatch = useAppDispatch();
   const router = useRouter();
   const toast = useToast();
 
-  const logoutButtonHandler = useCallback(() => {
-    logoutAPI(authState.username);
-    authDispatch(logout());
-    storage.remove(ACCESS_TOKEN);
-    router.replace(LANDING_PAGE_URL);
-    toast({
-      title: '로그아웃 되었습니다!',
-      status: TOAST_STATUS_ERROR,
-      duration: TOAST_DURATION,
-      isClosable: true,
-    });
-  }, [authDispatch, authState.username, router, toast]);
+  const logoutButtonHandler = useCallback(async () => {
+    const result = await dispatch(logoutAsync(authState.username));
+
+    if (result.type === LOGOUT_ASYNC_FULFILLED) {
+      storage.remove(REFRESH_TOKEN);
+      router.replace(LANDING_PAGE_URL);
+      toast({
+        title: '로그아웃 되었습니다!',
+        status: TOAST_STATUS_ERROR,
+        duration: TOAST_DURATION,
+        isClosable: true,
+      });
+    } else if (result.type === LOGOUT_ASYNC_REJECTED) {
+      toast({
+        title: '로그아웃에 실패했습니다!',
+        status: TOAST_STATUS_ERROR,
+        duration: TOAST_DURATION,
+        isClosable: true,
+      });
+    }
+  }, [dispatch, authState.username, router, toast]);
 
   return (
     <Menu>
