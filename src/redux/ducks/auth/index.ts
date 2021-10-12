@@ -1,12 +1,13 @@
-// https://github.com/reduxjs/cra-template-redux-typescript/blob/master/template/src/features/counter/counterSlice.ts
+// ref: https://github.com/reduxjs/cra-template-redux-typescript/blob/master/template/src/features/counter/counterSlice.ts
+import axios from 'axios';
 import {
   createAsyncThunk,
   createSlice,
 } from '@reduxjs/toolkit';
-import axios from 'axios';
 
 import type { AppState } from '#/redux/store';
 import type { AuthState } from './types';
+
 import { loginAPI, logoutAPI, refreshAPI } from '#/lib/api/auth';
 import storage from '#/lib/storage';
 import { REFRESH_TOKEN } from '#/constants';
@@ -91,6 +92,8 @@ export const authSlice = createSlice({
       .addCase(loginAsync.fulfilled, (state, action) => {
         state.isLogin = true;
         state.username = action.payload.username;
+        state.userId = action.payload.userId;
+        state.authority = action.payload.authority;
       })
       .addCase(logoutAsync.fulfilled, (state) => {
         state.isLogin = false;
@@ -99,6 +102,8 @@ export const authSlice = createSlice({
       .addCase(refreshAsync.fulfilled, (state, action) => {
         state.isLogin = true;
         state.username = action.payload.username;
+        state.userId = action.payload.userId;
+        state.authority = action.payload.authority;
       });
   },
 });
