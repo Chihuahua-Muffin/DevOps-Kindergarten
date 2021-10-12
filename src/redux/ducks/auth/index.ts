@@ -11,6 +11,7 @@ import { loginAPI, logoutAPI, refreshAPI } from '#/lib/api/auth';
 import storage from '#/lib/storage';
 import { REFRESH_TOKEN } from '#/constants';
 import JSUtility from '#/lib/JSUtility';
+import { LOGIN_ASYNC, LOGOUT_ASYNC, REFRESH_ASYNC, AUTH_SLICE } from './actions';
 
 const initialState: AuthState = {
   username: '',
@@ -20,7 +21,7 @@ const initialState: AuthState = {
 };
 
 export const refreshAsync = createAsyncThunk(
-  'auth/refreshAsync',
+  REFRESH_ASYNC,
   async (refreshTokenIncome: string) => {
     const result = await refreshAPI(refreshTokenIncome);
     // eslint-disable-next-line no-console
@@ -39,7 +40,7 @@ export const refreshAsync = createAsyncThunk(
 );
 
 export const loginAsync = createAsyncThunk(
-  'auth/loginAsync',
+  LOGIN_ASYNC,
   async ({ username, password }: { username: string, password: string }) => {
     const result = await loginAPI({ username, password });
     // eslint-disable-next-line no-console
@@ -58,7 +59,7 @@ export const loginAsync = createAsyncThunk(
 );
 
 export const logoutAsync = createAsyncThunk(
-  'auth/logoutAsync',
+  LOGOUT_ASYNC,
   async (username: string) => {
     const result = await logoutAPI(username); // 로그아웃 API 요청
     // eslint-disable-next-line no-console
@@ -72,7 +73,7 @@ export const logoutAsync = createAsyncThunk(
 );
 
 export const authSlice = createSlice({
-  name: 'auth',
+  name: AUTH_SLICE,
   initialState,
   // '리듀서' 필드를 사용하면 리듀서를 정의하고 관련 액션을 생성할 수 있습니다.
   reducers: {
@@ -80,10 +81,10 @@ export const authSlice = createSlice({
     //   state.isLogin = true;
     //   state.username = action.payload;
     // },
-    logout: (state) => {
-      state.isLogin = false;
-      state.username = '';
-    },
+    // logout: (state) => {
+    //   state.isLogin = false;
+    //   state.username = '';
+    // },
   },
   extraReducers: (builder) => {
     builder
@@ -102,7 +103,7 @@ export const authSlice = createSlice({
   },
 });
 
-export const { logout } = authSlice.actions;
+// export const { logout } = authSlice.actions;
 
 export const selectAuth = (state: AppState) => state.auth;
 

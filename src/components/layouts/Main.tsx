@@ -1,21 +1,16 @@
 import React, { useEffect } from 'react';
 import Head from 'next/head';
-import moment from 'moment';
 
-// import jwtDecode from 'jwt-decode';
 import storage from '#/lib/storage';
 import Header from '#/components/common/header/Header';
 import { useAppDispatch } from '#/hooks/useRedux';
 import { REFRESH_TOKEN } from '#/constants';
 import JSUtility from '#/lib/JSUtility';
 import { refreshAsync } from '#/redux/ducks/auth';
-
-interface LayoutProps {
-  children: React.ReactNode;
-}
+import { REFRESH_ASYNC_FULFILLED, REFRESH_ASYNC_REJECTED } from '#/redux/ducks/auth/actions';
 
 // 모든 페이지에 적용되는 컴포넌트
-const MainLayout = ({ children }: LayoutProps) => {
+const MainLayout = ({ children }: { children: React.ReactNode }) => {
   const dispatch = useAppDispatch();
   /* 새로고침 후에도 로그인 정보 확인 후 로그인 유지 */
   useEffect(() => {
@@ -33,14 +28,14 @@ const MainLayout = ({ children }: LayoutProps) => {
       (async () => {
         const result = await dispatch(refreshAsync(refreshToken));
 
-        if (result.type === 'auth/refreshAsync/fulfilled') {
+        if (result.type === REFRESH_ASYNC_FULFILLED) {
           const JWT_EXPIRY_TIME = 2 * 3600 * 1000; // 만료 시간 (2시간 밀리 초로 표현)
           setTimeout(() => {
             dispatch(refreshAsync(refreshToken));
           }, JWT_EXPIRY_TIME - 60000); // 액세스 토큰 만료 1분전에 다시 갱신
-        } else if (result.type === 'auth/refreshAsync/rejected') {
+        } else if (result.type === REFRESH_ASYNC_REJECTED) {
           // eslint-disable-next-line no-console
-          console.log('auth/refreshAsync/rejected');
+          console.log(`${REFRESH_ASYNC_REJECTED} is occur`);
         }
       })();
     }

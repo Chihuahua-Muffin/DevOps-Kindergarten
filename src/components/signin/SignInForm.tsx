@@ -25,14 +25,7 @@ import {
   ICON_STYLE,
   LANDING_PAGE_URL,
 } from '#/constants';
-import { refreshAPI } from '#/lib/api/auth';
-// import JSUtility from '#/lib/JSUtility';
-
-interface DecodeProps {
-  sub: string;
-  auth: string;
-  exp: number;
-}
+import { LOGIN_ASYNC_FULFILLED, LOGIN_ASYNC_REJECTED } from '#/redux/ducks/auth/actions';
 
 const Container = chakra(Box, {
   baseStyle: {
@@ -79,9 +72,7 @@ const SignInForm = () => {
     const result = await dispatch(loginAsync({ username, password }));
     router.replace(LANDING_PAGE_URL);
 
-    console.log('await dispatch(loginAsync({ username, password }))', result);
-
-    if (result.type === 'auth/loginAsync/fulfilled') {
+    if (result.type === LOGIN_ASYNC_FULFILLED) {
       const JWT_EXPIRY_TIME = 2 * 3600 * 1000; // 만료 시간 (2시간 밀리 초로 표현)
       setTimeout(() => {
         dispatch(refreshAsync(result.payload.refreshToken));
@@ -94,7 +85,7 @@ const SignInForm = () => {
         duration: TOAST_DURATION,
         isClosable: true,
       });
-    } else if (result.type === 'auth/loginAsync/rejected') {
+    } else if (result.type === LOGIN_ASYNC_REJECTED) {
       toast({
         title: '로그인에 실패했습니다.',
         description: '다시 로그인을 해주세요.',

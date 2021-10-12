@@ -15,8 +15,11 @@ import {
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import FaceIcon from '@material-ui/icons/Face';
+
 import { useAppSelector, useAppDispatch } from '#/hooks/useRedux';
-import { logout, logoutAsync } from '#/redux/ducks/auth';
+import { logoutAsync } from '#/redux/ducks/auth';
+import storage from '#/lib/storage';
+import { LOGOUT_ASYNC_FULFILLED, LOGOUT_ASYNC_REJECTED } from '#/redux/ducks/auth/actions';
 import {
   ICON_STYLE,
   PROFILE_PAGE_URL,
@@ -25,8 +28,6 @@ import {
   TOAST_STATUS_ERROR,
   REFRESH_TOKEN,
 } from '#/constants';
-import storage from '#/lib/storage';
-import { logoutAPI } from '#/lib/api/auth';
 
 const UserNameText = chakra(Text, {
   baseStyle: {
@@ -41,10 +42,9 @@ const LoginStatusMenu = () => {
   const toast = useToast();
 
   const logoutButtonHandler = useCallback(async () => {
-    // logoutAPI(authState.username);
     const result = await dispatch(logoutAsync(authState.username));
 
-    if (result.type === 'auth/logoutAsync/fulfilled') {
+    if (result.type === LOGOUT_ASYNC_FULFILLED) {
       storage.remove(REFRESH_TOKEN);
       router.replace(LANDING_PAGE_URL);
       toast({
@@ -53,7 +53,7 @@ const LoginStatusMenu = () => {
         duration: TOAST_DURATION,
         isClosable: true,
       });
-    } else if (result.type === 'auth/loginAsync/rejected') {
+    } else if (result.type === LOGOUT_ASYNC_REJECTED) {
       toast({
         title: '로그아웃에 실패했습니다!',
         status: TOAST_STATUS_ERROR,
