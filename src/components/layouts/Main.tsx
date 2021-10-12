@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import axios from 'axios';
 import Head from 'next/head';
 
 import storage from '#/lib/storage';
@@ -14,6 +15,9 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
   const dispatch = useAppDispatch();
   /* 새로고침 후에도 로그인 정보 확인 후 로그인 유지 */
   useEffect(() => {
+    axios.defaults.baseURL = process.env.NEXT_PUBLIC_DEV_SERVER_URL;
+    axios.defaults.withCredentials = true; // 토큰 쿠키 받기
+
     if (typeof window !== 'undefined') {
       const tokenObject = storage.get(REFRESH_TOKEN); // 로그인 정보를 로컬스토리지에서 가져옵니다.
       if (!tokenObject) return;
