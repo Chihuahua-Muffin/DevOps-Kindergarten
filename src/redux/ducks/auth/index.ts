@@ -6,7 +6,7 @@ import {
 } from '@reduxjs/toolkit';
 
 import type { AppState } from '#/redux/store';
-import type { AuthState } from './types';
+import type { User } from '#/types';
 
 import { loginAPI, logoutAPI, refreshAPI } from '#/lib/api/auth';
 import storage from '#/lib/storage';
@@ -14,7 +14,7 @@ import { REFRESH_TOKEN } from '#/constants';
 import JSUtility from '#/lib/JSUtility';
 import { LOGIN_ASYNC, LOGOUT_ASYNC, REFRESH_ASYNC, AUTH_SLICE } from './actions';
 
-const initialState: AuthState = {
+const initialState: User = {
   username: '',
   userId: null,
   authority: [],
