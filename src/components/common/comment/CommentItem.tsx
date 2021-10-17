@@ -154,13 +154,13 @@ const CommentItem = ({
   // const likeButtonColor = useMemo(() => (isLikeButtonClicked ? 'teal' : 'gray'), [isLikeButtonClicked]);
 
   return (
-    <CommentContainer>
+    <CommentContainer key={commentId}>
       <Divider />
       <TopContainer>
         <Thumbnail bg="teal.500" size="md" />
         <UserDataContainer>
           <UserName>{username}</UserName>
-          <CreatedAt>{moment(createdDate).format('YYYY-MM-DD hh:mm')}</CreatedAt>
+          <CreatedAt>{moment(createdDate).format('YYYY-MM-DD Ahh:mm')}</CreatedAt>
         </UserDataContainer>
       </TopContainer>
       <MidContainer>
