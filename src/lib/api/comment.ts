@@ -1,5 +1,5 @@
 import axios from 'axios';
-import type { Comment, PageName } from '#/types';
+import type { CommentApiRequest, PageName, Comment } from '#/types';
 
 const POST_COMMENT_API_URL = '/api/comment'; // POST
 const PUT_COMMENT_API_URL = '/api/comment'; // PUT
@@ -9,7 +9,7 @@ const GET_USER_COMMENTS_API_URL = '/api/comments'; // GET
 
 // usage: postCommentAPI({content, pageId(null or number), pageName, parentId, userId});
 // eslint-disable-next-line max-len
-export const postCommentAPI = ({ content, pageId, pageName, parentId, userId }: Comment) => axios.post(POST_COMMENT_API_URL, {
+export const postCommentAPI = ({ content, pageId, pageName, parentId, userId }: CommentApiRequest) => axios.post(POST_COMMENT_API_URL, {
   content,
   pageId,
   pageName,
@@ -26,10 +26,11 @@ export const putCommentAPI = (commentId: number, content: string) => axios.put(`
 export const deleteCommentAPI = (commentId: number) => axios.delete(`${DELETE_COMMENT_API_URL}/{${commentId}}`);
 
 // usage: getCommentsAPI(null, 'test');
-export const getCommentsAPI = (id: string | null, name: PageName | '') => {
-  if (!id) return axios.get(`${GET_COMMENTS_API_URL}?name=${name}`);
+// eslint-disable-next-line max-len
+export const getCommentsAPI = ({ pageId, pageName }: {pageId: string | null, pageName: PageName | string}) => {
+  if (!pageId) return axios.get<Comment[]>(`${GET_COMMENTS_API_URL}?name=${pageName}`);
 
-  return axios.get(`${GET_COMMENTS_API_URL}?id=${id}`);
+  return axios.get<Comment[]>(`${GET_COMMENTS_API_URL}?id=${pageId}`);
 };
 
 // usage: getUserCommentsAPI('admin');

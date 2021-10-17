@@ -1,20 +1,10 @@
-import React, {
-  useState,
-  useCallback,
-  useMemo,
-} from 'react';
-import {
-  chakra,
-  Box,
-  Text,
-  Avatar,
-  Button,
-  IconButton,
-  Divider,
-} from '@chakra-ui/react';
-import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
-import RecommentForm from './RecommentForm';
+import React, { useState, useCallback, useMemo } from 'react';
+import { chakra, Box, Text, Avatar, Button, /* IconButton, */ Divider } from '@chakra-ui/react';
+// import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
+import moment from 'moment';
 
+import type { Comment } from '#/types';
+import RecommentForm from './RecommentForm';
 import { CONTENT_WIDTH } from '#/constants';
 
 // 전체 컨테이너
@@ -114,21 +104,28 @@ const ButtonContainer = chakra(Box, {
 });
 
 // 좋아요 수
-const LikeCount = chakra(Text, {
-  baseStyle: {
-    fontSize: '0.8rem',
-    fontWeight: '600',
-    color: 'gray.500',
-  },
-});
+// const LikeCount = chakra(Text, {
+//   baseStyle: {
+//     fontSize: '0.8rem',
+//     fontWeight: '600',
+//     color: 'gray.500',
+//   },
+// });
 
-const Comment = () => {
+const CommentItem = ({
+  commentId,
+  content,
+  username,
+  createdDate,
+  updatedDate,
+  recommentList,
+}: Comment) => {
   const [isRecommentVisible, setIsRecommentVisible] = useState(false);
   const [recommentButtonText, setRecommentButtonText] = useState('답글 달기');
   // To do : 추후에 사용자가 좋아요를 클릭했는지 안했는지에 따라 기본값이 바뀌도록 바꿔야함
-  const [isLikeButtonClicked, setIsLikeButtonClicked] = useState(false);
+  // const [isLikeButtonClicked, setIsLikeButtonClicked] = useState(false);
   // To do : 데이터베이스에서 좋아요 수를 받아와야 함
-  const [likeCount, setLikeCount] = useState(0);
+  // const [likeCount, setLikeCount] = useState(0);
 
   const openRecommentFormHandler = useCallback(() => {
     setIsRecommentVisible(!isRecommentVisible);
@@ -141,19 +138,20 @@ const Comment = () => {
 
   const recommentButtonColor = useMemo(() => (isRecommentVisible ? 'teal' : 'gray'), [isRecommentVisible]);
 
-  const likeButtonClickHandler = useCallback(() => {
-    setIsLikeButtonClicked(!isLikeButtonClicked);
-    if (isLikeButtonClicked) {
-      // To do: 데이터베이스에 좋아요가 하나 감소하는 로직 추가
-      setLikeCount(likeCount - 1);
-    } else {
-      // To do: 데이터베이스에 좋아요가 하나 증가하는 로직 추가
-      setLikeCount(likeCount + 1);
-    }
-  }, [isLikeButtonClicked, likeCount]);
+  // const likeButtonClickHandler = useCallback(() => {
+  //   setIsLikeButtonClicked(!isLikeButtonClicked);
+  //   if (isLikeButtonClicked) {
+  //     // To do: 데이터베이스에 좋아요가 하나 감소하는 로직 추가
+  //     setLikeCount(likeCount - 1);
+  //   } else {
+  //     // To do: 데이터베이스에 좋아요가 하나 증가하는 로직 추가
+  //     setLikeCount(likeCount + 1);
+  //   }
+  // }, [isLikeButtonClicked, likeCount]);
 
   // To do: 백엔드 연결되면 바꾸기
-  const likeButtonColor = useMemo(() => (isLikeButtonClicked ? 'teal' : 'gray'), [isLikeButtonClicked]);
+  // eslint-disable-next-line max-len
+  // const likeButtonColor = useMemo(() => (isLikeButtonClicked ? 'teal' : 'gray'), [isLikeButtonClicked]);
 
   return (
     <CommentContainer>
@@ -161,16 +159,16 @@ const Comment = () => {
       <TopContainer>
         <Thumbnail bg="teal.500" size="md" />
         <UserDataContainer>
-          <UserName>유저이름</UserName>
-          <CreatedAt>생성날짜</CreatedAt>
+          <UserName>{username}</UserName>
+          <CreatedAt>{moment(createdDate).format('YYYY-MM-DD hh:mm')}</CreatedAt>
         </UserDataContainer>
       </TopContainer>
       <MidContainer>
-        <CommentText>유저 댓글 내용</CommentText>
+        <CommentText>{content}</CommentText>
       </MidContainer>
       <BottomContainer>
         <ButtonContainer>
-          <IconButton
+          {/* <IconButton
             aria-label="Like"
             size="sm"
             icon={<ThumbUpAltIcon />}
@@ -178,7 +176,7 @@ const Comment = () => {
             onClick={likeButtonClickHandler}
             name="likeButton"
           />
-          <LikeCount name="likeCount">{likeCount}</LikeCount>
+          <LikeCount name="likeCount">{likeCount}</LikeCount> */}
         </ButtonContainer>
         <RecommentButton
           colorScheme={recommentButtonColor}
@@ -194,4 +192,4 @@ const Comment = () => {
   );
 };
 
-export default Comment;
+export default CommentItem;

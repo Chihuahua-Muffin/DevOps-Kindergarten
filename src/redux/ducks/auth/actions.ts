@@ -1,4 +1,4 @@
-export const AUTH_SLICE = 'auth';
+export const SLICE_NAME = 'auth';
 
 export const LOGIN_ASYNC = 'auth/loginAsync';
 export const LOGIN_ASYNC_FULFILLED = 'auth/loginAsync/fulfilled';

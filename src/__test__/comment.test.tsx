@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import Comment from '#/components/common/comment/Comment';
+import Comment from '#/components/common/comment/CommentItem';
 
 describe('<Comment /> 테스트', () => {
   const wrapper = mount(<Comment />);

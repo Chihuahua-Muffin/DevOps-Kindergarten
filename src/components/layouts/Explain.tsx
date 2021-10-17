@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useEffect, useCallback, useMemo, useState } from 'react';
 import { useRouter } from 'next/router';
 import { chakra, Box } from '@chakra-ui/react';
+import type { AxiosResponse } from 'axios';
 
+import type { Comment } from '#/types';
+import { getCommentsAPI } from '#/lib/api/comment';
+import { EXPLAIN_PAGE_LIST } from '#/constants';
 import CommentList from '#/components/common/comment/CommentList';
 import CommentForm from '#/components/common/comment/CommentForm';
 import ExplainContainer from '#/components/explain/ExplainContainer';
@@ -20,19 +24,37 @@ const ContainerStack = chakra(Box, {
   },
 });
 
-// 모든 페이지에 적용되는 컴포넌트
+// 모든 Explain(이론) 페이지에 적용되는 컴포넌트
 const ExplainLayout = ({ children }: LayoutProps) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [commentList, setCommentList] = useState<any>([]);
   const router = useRouter();
   const { pathname } = router;
-  console.log('현재 페이지:', pathname); // eslint-disable-line
+  const pageName = useMemo(() => pathname.split('/')[2], [pathname]);
+  const getPageName = useMemo(() => (EXPLAIN_PAGE_LIST.includes(pageName) ? pageName : ''), [pageName]);
+
+  const getCommentList = useCallback(async () => {
+    const pageInfo = {
+      pageId: null, // Explan layout에서는 pageId를 받을 일이 없음
+      pageName: getPageName,
+    };
+
+    const getData: AxiosResponse<Comment[]> = await getCommentsAPI(pageInfo);
+    setCommentList(getData.data);
+  }, [getPageName]);
+
+  useEffect(() => {
+    getCommentList();
+  }, [getCommentList]);
+
   return (
     <ContainerStack spacing={10}>
       <ExplainContainer>
         {children}
       </ExplainContainer>
-      <CommentForm />
+      <CommentForm getCommentList={getCommentList} />
       {/* Todo: 코멘트s API 완성되면 list에 페이지 정보 넘겨야 함 */}
-      <CommentList />
+      <CommentList commentList={commentList} />
     </ContainerStack>
   );
 };
