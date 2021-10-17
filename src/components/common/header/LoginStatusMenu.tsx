@@ -14,7 +14,7 @@ import {
 } from '@chakra-ui/react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import FaceIcon from '@material-ui/icons/Face';
+import FaceIcon from '@mui/icons-material/Face';
 
 import { useAppSelector, useAppDispatch } from '#/hooks/useRedux';
 import { logoutAsync } from '#/redux/ducks/auth';

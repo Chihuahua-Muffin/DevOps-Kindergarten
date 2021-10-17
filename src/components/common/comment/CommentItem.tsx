@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useMemo } from 'react';
-import { chakra, Box, Text, Avatar, Button, /* IconButton, */ Divider } from '@chakra-ui/react';
-// import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
+import { chakra, Box, Text, Avatar, Button, /* IconButton, */ Divider, Spacer } from '@chakra-ui/react';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import moment from 'moment';
 
 import type { Comment } from '#/types';
@@ -154,7 +154,7 @@ const CommentItem = ({
   // const likeButtonColor = useMemo(() => (isLikeButtonClicked ? 'teal' : 'gray'), [isLikeButtonClicked]);
 
   return (
-    <CommentContainer key={commentId}>
+    <CommentContainer>
       <Divider />
       <TopContainer>
         <Thumbnail bg="teal.500" size="md" />
@@ -177,6 +177,7 @@ const CommentItem = ({
             name="likeButton"
           />
           <LikeCount name="likeCount">{likeCount}</LikeCount> */}
+          <DeleteForeverIcon />
         </ButtonContainer>
         <RecommentButton
           colorScheme={recommentButtonColor}

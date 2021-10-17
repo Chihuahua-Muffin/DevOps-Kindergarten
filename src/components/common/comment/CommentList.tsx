@@ -20,6 +20,7 @@ const CommentList = ({ commentList }: { commentList: Comment[] }) => (
   <CommentListContainer>
     {commentList.map((comment) => (
       <CommentItem
+        key={comment.commentId}
         commentId={comment.commentId}
         content={comment.content}
         username={comment.username}

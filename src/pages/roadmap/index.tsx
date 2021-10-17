@@ -1,22 +1,15 @@
 import React, { useState } from 'react';
-import {
-  chakra,
-  Grid,
-  Box,
-  Text,
-} from '@chakra-ui/react';
-
-// 컴포넌트
+import { chakra, Grid, Box, Text } from '@chakra-ui/react';
 
 // 아이콘
-import PlanIcon from '@material-ui/icons/Description';
-import CodeIcon from '@material-ui/icons/Code';
-import BuildIcon from '@material-ui/icons/Build';
-import TestIcon from '@material-ui/icons/PlaylistAddCheck';
-import ReleaseIcon from '@material-ui/icons/Settings';
-import DeployIcon from '@material-ui/icons/FlightTakeoff';
-import OperateIcon from '@material-ui/icons/Computer';
-import MonitorIcon from '@material-ui/icons/Dvr';
+import PlanIcon from '@mui/icons-material/Description';
+import CodeIcon from '@mui/icons-material/Code';
+import BuildIcon from '@mui/icons-material/Build';
+import TestIcon from '@mui/icons-material/PlaylistAddCheck';
+import ReleaseIcon from '@mui/icons-material/Settings';
+import DeployIcon from '@mui/icons-material/FlightTakeoff';
+import OperateIcon from '@mui/icons-material/Computer';
+import MonitorIcon from '@mui/icons-material/Dvr';
 import Field from '#/components/roadmap/Field';
 import RoadmapSvg from '#/components/roadmap/Svg';
 

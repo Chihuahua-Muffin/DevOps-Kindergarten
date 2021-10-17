@@ -11,8 +11,8 @@ import {
   useToast,
 } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
-import FaceIcon from '@material-ui/icons/Face';
-import VpnKeyIcon from '@material-ui/icons/VpnKey';
+import FaceIcon from '@mui/icons-material/Face';
+import VpnKeyIcon from '@mui/icons-material/VpnKey';
 
 import { useAppDispatch } from '#/hooks/useRedux';
 import { loginAsync, refreshAsync } from '#/redux/ducks/auth';
