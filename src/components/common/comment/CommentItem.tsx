@@ -3,7 +3,6 @@ import { chakra, Box, Text, Avatar, Button, Divider, Spacer, Textarea } from '@c
 import moment from 'moment';
 
 import { useAppSelector } from '#/hooks/useRedux';
-import type { Comment } from '#/types';
 import RecommentForm from './RecommentForm';
 import { CONTENT_WIDTH } from '#/constants';
 import DeleteModalButton from './DeleteModalButton';
@@ -112,7 +111,7 @@ interface ItemProps {
   username: string;
   createdDate: string;
   updatedDate: string;
-  recommentList: Comment[];
+  // recommentList: Comment[];
 }
 
 const CommentItem = ({
@@ -121,7 +120,7 @@ const CommentItem = ({
   username,
   createdDate,
   updatedDate,
-  recommentList,
+  // recommentList,
   getCommentList,
 }: ItemProps) => {
   const authState = useAppSelector((state) => state.auth);

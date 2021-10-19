@@ -38,10 +38,7 @@ const ExplainLayout = ({ children }: LayoutProps) => {
       pageId: null, // Explan layout에서는 pageId를 받을 일이 없음
       pageName: getPageName,
     };
-
     const getData: AxiosResponse<Comment[]> = await getCommentsAPI(pageInfo);
-    console.log('getData', getData.data);
-
     setCommentList(getData.data);
   }, [getPageName]);
 

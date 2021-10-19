@@ -32,7 +32,7 @@ const CommentList = ({ commentList, getCommentList }: Props) => (
         username={comment.username}
         createdDate={comment.createdDate}
         updatedDate={comment.updatedDate}
-        recommentList={comment.recommentList}
+        // recommentList={comment.recommentList}
       />
     ))}
   </CommentListContainer>
