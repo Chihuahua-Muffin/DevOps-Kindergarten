@@ -10,14 +10,14 @@ import JSUtility from '#/lib/JSUtility';
 import { refreshAsync } from '#/redux/ducks/auth';
 import { REFRESH_ASYNC_FULFILLED, REFRESH_ASYNC_REJECTED } from '#/redux/ducks/auth/actions';
 
+axios.defaults.baseURL = process.env.NEXT_PUBLIC_DEV_SERVER_URL;
+axios.defaults.withCredentials = true; // 토큰 쿠키 받기
+
 // 모든 페이지에 적용되는 컴포넌트
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
   const dispatch = useAppDispatch();
   /* 새로고침 후에도 로그인 정보 확인 후 로그인 유지 */
   useEffect(() => {
-    axios.defaults.baseURL = process.env.NEXT_PUBLIC_DEV_SERVER_URL;
-    axios.defaults.withCredentials = true; // 토큰 쿠키 받기
-
     if (typeof window !== 'undefined') {
       const tokenObject = storage.get(REFRESH_TOKEN); // 로그인 정보를 로컬스토리지에서 가져옵니다.
       if (!tokenObject) return;
@@ -52,6 +52,7 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
           name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no"
         />
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet" />
       </Head>
       <Header />
       {children}

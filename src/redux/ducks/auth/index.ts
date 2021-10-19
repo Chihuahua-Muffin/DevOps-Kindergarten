@@ -5,18 +5,17 @@ import {
   createSlice,
 } from '@reduxjs/toolkit';
 
-import type { AppState } from '#/redux/store';
-import type { AuthState } from './types';
+import type { User } from '#/types';
 
 import { loginAPI, logoutAPI, refreshAPI } from '#/lib/api/auth';
 import storage from '#/lib/storage';
 import { REFRESH_TOKEN } from '#/constants';
 import JSUtility from '#/lib/JSUtility';
-import { LOGIN_ASYNC, LOGOUT_ASYNC, REFRESH_ASYNC, AUTH_SLICE } from './actions';
+import { LOGIN_ASYNC, LOGOUT_ASYNC, REFRESH_ASYNC, SLICE_NAME } from './actions';
 
-const initialState: AuthState = {
+const initialState: User = {
   username: '',
-  userId: null,
+  userId: 0,
   authority: [],
   isLogin: false,
 };
@@ -74,7 +73,7 @@ export const logoutAsync = createAsyncThunk(
 );
 
 export const authSlice = createSlice({
-  name: AUTH_SLICE,
+  name: SLICE_NAME,
   initialState,
   // '리듀서' 필드를 사용하면 리듀서를 정의하고 관련 액션을 생성할 수 있습니다.
   reducers: {
@@ -109,7 +108,5 @@ export const authSlice = createSlice({
 });
 
 // export const { logout } = authSlice.actions;
-
-export const selectAuth = (state: AppState) => state.auth;
 
 export default authSlice.reducer;
