@@ -7,6 +7,7 @@ import type { Comment } from '#/types';
 import RecommentForm from './RecommentForm';
 import { CONTENT_WIDTH } from '#/constants';
 import DeleteModalButton from './DeleteModalButton';
+import ModifyModalButton from './ModifyModalButton';
 
 // 전체 컨테이너
 const CommentContainer = chakra(Box, {
@@ -137,6 +138,10 @@ const CommentItem = ({
   }, [isRecommentVisible]);
 
   const recommentButtonColor = useMemo(() => (isRecommentVisible ? 'teal' : 'gray'), [isRecommentVisible]);
+  const commentData = useMemo(() => {
+    if (updatedDate === createdDate) return moment(createdDate).format('YYYY-MM-DD Ahh:mm');
+    return `${moment(updatedDate).format('YYYY-MM-DD Ahh:mm')} 수정됨`;
+  }, [createdDate, updatedDate]);
 
   return (
     <CommentContainer>
@@ -145,15 +150,22 @@ const CommentItem = ({
         <Thumbnail bg="teal.500" size="md" />
         <UserDataContainer>
           <UserName>{username}</UserName>
-          <CreatedAt>{moment(createdDate).format('YYYY-MM-DD Ahh:mm')}</CreatedAt>
+          <CreatedAt>{commentData}</CreatedAt>
         </UserDataContainer>
         <Spacer />
         {(authState.isLogin && authState.username === username)
           && (
-            <DeleteModalButton
-              getCommentList={getCommentList}
-              commentId={commentId}
-            />
+            <>
+              <ModifyModalButton
+                getCommentList={getCommentList}
+                commentId={commentId}
+                content={content}
+              />
+              <DeleteModalButton
+                getCommentList={getCommentList}
+                commentId={commentId}
+              />
+            </>
           )}
       </TopContainer>
       <MidContainer>

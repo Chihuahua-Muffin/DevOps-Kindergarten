@@ -40,6 +40,8 @@ const ExplainLayout = ({ children }: LayoutProps) => {
     };
 
     const getData: AxiosResponse<Comment[]> = await getCommentsAPI(pageInfo);
+    console.log('getData', getData.data);
+
     setCommentList(getData.data);
   }, [getPageName]);
 
