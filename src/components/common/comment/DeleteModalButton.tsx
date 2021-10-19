@@ -45,8 +45,7 @@ function DeleteModalButton({
 
   const onClickDeleteButton = useCallback(async () => {
     try {
-      const result = await deleteCommentAPI(commentId);
-      console.log(result);
+      await deleteCommentAPI(commentId);
       toast({
         title: '댓글이 삭제 되었습니다.',
         status: TOAST_STATUS_INFO,
