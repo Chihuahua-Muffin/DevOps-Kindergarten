@@ -23,14 +23,14 @@ export const putCommentAPI = (commentId: number, content: string) => axios.put(`
 });
 
 // usage: deleteCommentAPI(123);
-export const deleteCommentAPI = (commentId: number) => axios.delete(`${DELETE_COMMENT_API_URL}/{${commentId}}`);
+export const deleteCommentAPI = (commentId: number) => axios.delete(`${DELETE_COMMENT_API_URL}/${commentId}`);
 
 // usage: getCommentsAPI(null, 'test');
 // eslint-disable-next-line max-len
 export const getCommentsAPI = ({ pageId, pageName }: {pageId: string | null, pageName: PageName | string}) => {
-  if (!pageId) return axios.get<Comment[]>(`${GET_COMMENTS_API_URL}?name=${pageName}`);
+  if (!pageId) return axios.get<Comment[]>(`${GET_COMMENTS_API_URL}?name=${pageName}`, {});
 
-  return axios.get<Comment[]>(`${GET_COMMENTS_API_URL}?id=${pageId}`);
+  return axios.get<Comment[]>(`${GET_COMMENTS_API_URL}?id=${pageId}`, {});
 };
 
 // usage: getUserCommentsAPI('admin');

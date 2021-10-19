@@ -15,11 +15,17 @@ const CommentListContainer = chakra(Box, {
   },
 });
 
+interface Props {
+  commentList: Comment[];
+  getCommentList: () => Promise<void>;
+}
+
 // 댓글 컨테이너로, 데이터들을 Comment에 넘겨주어야 함.
-const CommentList = ({ commentList }: { commentList: Comment[] }) => (
+const CommentList = ({ commentList, getCommentList }: Props) => (
   <CommentListContainer>
     {commentList.map((comment) => (
       <CommentItem
+        getCommentList={getCommentList}
         key={comment.commentId}
         commentId={comment.commentId}
         content={comment.content}

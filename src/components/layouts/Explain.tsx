@@ -53,8 +53,7 @@ const ExplainLayout = ({ children }: LayoutProps) => {
         {children}
       </ExplainContainer>
       <CommentForm getCommentList={getCommentList} />
-      {/* Todo: 코멘트s API 완성되면 list에 페이지 정보 넘겨야 함 */}
-      <CommentList commentList={commentList} />
+      <CommentList getCommentList={getCommentList} commentList={commentList} />
     </ContainerStack>
   );
 };
