@@ -18,7 +18,7 @@ const RecommentFormContainer = chakra(Box, {
 const RecommentForm = () => (
   <RecommentFormContainer as="form">
     <Input />
-    <Button>답글</Button>
+    <Button disabled>아직 준비중이에요.</Button>
   </RecommentFormContainer>
 );
 

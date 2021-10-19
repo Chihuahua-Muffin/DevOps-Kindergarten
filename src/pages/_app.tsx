@@ -1,5 +1,6 @@
 import React from 'react';
 import { ChakraProvider } from '@chakra-ui/react';
+import { ThemeProvider } from '@mui/material';
 import { Provider } from 'react-redux';
 
 import type { ReactElement, ReactNode } from 'react';
@@ -7,7 +8,8 @@ import type { AppProps } from 'next/app';
 import type { NextPage } from 'next';
 
 import store from '#/redux/store';
-import theme from '#/utils/theme';
+import chakraTheme from '#/styles/chakraTheme';
+import muiTheme from '#/styles/muiTheme';
 
 import MainLayout from '#/components/layouts/Main';
 
@@ -23,14 +25,16 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   /* ExplainLayout 적용 되어있으면 우선 적용 */
   const getLayout = Component.getLayout ?? ((page) => page);
   return (
-    <ChakraProvider theme={theme}>
-      <Provider store={store}>
-        <MainLayout>
-          {/* eslint-disable-next-line */}
-          {getLayout(<Component {...pageProps} />)}
-        </MainLayout>
-      </Provider>
-    </ChakraProvider>
+    <ThemeProvider theme={muiTheme}>
+      <ChakraProvider theme={chakraTheme}>
+        <Provider store={store}>
+          <MainLayout>
+            {/* eslint-disable-next-line */}
+            {getLayout(<Component {...pageProps} />)}
+          </MainLayout>
+        </Provider>
+      </ChakraProvider>
+    </ThemeProvider>
   );
 }
 

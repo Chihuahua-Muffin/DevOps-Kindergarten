@@ -11,10 +11,10 @@ import {
   useToast,
 } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
-import FaceIcon from '@material-ui/icons/Face';
-import VpnKeyIcon from '@material-ui/icons/VpnKey';
-import PermIdentityIcon from '@material-ui/icons/PermIdentity';
-import EmailIcon from '@material-ui/icons/Email';
+import FaceIcon from '@mui/icons-material/Face';
+import VpnKeyIcon from '@mui/icons-material/VpnKey';
+import PermIdentityIcon from '@mui/icons-material/PermIdentity';
+import EmailIcon from '@mui/icons-material/Email';
 
 import useForm from '#/hooks/useForm';
 import SignUpValidation from '#/components/signup/SignUpValidation';

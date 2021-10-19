@@ -5,7 +5,8 @@ import {
   Tooltip,
 } from '@chakra-ui/react';
 import Link from 'next/link';
-import { SvgIconProps, Badge } from '@material-ui/core';
+import Badge from '@mui/material/Badge';
+import type { SvgIconProps } from '@mui/material';
 
 interface FieldProps {
   id: number;

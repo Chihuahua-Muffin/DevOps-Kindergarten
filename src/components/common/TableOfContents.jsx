@@ -18,7 +18,7 @@ const Container = chakra(Box, {
     right: 0,
     top: HEADER_HEIGHT,
 
-    width: '20%',
+    width: '18%',
     marginTop: '1rem',
     padding: '1.5rem',
     maxHeight: `calc(100% - ${HEADER_HEIGHT})`,
