@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useMemo } from 'react';
-import { chakra, Box, Text, Avatar, Button, Divider, Spacer } from '@chakra-ui/react';
+import { chakra, Box, Text, Avatar, Button, Divider, Spacer, Textarea } from '@chakra-ui/react';
 import moment from 'moment';
 
 import { useAppSelector } from '#/hooks/useRedux';
@@ -72,7 +72,7 @@ const MidContainer = chakra(Box, {
 });
 
 // 유저 댓글
-const CommentText = chakra(Text, {
+const CommentText = chakra(Textarea, {
   baseStyle: {
     fontSize: '1rem',
     padding: '0.6rem',
@@ -169,7 +169,11 @@ const CommentItem = ({
           )}
       </TopContainer>
       <MidContainer>
-        <CommentText>{content}</CommentText>
+        <CommentText
+          isReadOnly
+          value={content}
+          variant="unstyled"
+        />
       </MidContainer>
       <BottomContainer>
         <ButtonContainer>
