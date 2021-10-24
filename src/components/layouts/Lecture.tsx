@@ -1,6 +1,9 @@
 import React from 'react';
-import { chakra, Box } from '@chakra-ui/react';
+import { chakra, Box, useMediaQuery } from '@chakra-ui/react';
 import dynamic from 'next/dynamic';
+
+import Sidebar from '#/components/lecture/sidebar/Sidebar';
+import { CONTENT_WIDTH } from '#/constants';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -13,7 +16,16 @@ const LectureContainer = chakra(Box, {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    paddingBottom: '30vh', // 터미널 height
+    width: '100%',
+    height: '70vh',
+    paddingLeft: '300px',
+    overflowY: 'auto',
+  },
+});
+
+const SmallLectureContainer = chakra(LectureContainer, {
+  baseStyle: {
+    paddingLeft: '0px',
   },
 });
 
@@ -22,13 +34,26 @@ const DynamicTerminal = dynamic(() => import('#/components/lecture/terminal/Term
 });
 
 // 모든 페이지에 적용되는 컴포넌트
-const LectureLayout = ({ children }: LayoutProps) => (
-  <>
-    <LectureContainer>
-      {children}
-    </LectureContainer>
-    <DynamicTerminal />
-  </>
-);
+const LectureLayout = ({ children }: LayoutProps) => {
+  const [isLargerThan1100] = useMediaQuery('(min-width: 1100px)');
+
+  return (
+    <>
+      {isLargerThan1100 ? <Sidebar /> : ''}
+      {
+        isLargerThan1100 ? (
+          <LectureContainer>
+            {children}
+          </LectureContainer>
+        ) : (
+          <SmallLectureContainer>
+            {children}
+          </SmallLectureContainer>
+        )
+      }
+      <DynamicTerminal />
+    </>
+  );
+};
 
 export default LectureLayout;

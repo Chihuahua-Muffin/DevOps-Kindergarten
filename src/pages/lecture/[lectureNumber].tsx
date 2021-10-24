@@ -8,6 +8,7 @@ const LectureContentPage = () => {
   const { lectureNumber } = router.query;
   return (
     <>
+      <div>1실습 아이디:{' '}{lectureNumber} 페이지 입니다.</div>
       <div>실습 아이디:{' '}{lectureNumber} 페이지 입니다.</div>
       <div>실습 아이디:{' '}{lectureNumber} 페이지 입니다.</div>
       <div>실습 아이디:{' '}{lectureNumber} 페이지 입니다.</div>
@@ -33,8 +34,7 @@ const LectureContentPage = () => {
       <div>실습 아이디:{' '}{lectureNumber} 페이지 입니다.</div>
       <div>실습 아이디:{' '}{lectureNumber} 페이지 입니다.</div>
       <div>실습 아이디:{' '}{lectureNumber} 페이지 입니다.</div>
-      <div>실습 아이디:{' '}{lectureNumber} 페이지 입니다.</div>
-      <div>실습 아이디:{' '}{lectureNumber} 페이지 입니다.</div>
+      <div>실습 아이디:{' '}{lectureNumber} 페이지 마지막 입니다.</div>
     </>
   );
 };
