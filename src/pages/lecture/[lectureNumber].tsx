@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-one-expression-per-line */
 import React from 'react';
 import { useRouter } from 'next/router';
 import LectureLayout from '#/components/layouts/Lecture';
@@ -6,12 +7,35 @@ const LectureContentPage = () => {
   const router = useRouter();
   const { lectureNumber } = router.query;
   return (
-    <div>
-      실습 아이디:
-      {' '}
-      {lectureNumber}
-      페이지 입니다.
-    </div>
+    <>
+      <div>실습 아이디:{' '}{lectureNumber} 페이지 입니다.</div>
+      <div>실습 아이디:{' '}{lectureNumber} 페이지 입니다.</div>
+      <div>실습 아이디:{' '}{lectureNumber} 페이지 입니다.</div>
+      <div>실습 아이디:{' '}{lectureNumber} 페이지 입니다.</div>
+      <div>실습 아이디:{' '}{lectureNumber} 페이지 입니다.</div>
+      <div>실습 아이디:{' '}{lectureNumber} 페이지 입니다.</div>
+      <div>실습 아이디:{' '}{lectureNumber} 페이지 입니다.</div>
+      <div>실습 아이디:{' '}{lectureNumber} 페이지 입니다.</div>
+      <div>실습 아이디:{' '}{lectureNumber} 페이지 입니다.</div>
+      <div>실습 아이디:{' '}{lectureNumber} 페이지 입니다.</div>
+      <div>실습 아이디:{' '}{lectureNumber} 페이지 입니다.</div>
+      <div>실습 아이디:{' '}{lectureNumber} 페이지 입니다.</div>
+      <div>실습 아이디:{' '}{lectureNumber} 페이지 입니다.</div>
+      <div>실습 아이디:{' '}{lectureNumber} 페이지 입니다.</div>
+      <div>실습 아이디:{' '}{lectureNumber} 페이지 입니다.</div>
+      <div>실습 아이디:{' '}{lectureNumber} 페이지 입니다.</div>
+      <div>실습 아이디:{' '}{lectureNumber} 페이지 입니다.</div>
+      <div>실습 아이디:{' '}{lectureNumber} 페이지 입니다.</div>
+      <div>실습 아이디:{' '}{lectureNumber} 페이지 입니다.</div>
+      <div>실습 아이디:{' '}{lectureNumber} 페이지 입니다.</div>
+      <div>실습 아이디:{' '}{lectureNumber} 페이지 입니다.</div>
+      <div>실습 아이디:{' '}{lectureNumber} 페이지 입니다.</div>
+      <div>실습 아이디:{' '}{lectureNumber} 페이지 입니다.</div>
+      <div>실습 아이디:{' '}{lectureNumber} 페이지 입니다.</div>
+      <div>실습 아이디:{' '}{lectureNumber} 페이지 입니다.</div>
+      <div>실습 아이디:{' '}{lectureNumber} 페이지 입니다.</div>
+      <div>실습 아이디:{' '}{lectureNumber} 페이지 입니다.</div>
+    </>
   );
 };
 

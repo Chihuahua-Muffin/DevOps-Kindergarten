@@ -11,7 +11,7 @@ const Container = chakra(Box, {
     bottom: 0,
     left: 0,
     width: '100%',
-    height: '40vh',
+    height: '30vh',
     color: 'white',
     backgroundColor: 'black',
   },
@@ -87,12 +87,12 @@ const Terminal = () => {
   };
 
   const options = {
-    rows: 17,
+    rows: 14,
   };
 
   return (
     <>
-      <button type="button" onClick={onClickButton}>
+      {/* <button type="button" onClick={onClickButton}>
         Button
       </button>
       <div>
@@ -110,7 +110,7 @@ const Terminal = () => {
               No chat message
             </div>
           )}
-      </div>
+      </div> */}
       <Container>
         {/* Create a new terminal and set it's ref. */}
         <XTerm

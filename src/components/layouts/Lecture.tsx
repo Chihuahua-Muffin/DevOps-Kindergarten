@@ -13,7 +13,7 @@ const LectureContainer = chakra(Box, {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    marginBottom: '100px',
+    paddingBottom: '30vh', // 터미널 height
   },
 });
 

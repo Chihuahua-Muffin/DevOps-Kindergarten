@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
+import { useRouter } from 'next/router';
 import Link from 'next/link';
 import {
   chakra,
@@ -30,17 +31,39 @@ const FlexItem = chakra(Box, {
   },
 });
 
-const Header = () => (
-  // SEO를 위한 HTML 태그
-  <HeaderContainer as="header">
-    <FlexItem>
-      <Link href="/"><Button>로고</Button></Link>
-    </FlexItem>
-    <Spacer />
-    <FlexItem>
-      <HeaderNavigation />
-    </FlexItem>
-  </HeaderContainer>
-);
+const Header = () => {
+  const [isHeaderShow, setIsHeaderShow] = useState(true);
+  const router = useRouter();
+  const { pathname, query: { lectureNumber } } = router;
+
+  const isLecturePage = useCallback(() => {
+    const splittedPathname = pathname.split('/');
+    return (lectureNumber !== undefined) && (splittedPathname.includes('lecture'));
+  }, [lectureNumber, pathname]);
+
+  useEffect(() => {
+    if (isLecturePage()) {
+      setIsHeaderShow(false);
+    } else {
+      setIsHeaderShow(true);
+    }
+  }, [isLecturePage]);
+
+  return (
+    <>
+      {isHeaderShow && (
+        <HeaderContainer as="header">
+          <FlexItem>
+            <Link href="/"><Button>로고</Button></Link>
+          </FlexItem>
+          <Spacer />
+          <FlexItem>
+            <HeaderNavigation />
+          </FlexItem>
+        </HeaderContainer>
+      )}
+    </>
+  );
+};
 
 export default Header;
