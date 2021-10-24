@@ -17,7 +17,7 @@ const Container = chakra(Box, {
   },
 });
 
-export const Terminal = () => {
+const Terminal = () => {
   const xtermRef = useRef(null);
   const socketClient = useRef(null);
   const [chatMessage, setChatMessage] = useState();
@@ -50,35 +50,35 @@ export const Terminal = () => {
 
   useEffect(() => {
     // 소켓 생성 및 연결
-    const socket = io('http://13.124.116.53:3000', {
-      transports: ['websocket', 'polling'],
-    });
+    // const socket = io('http://13.124.116.53:3000', {
+    //   transports: ['websocket', 'polling'],
+    // });
 
-    // 연결 완료 했을 때
-    socket.on('connect', () => {
-      console.log('연결완료', socket.id);
-      const attachAddon = new AttachAddon(socket);
-      xtermRef.current.terminal.loadAddon(attachAddon);
-      console.log('attach socket');
-      socketClient.current = socket;
-    });
+    // // 연결 완료 했을 때
+    // socket.on('connect', () => {
+    //   console.log('연결완료', socket.id);
+    //   const attachAddon = new AttachAddon(socket);
+    //   xtermRef.current.terminal.loadAddon(attachAddon);
+    //   console.log('attach socket');
+    //   socketClient.current = socket;
+    // });
 
-    socket.on('chat message', (res) => {
-      console.log('chat message res\n', res);
-      setChatMessage(res);
-      const splitted = res.split('\n');
-      setSplitChatMessage(splitted);
-      splitted.forEach((line) => {
-        xtermRef.current.terminal.write(line);
-        xtermRef.current.terminal.write('\r\n');
-      });
-    });
+    // socket.on('chat message', (res) => {
+    //   console.log('chat message res\n', res);
+    //   setChatMessage(res);
+    //   const splitted = res.split('\n');
+    //   setSplitChatMessage(splitted);
+    //   splitted.forEach((line) => {
+    //     xtermRef.current.terminal.write(line);
+    //     xtermRef.current.terminal.write('\r\n');
+    //   });
+    // });
 
-    prompt();
+    // prompt();
 
-    return () => {
-      socketClient.current.close();
-    };
+    // return () => {
+    //   socketClient.current.close();
+    // };
   }, []);
 
   const onClickButton = () => {

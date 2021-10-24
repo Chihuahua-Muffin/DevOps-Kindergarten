@@ -1,7 +1,6 @@
 import React from 'react';
-import { useRouter } from 'next/router';
 import { chakra, Box } from '@chakra-ui/react';
-import Terminal from '#/components/lecture/terminal/Terminal';
+import dynamic from 'next/dynamic';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -18,19 +17,18 @@ const LectureContainer = chakra(Box, {
   },
 });
 
+const DynamicTerminal = dynamic(() => import('#/components/lecture/terminal/Terminal'), {
+  ssr: false,
+});
+
 // 모든 페이지에 적용되는 컴포넌트
-const LectureLayout = ({ children }: LayoutProps) => {
-  const router = useRouter();
-  const { pathname } = router;
-  console.log('현재 페이지:', pathname); // eslint-disable-line
-  return (
-    <>
-      <LectureContainer>
-        {children}
-      </LectureContainer>
-      <Terminal />
-    </>
-  );
-};
+const LectureLayout = ({ children }: LayoutProps) => (
+  <>
+    <LectureContainer>
+      {children}
+    </LectureContainer>
+    <DynamicTerminal />
+  </>
+);
 
 export default LectureLayout;

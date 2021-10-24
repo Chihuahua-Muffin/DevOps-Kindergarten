@@ -8,28 +8,28 @@ const mockUpDatas = [
     title: 'Github Actions로 CI 구축하기',
     image: 'githubActions.png',
     description: 'Github에 코드 push할 때 마다 Jest 자동 테스트 구축하기',
-    tags: ['Github Actions', 'CI', 'JavaScript', 'Jest', 'Github Actions', 'CI', 'JavaScript', 'Jest'],
+    tags: ['Github Actions', 'CI', 'JavaScript', 'Jest'],
   },
   {
     id: '125323', // hash
     title: 'Github Actions로 CI 구축하기',
     image: 'githubActions.png',
     description: 'Github에 코드 push할 때 마다 Jest 자동 테스트 구축하기',
-    tags: ['Github Actions', 'CI', 'JavaScript', 'Jest', 'Github Actions', 'CI', 'JavaScript', 'Jest'],
+    tags: ['Github Actions', 'CI', 'JavaScript', 'Jest'],
   },
   {
     id: '12532213123', // hash
     title: 'Github Actions로 CI 구축하기',
     image: 'githubActions.png',
     description: 'Github에 코드 push할 때 마다 Jest 자동 테스트 구축하기',
-    tags: ['Github Actions', 'CI', 'JavaScript', 'Jest', 'Github Actions', 'CI', 'JavaScript', 'Jest'],
+    tags: ['Github Actions', 'CI', 'JavaScript', 'Jest'],
   },
   {
     id: '1253211111', // hash
     title: 'Github Actions로 CI 구축하기',
     image: 'githubActions.png',
     description: 'Github에 코드 push할 때 마다 Jest 자동 테스트 구축하기',
-    tags: ['Github Actions', 'CI', 'JavaScript', 'Jest', 'Github Actions', 'CI', 'JavaScript', 'Jest'],
+    tags: ['Github Actions', 'CI', 'JavaScript', 'Jest'],
   },
 ];
 
