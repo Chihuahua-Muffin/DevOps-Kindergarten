@@ -3,7 +3,6 @@ import { chakra, Box, useMediaQuery } from '@chakra-ui/react';
 import dynamic from 'next/dynamic';
 
 import Sidebar from '#/components/lecture/sidebar/Sidebar';
-import { CONTENT_WIDTH } from '#/constants';
 
 interface LayoutProps {
   children: React.ReactNode;

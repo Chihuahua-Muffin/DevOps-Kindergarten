@@ -9,6 +9,7 @@ const ButtonContainer = chakra(Button, {
     display: 'flex',
     alignItems: 'center',
     columnGap: '10px',
+    height: '40px',
   },
 });
 
@@ -20,7 +21,7 @@ const ButtonText = chakra(Text, {
 
 const BackButton = () => (
   <Link href="/lecture">
-    <ButtonContainer>
+    <ButtonContainer colorScheme="teal" variant="ghost">
       <ArrowBackIcon />
       <ButtonText>
         실습리스트로 돌아가기
