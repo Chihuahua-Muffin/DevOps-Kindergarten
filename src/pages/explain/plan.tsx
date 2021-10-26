@@ -1,6 +1,6 @@
 import React from 'react';
 
-import TableOfContents from '#/components/common/TableOfContents';
+import TableOfContents from '#/components/explain/ExplainTableOfContents';
 import ExplainLayout from '#/components/layouts/Explain';
 
 import ExplainTitle from '#/components/explain/ExplainTitle';

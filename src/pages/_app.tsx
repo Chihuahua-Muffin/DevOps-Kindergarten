@@ -3,6 +3,9 @@ import { ChakraProvider } from '@chakra-ui/react';
 import { ThemeProvider } from '@mui/material';
 import { Provider } from 'react-redux';
 
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+
 import type { ReactElement, ReactNode } from 'react';
 import type { AppProps } from 'next/app';
 import type { NextPage } from 'next';
