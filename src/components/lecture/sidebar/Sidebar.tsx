@@ -1,5 +1,5 @@
 import React from 'react';
-import { chakra, Box } from '@chakra-ui/react';
+import { chakra, Box, Divider } from '@chakra-ui/react';
 
 import BackButton from './BackButton';
 
@@ -16,6 +16,7 @@ const Container = chakra(Box, {
     zIndex: 10,
     backgroundColor: '#fafafa',
     padding: '20px',
+    overflowY: 'auto',
   },
 });
 
@@ -24,6 +25,7 @@ const Sidebar = () => {
   return (
     <Container>
       <BackButton />
+      <Divider margin="15px 0" />
     </Container>
   );
 };

@@ -1,7 +1,7 @@
 import React from 'react';
 import { chakra, Box, useMediaQuery } from '@chakra-ui/react';
-import dynamic from 'next/dynamic';
 
+import Terminal from '#/components/lecture/terminal/Terminal';
 import Sidebar from '#/components/lecture/sidebar/Sidebar';
 
 interface LayoutProps {
@@ -28,10 +28,6 @@ const SmallLectureContainer = chakra(LectureContainer, {
   },
 });
 
-const DynamicTerminal = dynamic(() => import('#/components/lecture/terminal/Terminal'), {
-  ssr: false,
-});
-
 // 모든 페이지에 적용되는 컴포넌트
 const LectureLayout = ({ children }: LayoutProps) => {
   const [isLargerThan1100] = useMediaQuery('(min-width: 1100px)');
@@ -50,7 +46,7 @@ const LectureLayout = ({ children }: LayoutProps) => {
           </SmallLectureContainer>
         )
       }
-      <DynamicTerminal />
+      <Terminal />
     </>
   );
 };

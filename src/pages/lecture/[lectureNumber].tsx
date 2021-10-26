@@ -1,7 +1,11 @@
 /* eslint-disable react/jsx-one-expression-per-line */
 import React from 'react';
 import { useRouter } from 'next/router';
-import LectureLayout from '#/components/layouts/Lecture';
+import dynamic from 'next/dynamic';
+
+const DynamicLectureLayout = dynamic(() => import('#/components/layouts/Lecture'), {
+  ssr: false,
+});
 
 const LectureContentPage = () => {
   const router = useRouter();
@@ -40,9 +44,9 @@ const LectureContentPage = () => {
 };
 
 LectureContentPage.getLayout = (page: React.ReactElement) => (
-  <LectureLayout>
+  <DynamicLectureLayout>
     {page}
-  </LectureLayout>
+  </DynamicLectureLayout>
 );
 
 export default LectureContentPage;
