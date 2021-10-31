@@ -1,7 +1,10 @@
-import React from 'react';
+/* eslint-disable react/jsx-props-no-spreading */
+import React, { useCallback } from 'react';
 import { chakra, Box } from '@chakra-ui/react';
 
 import Slider from 'react-slick';
+import { changeSlideNumber } from '#/redux/ducks/lecture';
+import { useAppDispatch } from '#/hooks/useRedux';
 
 const SliderContainer = chakra(Box, {
   baseStyle: {
@@ -20,13 +23,23 @@ const sliderSettings = {
   draggable: false,
 };
 
-const Container = ({ children }: { children: React.ReactNode }) => (
-  <SliderContainer>
-    {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-    <Slider {...sliderSettings}>
-      {children}
-    </Slider>
-  </SliderContainer>
-);
+const Container = ({ children }: { children: React.ReactNode }) => {
+  const dispatch = useAppDispatch();
+
+  const onAfterChange = useCallback((index: number) => {
+    dispatch(changeSlideNumber(index));
+  }, [dispatch]);
+
+  return (
+    <SliderContainer>
+      <Slider
+        {...sliderSettings}
+        afterChange={onAfterChange}
+      >
+        {children}
+      </Slider>
+    </SliderContainer>
+  );
+};
 
 export default Container;
