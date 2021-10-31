@@ -34,12 +34,12 @@ const FlexItem = chakra(Box, {
 const Header = () => {
   const [isHeaderShow, setIsHeaderShow] = useState(true);
   const router = useRouter();
-  const { pathname, query: { lectureNumber } } = router;
+  const { pathname } = router;
 
   const isLecturePage = useCallback(() => {
     const splittedPathname = pathname.split('/');
-    return (lectureNumber !== undefined) && (splittedPathname.includes('lecture'));
-  }, [lectureNumber, pathname]);
+    return (splittedPathname.includes('lecture')) && (splittedPathname.length > 2);
+  }, [pathname]);
 
   useEffect(() => {
     if (isLecturePage()) {

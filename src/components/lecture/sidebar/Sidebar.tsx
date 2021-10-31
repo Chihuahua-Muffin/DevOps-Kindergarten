@@ -2,6 +2,7 @@ import React from 'react';
 import { chakra, Box, Divider } from '@chakra-ui/react';
 
 import BackButton from './BackButton';
+import type { Checkpoint } from '#/components/lecture/contents/types';
 
 const Container = chakra(Box, {
   baseStyle: {
@@ -20,12 +21,17 @@ const Container = chakra(Box, {
   },
 });
 
-const Sidebar = () => {
+const Sidebar = ({ checkpoints }: { checkpoints: Checkpoint[] }) => {
   const hi = 'hi';
   return (
     <Container>
       <BackButton />
       <Divider margin="15px 0" />
+      {checkpoints.map((checkpoint) => (
+        <div>
+          {checkpoint.name}
+        </div>
+      ))}
     </Container>
   );
 };

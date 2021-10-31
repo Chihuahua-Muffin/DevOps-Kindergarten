@@ -8,13 +8,11 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import LectureCardTag from './LectureCardTag';
+import type { Card } from '#/components/lecture/contents/types';
 
 interface CardProps {
-  title: string,
-  image: string,
-  description: string,
-  tags: string[],
-  lectureNumber: string,
+  lectureNumber: number;
+  card: Card;
 }
 
 const DictionaryCardContainer = chakra(Box, {
@@ -69,14 +67,14 @@ const DescriptionText = chakra(Text, {
 });
 
 const LectureCard = ({
-  title, image, description, tags, lectureNumber,
+  card, lectureNumber,
 }: CardProps) => (
   <DictionaryCardContainer>
     <Link href={`/lecture/${lectureNumber}`}>
       <DictionaryContentCard>
         <ImageBox>
           <Image
-            src={`/${image}`}
+            src={`/${card.image}`}
             alt="Lecture Image"
             draggable={false}
             width={200}
@@ -84,11 +82,11 @@ const LectureCard = ({
             objectFit="contain"
           />
         </ImageBox>
-        <EnglishHeadText>{title}</EnglishHeadText>
-        <DescriptionText>{description}</DescriptionText>
+        <EnglishHeadText>{card.title}</EnglishHeadText>
+        <DescriptionText>{card.description}</DescriptionText>
       </DictionaryContentCard>
     </Link>
-    <LectureCardTag tags={tags} />
+    <LectureCardTag tags={card.tags} />
   </DictionaryCardContainer>
 );
 
