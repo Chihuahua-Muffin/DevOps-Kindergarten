@@ -7,10 +7,6 @@ import { useAppSelector, useAppDispatch } from '#/hooks/useRedux';
 import type { Checkpoint } from '#/components/lecture/contents/types';
 import { changeSlideNumber } from '#/redux/ducks/lecture';
 
-interface StyleProps {
-  isCurrent: boolean;
-}
-
 const OptionalText = chakra(Text, {
   baseStyle: {
     fontSize: '13px',

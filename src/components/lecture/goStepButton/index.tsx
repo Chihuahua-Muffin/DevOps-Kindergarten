@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { chakra, IconButton } from '@chakra-ui/react';
+import { chakra, IconButton, Tooltip } from '@chakra-ui/react';
 import CheckIcon from '@mui/icons-material/Check';
 
 import { goOneStep } from '#/redux/ducks/lecture';
@@ -29,21 +29,33 @@ const GoStepButton = () => {
   return (
     isCheckedButton
       ? (
-        <ChakraButton
-          colorScheme="green"
-          type="button"
-          size="lg"
-          icon={<CheckIcon fontSize="large" />}
-        />
+        <Tooltip
+          label="이미 완료했습니다"
+          placement="left"
+          closeOnClick={false}
+        >
+          <ChakraButton
+            colorScheme="green"
+            type="button"
+            size="lg"
+            icon={<CheckIcon fontSize="large" />}
+          />
+        </Tooltip>
       ) : (
-        <ChakraButton
-          colorScheme="gray"
-          variant="solid"
-          onClick={onClickButton}
-          type="button"
-          size="lg"
-          icon={<CheckIcon fontSize="large" />}
-        />
+        <Tooltip
+          label="모든 요구사항을 만족했나요?"
+          placement="left"
+          closeOnClick={false}
+        >
+          <ChakraButton
+            colorScheme="gray"
+            variant="solid"
+            onClick={onClickButton}
+            type="button"
+            size="lg"
+            icon={<CheckIcon fontSize="large" />}
+          />
+        </Tooltip>
       )
   );
 };
