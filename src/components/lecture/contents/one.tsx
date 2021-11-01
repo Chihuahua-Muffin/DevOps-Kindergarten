@@ -1,7 +1,6 @@
 import React from 'react';
 
 import SliderItem from '../slider/SliderItem';
-import GoStepButton from '#/components/lecture/goStepButton';
 
 // API 되면 체크포인트 true로
 export const Checkpoints = [

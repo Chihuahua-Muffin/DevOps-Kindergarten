@@ -7,6 +7,10 @@ import { useAppSelector, useAppDispatch } from '#/hooks/useRedux';
 import type { Checkpoint } from '#/components/lecture/contents/types';
 import { changeSlideNumber } from '#/redux/ducks/lecture';
 
+interface StyleProps {
+  isCurrent: boolean;
+}
+
 const OptionalText = chakra(Text, {
   baseStyle: {
     fontSize: '13px',
@@ -31,10 +35,18 @@ const useStyles = makeStyles({
       backgroundColor: 'rgb(226, 226, 226)',
     },
   },
+  activeStepButton: {
+    borderRadius: '10px',
+    transition: 'all 0.3s ease',
+    backgroundColor: 'rgb(238, 238, 238)',
+    '&:hover': {
+      backgroundColor: 'rgb(226, 226, 226)',
+    },
+  },
 });
 
 const CheckpointList = ({ checkpoints }: { checkpoints: Checkpoint[] }) => {
-  const { clearSlideNumber } = useAppSelector((state) => state.lecture);
+  const { clearSlideNumber, currentSlideNumber } = useAppSelector((state) => state.lecture);
   const dispatch = useAppDispatch();
   const classes = useStyles();
 
@@ -52,7 +64,7 @@ const CheckpointList = ({ checkpoints }: { checkpoints: Checkpoint[] }) => {
         >
           <StepButton
             onClick={onClickButton(index)}
-            className={classes.stepButton}
+            className={currentSlideNumber === index ? classes.activeStepButton : classes.stepButton}
             // eslint-disable-next-line max-len
             optional={index === clearSlideNumber ? <OptionalText>현재 체크포인트입니다.</OptionalText> : null}
           >
