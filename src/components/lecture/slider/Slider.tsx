@@ -1,13 +1,14 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useCallback } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { chakra, Box } from '@chakra-ui/react';
 
 import Slider from 'react-slick';
-import { changeSlideNumber } from '#/redux/ducks/lecture';
-import { useAppDispatch } from '#/hooks/useRedux';
+import { useAppSelector } from '#/hooks/useRedux';
+import GoStepButton from '#/components/lecture/goStepButton';
 
 const SliderContainer = chakra(Box, {
   baseStyle: {
+    position: 'relative',
     width: '100%',
     height: '100%',
     overflow: 'hidden',
@@ -15,8 +16,9 @@ const SliderContainer = chakra(Box, {
 });
 
 const sliderSettings = {
-  dots: true,
+  dots: false,
   infinite: true,
+  accessibility: false,
   speed: 500,
   slidesToShow: 1,
   slidesToScroll: 1,
@@ -24,20 +26,30 @@ const sliderSettings = {
 };
 
 const Container = ({ children }: { children: React.ReactNode }) => {
-  const dispatch = useAppDispatch();
+  const { currentSlideNumber, clearSlideNumber } = useAppSelector((state) => state.lecture);
+  const sliderRef = useRef<Slider>(null);
 
-  const onAfterChange = useCallback((index: number) => {
-    dispatch(changeSlideNumber(index));
-  }, [dispatch]);
+  useEffect(() => {
+    if (sliderRef.current) {
+      sliderRef.current.slickGoTo(clearSlideNumber);
+    }
+  }, [clearSlideNumber]);
+
+  useEffect(() => {
+    if (sliderRef.current) {
+      sliderRef.current.slickGoTo(currentSlideNumber);
+    }
+  }, [currentSlideNumber]);
 
   return (
     <SliderContainer>
       <Slider
+        ref={sliderRef}
         {...sliderSettings}
-        afterChange={onAfterChange}
       >
         {children}
       </Slider>
+      <GoStepButton />
     </SliderContainer>
   );
 };

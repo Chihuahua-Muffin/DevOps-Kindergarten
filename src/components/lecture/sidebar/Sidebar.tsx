@@ -3,11 +3,13 @@ import { chakra, Box, Divider } from '@chakra-ui/react';
 
 import BackButton from './BackButton';
 import type { Checkpoint } from '#/components/lecture/contents/types';
+import CheckpointList from '#/components/lecture/checkpoint';
 
 const Container = chakra(Box, {
   baseStyle: {
     display: 'flex',
     flexDirection: 'column',
+    alignItems: 'center',
     position: 'fixed',
     top: 0,
     left: 0,
@@ -21,17 +23,13 @@ const Container = chakra(Box, {
   },
 });
 
+// eslint-disable-next-line arrow-body-style
 const Sidebar = ({ checkpoints }: { checkpoints: Checkpoint[] }) => {
-  const hi = 'hi';
   return (
     <Container>
       <BackButton />
       <Divider margin="15px 0" />
-      {checkpoints.map((checkpoint) => (
-        <div>
-          {checkpoint.name}
-        </div>
-      ))}
+      <CheckpointList checkpoints={checkpoints} />
     </Container>
   );
 };
