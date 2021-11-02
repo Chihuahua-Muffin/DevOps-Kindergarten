@@ -1,7 +1,10 @@
 import React from 'react';
+import { Code } from '@chakra-ui/react';
 
 import SliderItem from '../slider/SliderItem';
 import SliderItemHeader from '../slider/SliderItemHeader';
+import SliderItemContentText from '../slider/SliderItemContentText';
+import CodeBox from '#/components/common/codeBox/CodeBox';
 
 export const Title = '기초 리눅스 명령어';
 
@@ -29,6 +32,13 @@ export const Checkpoints = [
 const Slide1 = () => (
   <SliderItem>
     <SliderItemHeader>{SLIDE1_TITLE}</SliderItemHeader>
+    <SliderItemContentText>
+      <Code>mkdir temp</Code>
+    </SliderItemContentText>
+    <SliderItemContentText>
+      temp라는 이름의 디렉터리를 만듭니다.
+    </SliderItemContentText>
+    <CodeBox text="mkdir temp" />
   </SliderItem>
 );
 

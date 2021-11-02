@@ -5,6 +5,7 @@ const ChakraText = chakra(Text, {
   baseStyle: {
     fontSize: '30px',
     fontWeight: 'bold',
+    marginBottom: '20px',
     color: 'gray.600',
   },
 });

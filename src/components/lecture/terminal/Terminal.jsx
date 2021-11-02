@@ -2,15 +2,16 @@ import React, { useRef, useEffect, useState } from 'react';
 // import { Terminal } from 'xterm';
 import { XTerm } from 'xterm-for-react';
 import { io } from 'socket.io-client';
-import { chakra, Box } from '@chakra-ui/react';
+import { chakra, Box, useMediaQuery } from '@chakra-ui/react';
 import { AttachAddon } from 'xterm-addon-attach';
+import { MIN_WIDTH_1100 } from '#/constants';
 
 const Container = chakra(Box, {
   baseStyle: {
     position: 'fixed',
     bottom: 0,
-    left: '300px',
-    width: 'calc(100vw - 300px)',
+    left: (props) => (props.islargerthan1100 === 'true' ? '300px' : '0px'),
+    width: (props) => (props.islargerthan1100 === 'true' ? 'calc(100vw - 300px)' : '100vw'),
     height: '30vh',
     color: 'white',
     backgroundColor: 'black',
@@ -22,6 +23,7 @@ const Terminal = () => {
   const socketClient = useRef(null);
   const [chatMessage, setChatMessage] = useState();
   const [splitChatMessage, setSplitChatMessage] = useState([]);
+  const [islargerthan1100] = useMediaQuery(MIN_WIDTH_1100);
   const [buffer, setBuffer] = useState('');
 
   const prompt = () => {
@@ -109,7 +111,7 @@ const Terminal = () => {
             </div>
           )}
       </div> */}
-      <Container>
+      <Container islargerthan1100={islargerthan1100.toString()}>
         {/* Create a new terminal and set it's ref. */}
         <XTerm options={options} ref={xtermRef} onData={onData} onKey={onKey} />
       </Container>

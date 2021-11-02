@@ -1,7 +1,16 @@
-import React, { useState } from 'react';
-import { chakra, Box, Button, Text/* useToast */ } from '@chakra-ui/react';
-
-// const toastId = 'TOAST';
+import React, { useMemo } from 'react';
+import {
+  chakra,
+  Box,
+  Text,
+  useClipboard,
+  IconButton,
+  Tooltip,
+  useMediaQuery,
+  // useToast,
+} from '@chakra-ui/react';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import { MIN_WIDTH_1100 } from '#/constants';
 
 interface CodeBoxProps {
   text: string;
@@ -9,6 +18,7 @@ interface CodeBoxProps {
 
 const Container = chakra(Box, {
   baseStyle: {
+    margin: '20px 0px',
     position: 'relative',
     display: 'flex',
     flexDirection: 'column',
@@ -18,12 +28,18 @@ const Container = chakra(Box, {
 const CodeContainer = chakra(Box, {
   baseStyle: {
     position: 'relative',
-    backgroundColor: 'gray.50',
-    width: '600px',
-    padding: '10px',
+    backgroundColor: 'gray.800',
+    width: 'calc(100vw - 360px)',
+    padding: '20px',
     borderRadius: '5px',
-    overflowX: 'scroll',
+    overflowX: 'auto',
     overflowY: 'hidden',
+  },
+});
+
+const SmallLayoutCodeContainer = chakra(CodeContainer, {
+  baseStyle: {
+    width: 'calc(100vw - 60px)',
   },
 });
 
@@ -32,61 +48,60 @@ const Code = chakra(Text, {
     fontSize: '14px',
     whiteSpace: 'pre',
     textAlign: 'start',
+    color: 'white',
   },
 });
 
-const CopyButton = chakra(Button, {
+const CopyButton = chakra(IconButton, {
   baseStyle: {
+    color: 'white',
     position: 'absolute',
     top: '0',
     right: '0',
+    margin: '5px',
     zIndex: '100',
-    transform: 'translateY(-110%)',
+    size: 'sm',
   },
 });
 
 /* text에는 안에 들어갈 코드 내용이 들어감 */
 const CodeBox = ({ text }: CodeBoxProps) => {
   // const toast = useToast();
-  const [CopyButtonText, setCopyButtonText] = useState('복사하기');
-  const isButtonDisabled = CopyButtonText !== '복사하기';
-
-  const onClickButton = () => {
-    const tempElem = document.createElement('textarea');
-    tempElem.value = text;
-    document.body.appendChild(tempElem);
-    tempElem.select();
-    document.execCommand('copy');
-    document.body.removeChild(tempElem);
-    // if (!toast.isActive(toastId)) {
-    setCopyButtonText('복사완료');
-    setTimeout(() => {
-      setCopyButtonText('복사하기');
-    }, 2000);
-    // toast({
-    //   id: toastId,
-    //   title: '클립보드에 복사되었습니다.',
-    //   status: 'success',
-    //   duration: 2000,
-    //   position: 'bottom-left',
-    //   isClosable: true,
-    // });
-    // }
-  };
+  const { onCopy, hasCopied } = useClipboard(text);
+  const [islargerthan1100] = useMediaQuery(MIN_WIDTH_1100);
+  const tooltipText = useMemo(() => (hasCopied ? '복사완료!' : '복사하기'), [hasCopied]);
 
   return (
     <Container>
-      <CopyButton
-        colorScheme="teal"
-        onClick={onClickButton}
-        name="copyButton"
-        isDisabled={isButtonDisabled}
+      <Tooltip
+        label={tooltipText}
+        closeOnClick={false}
       >
-        {CopyButtonText}
-      </CopyButton>
-      <CodeContainer>
-        <Code as="pre">{text}</Code>
-      </CodeContainer>
+        <CopyButton
+          onClick={onCopy}
+          colorScheme="white"
+          name="copyButton"
+          icon={<ContentCopyIcon color="inherit" fontSize="small" />}
+          variant="ghost"
+        />
+      </Tooltip>
+      {islargerthan1100 ? (
+        <CodeContainer>
+          <Code as="pre">
+            $
+            {' '}
+            {text}
+          </Code>
+        </CodeContainer>
+      ) : (
+        <SmallLayoutCodeContainer>
+          <Code as="pre">
+            $
+            {' '}
+            {text}
+          </Code>
+        </SmallLayoutCodeContainer>
+      )}
     </Container>
   );
 };

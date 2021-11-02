@@ -4,7 +4,8 @@ import { chakra, Text } from '@chakra-ui/react';
 const ChakraText = chakra(Text, {
   baseStyle: {
     fontSize: '16px',
-    color: 'gray.600',
+    marginBottom: '5px',
+    color: 'gray.800',
   },
 });
 

@@ -7,6 +7,8 @@ export const ICON_STYLE = {
   marginRight: '5px',
 };
 
+export const MIN_WIDTH_1100 = '(min-width: 1100px)';
+
 // Explan page list
 export const EXPLAIN_PAGE_LIST = ['plan', 'code', 'build', 'test', 'release', 'deploy', 'operate', 'monitor'];
 

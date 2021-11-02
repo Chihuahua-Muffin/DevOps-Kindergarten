@@ -4,6 +4,7 @@ import { chakra, Box, useMediaQuery } from '@chakra-ui/react';
 import Terminal from '#/components/lecture/terminal/Terminal';
 import Sidebar from '#/components/lecture/sidebar/Sidebar';
 import type { Checkpoint } from '#/components/lecture/contents/types';
+import { MIN_WIDTH_1100 } from '#/constants';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -31,21 +32,28 @@ const SmallLectureContainer = chakra(LectureContainer, {
   },
 });
 
+const SmallTerminal = chakra(Terminal, {
+  baseStyle: {
+    left: '0px',
+    width: '100vw',
+  },
+});
+
 // 모든 페이지에 적용되는 컴포넌트
 const LectureLayout = ({ children, checkpoints, title }: LayoutProps) => {
-  const [isLargerThan1100] = useMediaQuery('(min-width: 1100px)');
+  const [isLargerThan1100] = useMediaQuery(MIN_WIDTH_1100);
 
   return (
     <>
       {isLargerThan1100 ? (
-        <Sidebar title={title} checkpoints={checkpoints} />
+        <>
+          <Sidebar title={title} checkpoints={checkpoints} />
+          <LectureContainer>{children}</LectureContainer>
+        </>
       ) : (
-        ''
-      )}
-      {isLargerThan1100 ? (
-        <LectureContainer>{children}</LectureContainer>
-      ) : (
-        <SmallLectureContainer>{children}</SmallLectureContainer>
+        <>
+          <SmallLectureContainer>{children}</SmallLectureContainer>
+        </>
       )}
       <Terminal />
     </>
