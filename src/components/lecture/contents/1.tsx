@@ -14,19 +14,15 @@ const SLIDE4_TITLE = '현재 폴더의 파일목록 확인하기';
 export const Checkpoints = [
   {
     name: SLIDE1_TITLE,
-    isChecked: false,
   },
   {
     name: SLIDE2_TITLE,
-    isChecked: false,
   },
   {
     name: SLIDE3_TITLE,
-    isChecked: false,
   },
   {
     name: SLIDE4_TITLE,
-    isChecked: false,
   },
 ];
 

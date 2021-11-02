@@ -2,10 +2,11 @@
 import React from 'react';
 import dynamic from 'next/dynamic';
 
+// 아래의 import 주소에서 파일명만 바꾸면 됩니다. (컴포넌트 이름은 그대로 나둬도 됩니다.)
 import SlideContents, {
   Checkpoints,
   Title,
-} from '#/components/lecture/contents/one';
+} from '#/components/lecture/contents/1';
 import Slider from '#/components/lecture/slider/Slider';
 
 const DynamicLectureLayout = dynamic(

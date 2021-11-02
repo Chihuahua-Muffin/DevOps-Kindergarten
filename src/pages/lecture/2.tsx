@@ -6,7 +6,7 @@ import dynamic from 'next/dynamic';
 import SlideContents, {
   Checkpoints,
   Title,
-} from '#/components/lecture/contents/two';
+} from '#/components/lecture/contents/2';
 import Slider from '#/components/lecture/slider/Slider';
 
 const DynamicLectureLayout = dynamic(

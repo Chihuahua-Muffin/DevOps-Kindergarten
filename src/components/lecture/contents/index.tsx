@@ -1,5 +1,5 @@
-import One, { Checkpoints as OneCheckpoints, Title as OneTitle } from './one';
-import Two, { Checkpoints as TwoCheckpoints, Title as TwoTitle } from './two';
+import One, { Checkpoints as OneCheckpoints, Title as OneTitle } from './1';
+import Two, { Checkpoints as TwoCheckpoints, Title as TwoTitle } from './2';
 import type { LectureContent } from './types';
 
 const LectureContents: LectureContent[] = [

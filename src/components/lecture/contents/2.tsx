@@ -7,11 +7,9 @@ export const Title = '기초 리눅스 명령어';
 export const Checkpoints = [
   {
     name: '체크포인트1',
-    isChecked: false,
   },
   {
     name: '체크포인트2',
-    isChecked: false,
   },
 ];
 
