@@ -39,7 +39,7 @@ const CodeContainer = chakra(Box, {
 
 const SmallLayoutCodeContainer = chakra(CodeContainer, {
   baseStyle: {
-    width: 'calc(100vw - 60px)',
+    width: 'calc(100vw - 130px)',
   },
 });
 

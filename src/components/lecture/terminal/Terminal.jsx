@@ -10,8 +10,8 @@ const Container = chakra(Box, {
   baseStyle: {
     position: 'fixed',
     bottom: 0,
-    left: (props) => (props.islargerthan1100 === 'true' ? '300px' : '0px'),
-    width: (props) => (props.islargerthan1100 === 'true' ? 'calc(100vw - 300px)' : '100vw'),
+    left: (props) => (props.islargerthan1100 === 'true' ? '300px' : '70px'),
+    width: (props) => (props.islargerthan1100 === 'true' ? 'calc(100vw - 300px)' : 'calc(100vw - 70px)'),
     height: '30vh',
     color: 'white',
     backgroundColor: 'black',

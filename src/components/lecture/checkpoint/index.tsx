@@ -1,11 +1,12 @@
 import React from 'react';
 import { Stepper, Step, StepLabel, StepButton } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-import { Text, chakra } from '@chakra-ui/react';
+import { Text, chakra, useMediaQuery } from '@chakra-ui/react';
 
 import { useAppSelector, useAppDispatch } from '#/hooks/useRedux';
 import type { Checkpoint } from '#/components/lecture/contents/types';
 import { changeSlideNumber } from '#/redux/ducks/lecture';
+import { MIN_WIDTH_1100 } from '#/constants';
 
 const OptionalText = chakra(Text, {
   baseStyle: {
@@ -17,6 +18,16 @@ const OptionalText = chakra(Text, {
 const useStyles = makeStyles({
   stepper: {
     width: '200px',
+    '& .Mui-active': {
+      color: '#3182CE',
+    },
+    '& .Mui-completed': {
+      color: '#38A169',
+    },
+  },
+  smallStepper: {
+    width: '25px',
+
     '& .Mui-active': {
       color: '#3182CE',
     },
@@ -42,6 +53,7 @@ const useStyles = makeStyles({
 });
 
 const CheckpointList = ({ checkpoints }: { checkpoints: Checkpoint[] }) => {
+  const [islargerthan1100] = useMediaQuery(MIN_WIDTH_1100);
   const { clearSlideNumber, currentSlideNumber } = useAppSelector(
     (state) => state.lecture,
   );
@@ -54,7 +66,7 @@ const CheckpointList = ({ checkpoints }: { checkpoints: Checkpoint[] }) => {
 
   return (
     <Stepper
-      className={classes.stepper}
+      className={islargerthan1100 ? classes.stepper : classes.smallStepper}
       activeStep={clearSlideNumber}
       orientation="vertical"
     >
@@ -73,12 +85,12 @@ const CheckpointList = ({ checkpoints }: { checkpoints: Checkpoint[] }) => {
             }
             // eslint-disable-next-line max-len
             optional={
-              index === clearSlideNumber ? (
+              (islargerthan1100 && (index === clearSlideNumber)) ? (
                 <OptionalText>현재 체크포인트입니다.</OptionalText>
               ) : null
             }
           >
-            <StepLabel>{checkpoint.name}</StepLabel>
+            <StepLabel>{islargerthan1100 ? checkpoint.name : ''}</StepLabel>
           </StepButton>
         </Step>
       ))}

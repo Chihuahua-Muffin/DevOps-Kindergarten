@@ -28,14 +28,7 @@ const LectureContainer = chakra(Box, {
 
 const SmallLectureContainer = chakra(LectureContainer, {
   baseStyle: {
-    paddingLeft: '0px',
-  },
-});
-
-const SmallTerminal = chakra(Terminal, {
-  baseStyle: {
-    left: '0px',
-    width: '100vw',
+    paddingLeft: '70px',
   },
 });
 
@@ -45,15 +38,11 @@ const LectureLayout = ({ children, checkpoints, title }: LayoutProps) => {
 
   return (
     <>
+      <Sidebar title={title} checkpoints={checkpoints} />
       {isLargerThan1100 ? (
-        <>
-          <Sidebar title={title} checkpoints={checkpoints} />
-          <LectureContainer>{children}</LectureContainer>
-        </>
+        <LectureContainer>{children}</LectureContainer>
       ) : (
-        <>
-          <SmallLectureContainer>{children}</SmallLectureContainer>
-        </>
+        <SmallLectureContainer>{children}</SmallLectureContainer>
       )}
       <Terminal />
     </>
