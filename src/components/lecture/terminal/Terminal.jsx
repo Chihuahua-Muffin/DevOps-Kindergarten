@@ -9,8 +9,8 @@ const Container = chakra(Box, {
   baseStyle: {
     position: 'fixed',
     bottom: 0,
-    left: 0,
-    width: '100%',
+    left: '300px',
+    width: 'calc(100vw - 300px)',
     height: '30vh',
     color: 'white',
     backgroundColor: 'black',
@@ -39,11 +39,13 @@ const Terminal = () => {
   const onKey = (event) => {
     console.log(event);
 
-    if (event.key === '\r') { // enter
+    if (event.key === '\r') {
+      // enter
       socketClient.current.emit('chat message', buffer.trim());
       setBuffer('');
       prompt();
-    } else if (event.key === '\x7F') { // back-space
+    } else if (event.key === '\x7F') {
+      // back-space
       setBuffer((prevState) => prevState.slice(0, -1));
     }
   };
@@ -53,7 +55,6 @@ const Terminal = () => {
     // const socket = io('http://13.124.116.53:3000', {
     //   transports: ['websocket', 'polling'],
     // });
-
     // // 연결 완료 했을 때
     // socket.on('connect', () => {
     //   console.log('연결완료', socket.id);
@@ -62,7 +63,6 @@ const Terminal = () => {
     //   console.log('attach socket');
     //   socketClient.current = socket;
     // });
-
     // socket.on('chat message', (res) => {
     //   console.log('chat message res\n', res);
     //   setChatMessage(res);
@@ -73,9 +73,7 @@ const Terminal = () => {
     //     xtermRef.current.terminal.write('\r\n');
     //   });
     // });
-
     // prompt();
-
     // return () => {
     //   socketClient.current.close();
     // };
@@ -113,12 +111,7 @@ const Terminal = () => {
       </div> */}
       <Container>
         {/* Create a new terminal and set it's ref. */}
-        <XTerm
-          options={options}
-          ref={xtermRef}
-          onData={onData}
-          onKey={onKey}
-        />
+        <XTerm options={options} ref={xtermRef} onData={onData} onKey={onKey} />
       </Container>
     </>
   );

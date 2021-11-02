@@ -13,7 +13,7 @@ const Container = chakra(Box, {
     position: 'fixed',
     top: 0,
     left: 0,
-    height: '70vh',
+    height: '100vh',
     width: '300px',
     shadow: 'lg',
     zIndex: 10,
