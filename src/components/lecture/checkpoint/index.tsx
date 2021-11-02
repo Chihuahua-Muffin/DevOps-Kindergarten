@@ -10,7 +10,7 @@ import { changeSlideNumber } from '#/redux/ducks/lecture';
 const OptionalText = chakra(Text, {
   baseStyle: {
     fontSize: '13px',
-    color: 'rgba(3, 100, 179, 0.623)',
+    color: '#3182CE',
   },
 });
 
@@ -18,10 +18,10 @@ const useStyles = makeStyles({
   stepper: {
     width: '200px',
     '& .Mui-active': {
-      color: 'rgb(37, 147, 238)',
+      color: '#3182CE',
     },
     '& .Mui-completed': {
-      color: 'rgb(12, 189, 56)',
+      color: '#38A169',
     },
   },
   stepButton: {
