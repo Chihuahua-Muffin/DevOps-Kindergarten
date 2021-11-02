@@ -42,7 +42,9 @@ const useStyles = makeStyles({
 });
 
 const CheckpointList = ({ checkpoints }: { checkpoints: Checkpoint[] }) => {
-  const { clearSlideNumber, currentSlideNumber } = useAppSelector((state) => state.lecture);
+  const { clearSlideNumber, currentSlideNumber } = useAppSelector(
+    (state) => state.lecture,
+  );
   const dispatch = useAppDispatch();
   const classes = useStyles();
 
@@ -51,7 +53,11 @@ const CheckpointList = ({ checkpoints }: { checkpoints: Checkpoint[] }) => {
   };
 
   return (
-    <Stepper className={classes.stepper} activeStep={clearSlideNumber} orientation="vertical">
+    <Stepper
+      className={classes.stepper}
+      activeStep={clearSlideNumber}
+      orientation="vertical"
+    >
       {checkpoints.map((checkpoint, index) => (
         <Step
           key={checkpoint.name}
@@ -60,13 +66,19 @@ const CheckpointList = ({ checkpoints }: { checkpoints: Checkpoint[] }) => {
         >
           <StepButton
             onClick={onClickButton(index)}
-            className={currentSlideNumber === index ? classes.activeStepButton : classes.stepButton}
+            className={
+              currentSlideNumber === index
+                ? classes.activeStepButton
+                : classes.stepButton
+            }
             // eslint-disable-next-line max-len
-            optional={index === clearSlideNumber ? <OptionalText>현재 체크포인트입니다.</OptionalText> : null}
+            optional={
+              index === clearSlideNumber ? (
+                <OptionalText>현재 체크포인트입니다.</OptionalText>
+              ) : null
+            }
           >
-            <StepLabel>
-              {checkpoint.name}
-            </StepLabel>
+            <StepLabel>{checkpoint.name}</StepLabel>
           </StepButton>
         </Step>
       ))}

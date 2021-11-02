@@ -7,14 +7,12 @@ const ItemContainer = chakra(Box, {
     width: '100%',
     height: '70vh',
     padding: '20px',
-    backgroundColor: 'red.50',
+    overflowY: 'auto',
   },
 });
 
 const SliderItem = ({ children }: { children: React.ReactNode }) => (
-  <ItemContainer>
-    {children}
-  </ItemContainer>
+  <ItemContainer>{children}</ItemContainer>
 );
 
 export default SliderItem;

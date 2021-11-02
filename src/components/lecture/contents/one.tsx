@@ -1,60 +1,56 @@
 import React from 'react';
 
 import SliderItem from '../slider/SliderItem';
+import SliderItemHeader from '../slider/SliderItemHeader';
+
+export const Title = '기초 리눅스 명령어';
+
+const SLIDE1_TITLE = '폴더 만들기';
+const SLIDE2_TITLE = '폴더 이동하기';
+const SLIDE3_TITLE = '문서 편집기 열기';
+const SLIDE4_TITLE = '현재 폴더의 파일목록 확인하기';
 
 // API 되면 체크포인트 true로
 export const Checkpoints = [
   {
-    name: '체크포인트1입니다. 잘 할수 있을까요?',
+    name: SLIDE1_TITLE,
     isChecked: false,
   },
   {
-    name: '체크포인트2',
+    name: SLIDE2_TITLE,
     isChecked: false,
   },
   {
-    name: '체크포인트3',
+    name: SLIDE3_TITLE,
     isChecked: false,
   },
   {
-    name: '체크포인트4',
-    isChecked: false,
-  },
-  {
-    name: '체크포인트5',
-    isChecked: false,
-  },
-  {
-    name: '체크포인트6',
-    isChecked: false,
-  },
-  {
-    name: '체크포인트7',
-    isChecked: false,
-  },
-  {
-    name: '체크포인트8',
-    isChecked: false,
-  },
-  {
-    name: '체크포인트9',
+    name: SLIDE4_TITLE,
     isChecked: false,
   },
 ];
 
 const Slide1 = () => (
   <SliderItem>
-    <h1>
-      id is one 1/2
-    </h1>
+    <SliderItemHeader>{SLIDE1_TITLE}</SliderItemHeader>
   </SliderItem>
 );
 
 const Slide2 = () => (
   <SliderItem>
-    <h1>
-      id is one 1/2
-    </h1>
+    <SliderItemHeader>{SLIDE2_TITLE}</SliderItemHeader>
+  </SliderItem>
+);
+
+const Slide3 = () => (
+  <SliderItem>
+    <SliderItemHeader>{SLIDE3_TITLE}</SliderItemHeader>
+  </SliderItem>
+);
+
+const Slide4 = () => (
+  <SliderItem>
+    <SliderItemHeader>{SLIDE4_TITLE}</SliderItemHeader>
   </SliderItem>
 );
 
@@ -69,30 +65,10 @@ export default [
   },
   {
     slideId: 3,
-    content: <Slide2 />,
+    content: <Slide3 />,
   },
   {
     slideId: 4,
-    content: <Slide2 />,
-  },
-  {
-    slideId: 5,
-    content: <Slide2 />,
-  },
-  {
-    slideId: 6,
-    content: <Slide2 />,
-  },
-  {
-    slideId: 7,
-    content: <Slide2 />,
-  },
-  {
-    slideId: 8,
-    content: <Slide2 />,
-  },
-  {
-    slideId: 9,
-    content: <Slide2 />,
+    content: <Slide4 />,
   },
 ];

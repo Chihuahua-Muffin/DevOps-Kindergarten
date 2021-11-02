@@ -1,6 +1,8 @@
 import React from 'react';
 import SliderItem from '../slider/SliderItem';
 
+export const Title = '기초 리눅스 명령어';
+
 // API 되면 체크포인트 true로
 export const Checkpoints = [
   {
@@ -15,17 +17,13 @@ export const Checkpoints = [
 
 const Slide1 = () => (
   <SliderItem>
-    <h1>
-      id is two 1/2
-    </h1>
+    <h1>id is two 1/2</h1>
   </SliderItem>
 );
 
 const Slide2 = () => (
   <SliderItem>
-    <h1>
-      id is two 2/2
-    </h1>
+    <h1>id is two 2/2</h1>
   </SliderItem>
 );
 

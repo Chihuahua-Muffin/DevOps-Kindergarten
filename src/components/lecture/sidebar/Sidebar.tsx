@@ -2,6 +2,7 @@ import React from 'react';
 import { chakra, Box, Divider } from '@chakra-ui/react';
 
 import BackButton from './BackButton';
+import Title from './Title';
 import type { Checkpoint } from '#/components/lecture/contents/types';
 import CheckpointList from '#/components/lecture/checkpoint';
 
@@ -24,14 +25,19 @@ const Container = chakra(Box, {
 });
 
 // eslint-disable-next-line arrow-body-style
-const Sidebar = ({ checkpoints }: { checkpoints: Checkpoint[] }) => {
-  return (
-    <Container>
-      <BackButton />
-      <Divider margin="15px 0" />
-      <CheckpointList checkpoints={checkpoints} />
-    </Container>
-  );
-};
+const Sidebar = ({
+  checkpoints,
+  title,
+}: {
+  checkpoints: Checkpoint[];
+  title: string;
+}) => (
+  <Container>
+    <BackButton />
+    <Title title={title} />
+    <Divider margin="15px 0" />
+    <CheckpointList checkpoints={checkpoints} />
+  </Container>
+);
 
 export default Sidebar;
