@@ -6,7 +6,7 @@ const ItemContainer = chakra(Box, {
     position: 'relative',
     width: '100%',
     height: '70vh',
-    padding: '20px',
+    padding: '30px',
     overflowY: 'auto',
   },
 });
