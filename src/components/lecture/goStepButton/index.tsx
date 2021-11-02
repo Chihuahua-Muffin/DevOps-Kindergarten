@@ -16,7 +16,7 @@ const ChakraButton = chakra(IconButton, {
 
 const GoStepButton = () => {
   const dispatch = useAppDispatch();
-  const { clearSlideNumber, currentSlideNumber } = useAppSelector(
+  const { clearSlideNumber, currentSlideNumber, slideCount } = useAppSelector(
     (state) => state.lecture,
   );
 
@@ -26,8 +26,8 @@ const GoStepButton = () => {
   };
 
   const isCheckedButton = useMemo(
-    () => clearSlideNumber !== currentSlideNumber,
-    [clearSlideNumber, currentSlideNumber],
+    () => (clearSlideNumber !== currentSlideNumber) || (slideCount <= clearSlideNumber),
+    [clearSlideNumber, currentSlideNumber, slideCount],
   );
 
   return isCheckedButton ? (

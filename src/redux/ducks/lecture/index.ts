@@ -5,6 +5,7 @@ const SLICE_NAME = 'lecture';
 const initialState = {
   clearSlideNumber: 0,
   currentSlideNumber: 0,
+  slideCount: 0,
 };
 
 export const authSlice = createSlice({
@@ -18,12 +19,16 @@ export const authSlice = createSlice({
       state.clearSlideNumber += 1;
       state.currentSlideNumber += 1;
     },
+    initialSlideCount: (state, action: PayloadAction<number>) => {
+      state.slideCount = action.payload;
+    },
   },
 });
 
 export const {
   changeSlideNumber,
   goOneStep,
+  initialSlideCount,
 } = authSlice.actions;
 
 export default authSlice.reducer;
