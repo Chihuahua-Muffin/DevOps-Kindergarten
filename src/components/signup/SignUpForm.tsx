@@ -16,6 +16,7 @@ import VpnKeyIcon from '@mui/icons-material/VpnKey';
 import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 import EmailIcon from '@mui/icons-material/Email';
 
+import { singUpAPI } from '#/lib/api/auth';
 import useForm from '#/hooks/useForm';
 import SignUpValidation from '#/components/signup/SignUpValidation';
 
@@ -23,6 +24,7 @@ import {
   ICON_STYLE,
   LANDING_PAGE_URL,
   TOAST_STATUS_SUCCESS,
+  TOAST_STATUS_ERROR,
   TOAST_DURATION,
   STUDENT_ROLE,
 } from '#/constants';
@@ -63,13 +65,7 @@ const SubmitButton = chakra(Button, {
 const SignUpForm = () => {
   const toast = useToast();
   const router = useRouter();
-  const {
-    values,
-    errors,
-    isLoading,
-    handleChange,
-    handleSubmit,
-  } = useForm({
+  const { values, errors, isLoading, handleChange, handleSubmit } = useForm({
     initialValues: {
       name: '',
       email: '',
@@ -78,28 +74,47 @@ const SignUpForm = () => {
       role: STUDENT_ROLE,
     },
     onSubmit: async (submitValues) => {
-      await new Promise((r) => setTimeout(r, 2000));
-      toast({
-        title: '회원가입 되었습니다!',
-        description: `${submitValues.name}님 환영합니다!`,
-        status: TOAST_STATUS_SUCCESS,
-        duration: TOAST_DURATION,
-        isClosable: true,
-      });
-      router.replace(LANDING_PAGE_URL);
+      try {
+        await singUpAPI({
+          email: values.email,
+          name: values.name,
+          password: values.password,
+          status: values.role,
+          username: values.username,
+        });
+        toast({
+          title: '회원가입 되었습니다!',
+          description: `${submitValues.name}님 환영합니다!`,
+          status: TOAST_STATUS_SUCCESS,
+          duration: TOAST_DURATION,
+          isClosable: true,
+        });
+        router.replace(LANDING_PAGE_URL);
+      } catch (error) {
+        toast({
+          title: '회원가입에 실패했습니다.',
+          status: TOAST_STATUS_ERROR,
+          duration: TOAST_DURATION,
+          isClosable: true,
+        });
+      }
     },
     validate: SignUpValidation,
   });
 
   return (
     <Container as="form" onSubmit={handleSubmit}>
-
       <FormControlContainer isInvalid={errors.name}>
         <FormLabel>
           <PermIdentityIcon style={ICON_STYLE} />
           이름
         </FormLabel>
-        <FormInput id="name" name="name" value={values.name} onChange={handleChange} />
+        <FormInput
+          id="name"
+          name="name"
+          value={values.name}
+          onChange={handleChange}
+        />
         <FormErrorMessage>{errors.name}</FormErrorMessage>
       </FormControlContainer>
 
@@ -108,7 +123,13 @@ const SignUpForm = () => {
           <EmailIcon style={ICON_STYLE} />
           이메일
         </FormLabel>
-        <FormInput id="email" name="email" type="email" value={values.email} onChange={handleChange} />
+        <FormInput
+          id="email"
+          name="email"
+          type="email"
+          value={values.email}
+          onChange={handleChange}
+        />
         <FormErrorMessage>{errors.email}</FormErrorMessage>
       </FormControlContainer>
 
@@ -117,7 +138,12 @@ const SignUpForm = () => {
           <FaceIcon style={ICON_STYLE} />
           아이디
         </FormLabel>
-        <FormInput id="username" name="username" value={values.username} onChange={handleChange} />
+        <FormInput
+          id="username"
+          name="username"
+          value={values.username}
+          onChange={handleChange}
+        />
         <FormErrorMessage>{errors.username}</FormErrorMessage>
       </FormControlContainer>
 
@@ -126,7 +152,13 @@ const SignUpForm = () => {
           <VpnKeyIcon style={ICON_STYLE} />
           비밀번호
         </FormLabel>
-        <FormInput id="password" name="password" type="password" value={values.password} onChange={handleChange} />
+        <FormInput
+          id="password"
+          name="password"
+          type="password"
+          value={values.password}
+          onChange={handleChange}
+        />
         <FormErrorMessage>{errors.password}</FormErrorMessage>
       </FormControlContainer>
 

@@ -30,6 +30,7 @@
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "linebreak-style": "off",
     "object-curly-newline": "off",
+    "implicit-arrow-linebreak": "off",
     // Ref: https://stackoverflow.com/questions/61570021/typescript-and-redux-tool-kit-createslice-assignment-to-property-of-function
     "no-param-reassign": [
       "error", {

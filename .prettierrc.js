@@ -16,4 +16,5 @@ module.exports = {
   // 화살표 함수가 하나의 매개변수를 받을 때 괄호를 생략하게 formatting
   endOfLine: 'auto',
   // windows에 뜨는 'Delete cr' 에러 해결
+  arrowParens: 'always',
 };
