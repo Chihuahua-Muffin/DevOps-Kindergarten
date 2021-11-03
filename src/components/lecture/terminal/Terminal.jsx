@@ -10,11 +10,18 @@ const Container = chakra(Box, {
   baseStyle: {
     position: 'fixed',
     bottom: 0,
-    left: (props) => (props.islargerthan1100 === 'true' ? '300px' : '70px'),
-    width: (props) => (props.islargerthan1100 === 'true' ? 'calc(100vw - 300px)' : 'calc(100vw - 70px)'),
+    left: '300px',
+    width: 'calc(100vw - 300px)',
     height: '30vh',
     color: 'white',
     backgroundColor: 'black',
+  },
+});
+
+const SmallContainer = chakra(Container, {
+  baseStyle: {
+    left: '70px',
+    width: 'calc(100vw - 70px)',
   },
 });
 
@@ -111,10 +118,18 @@ const Terminal = () => {
             </div>
           )}
       </div> */}
-      <Container islargerthan1100={islargerthan1100.toString()}>
-        {/* Create a new terminal and set it's ref. */}
-        <XTerm options={options} ref={xtermRef} onData={onData} onKey={onKey} />
-      </Container>
+      {islargerthan1100 ? (
+        <Container>
+          {/* Create a new terminal and set it's ref. */}
+          <XTerm options={options} ref={xtermRef} onData={onData} onKey={onKey} />
+        </Container>
+      ) : (
+        <SmallContainer>
+          {/* Create a new terminal and set it's ref. */}
+          <XTerm options={options} ref={xtermRef} onData={onData} onKey={onKey} />
+        </SmallContainer>
+      )}
+
     </>
   );
 };

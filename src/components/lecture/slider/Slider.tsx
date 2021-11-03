@@ -35,18 +35,21 @@ const Container = ({ children }: { children: React.ReactNode }) => {
   const sliderRef = useRef<Slider>(null);
   const toast = useToast();
 
+  // 클리어 한 슬라이드를 체크하는 훅
   useEffect(() => {
     if (sliderRef.current) {
       sliderRef.current.slickGoTo(clearSlideNumber);
     }
   }, [clearSlideNumber]);
 
+  // 현재 슬라이드를 체크하는 훅
   useEffect(() => {
     if (sliderRef.current) {
       sliderRef.current.slickGoTo(currentSlideNumber);
     }
   }, [currentSlideNumber]);
 
+  // 모든 슬라이드를 완료했는지 체크하는 훅
   useEffect(() => {
     if (slideCount !== 0 && (slideCount === clearSlideNumber)) {
       toast({
