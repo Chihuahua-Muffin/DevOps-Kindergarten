@@ -35,36 +35,32 @@ const NavItem = chakra(Button, {
 const HeaderNavigation = () => {
   const router = useRouter();
   const loginState = useSelector((state: AppState) => state.auth);
-  const [select, setSelected] = useState(router.pathname);
+  const [select, setSelected] = useState<string[]>([]);
 
   useEffect(() => {
-    setSelected(router.pathname);
+    const splitPath = router.pathname.split('/');
+    setSelected(splitPath);
   }, [router]);
 
   return (
     // SEO를 위한 HTML 태그
     <NavigationContainer as="nav">
-      <Link href={ROADMAP_PAGE_URL}>
-        <NavItem colorScheme="teal" variant={select === ROADMAP_PAGE_URL ? 'solid' : 'ghost'}>
+      <Link href={`/${ROADMAP_PAGE_URL}`}>
+        <NavItem colorScheme="teal" variant={select.includes(ROADMAP_PAGE_URL) ? 'solid' : 'ghost'}>
           로드맵
         </NavItem>
       </Link>
       <Spacer />
-      {/* <Link href={DICTIONARY_PAGE_URL}>
-        <NavItem colorScheme="teal" variant={select === DICTIONARY_PAGE_URL ? 'solid' : 'ghost'}>
-          사전
-        </NavItem>
-      </Link> */}
-      <Link href={LECTURE_PAGE_URL}>
-        <NavItem colorScheme="teal" variant={select === LECTURE_PAGE_URL ? 'solid' : 'ghost'}>
+      <Link href={`/${LECTURE_PAGE_URL}`}>
+        <NavItem colorScheme="teal" variant={select.includes(LECTURE_PAGE_URL) ? 'solid' : 'ghost'}>
           실습
         </NavItem>
       </Link>
       {loginState.isLogin
         ? <LoginStatusMenu />
         : (
-          <Link href={LOGIN_PAGE_URL}>
-            <NavItem colorScheme="teal" variant={select === LOGIN_PAGE_URL ? 'solid' : 'ghost'}>
+          <Link href={`/${LOGIN_PAGE_URL}`}>
+            <NavItem colorScheme="teal" variant={select.includes(LOGIN_PAGE_URL) ? 'solid' : 'ghost'}>
               로그인
             </NavItem>
           </Link>

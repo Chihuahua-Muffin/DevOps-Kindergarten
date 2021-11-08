@@ -70,7 +70,6 @@ const SignInForm = () => {
     const { username, password } = submitValues;
 
     const result = await dispatch(loginAsync({ username, password }));
-    router.replace(LANDING_PAGE_URL);
 
     if (result.type === LOGIN_ASYNC_FULFILLED) {
       const JWT_EXPIRY_TIME = 2 * 3600 * 1000; // 만료 시간 (2시간 밀리 초로 표현)
@@ -85,6 +84,8 @@ const SignInForm = () => {
         duration: TOAST_DURATION,
         isClosable: true,
       });
+
+      router.replace(`/${LANDING_PAGE_URL}`);
     } else if (result.type === LOGIN_ASYNC_REJECTED) {
       toast({
         title: '로그인에 실패했습니다.',

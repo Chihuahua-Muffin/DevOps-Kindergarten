@@ -6,3 +6,9 @@ export interface User {
   authority: Role[] | null;
   isLogin: boolean;
 }
+
+export interface LectureProgress {
+  count: number;
+  lectureId: number;
+  progressRate: number;
+}

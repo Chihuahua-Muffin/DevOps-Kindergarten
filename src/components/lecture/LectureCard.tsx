@@ -8,13 +8,12 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import LectureCardTag from './LectureCardTag';
+import type { Card } from '#/components/lecture/contents/types';
+import { useAppSelector } from '#/hooks/useRedux';
 
 interface CardProps {
-  title: string,
-  image: string,
-  description: string,
-  tags: string[],
-  lectureNumber: string,
+  lectureNumber: number;
+  card: Card;
 }
 
 const DictionaryCardContainer = chakra(Box, {
@@ -69,27 +68,34 @@ const DescriptionText = chakra(Text, {
 });
 
 const LectureCard = ({
-  title, image, description, tags, lectureNumber,
-}: CardProps) => (
-  <DictionaryCardContainer>
-    <Link href={`/lecture/${lectureNumber}`}>
-      <DictionaryContentCard>
-        <ImageBox>
-          <Image
-            src={`/${image}`}
-            alt="Lecture Image"
-            draggable={false}
-            width={200}
-            height={200}
-            objectFit="contain"
-          />
-        </ImageBox>
-        <EnglishHeadText>{title}</EnglishHeadText>
-        <DescriptionText>{description}</DescriptionText>
-      </DictionaryContentCard>
-    </Link>
-    <LectureCardTag tags={tags} />
-  </DictionaryCardContainer>
-);
+  card, lectureNumber,
+}: CardProps) => {
+  const { lectureProgress } = useAppSelector((state) => state.user);
+  return (
+    <DictionaryCardContainer>
+      <Link href={`/lecture/${lectureNumber}`}>
+        <DictionaryContentCard>
+          <ImageBox>
+            <Image
+              src={`/${card.image}`}
+              alt="Lecture Image"
+              draggable={false}
+              width={200}
+              height={200}
+              objectFit="contain"
+            />
+          </ImageBox>
+          <EnglishHeadText>{card.title}</EnglishHeadText>
+          <DescriptionText>{card.description}</DescriptionText>
+          <div>
+            {lectureProgress[lectureNumber].progressRate}
+            %
+          </div>
+        </DictionaryContentCard>
+      </Link>
+      <LectureCardTag tags={card.tags} />
+    </DictionaryCardContainer>
+  );
+};
 
 export default LectureCard;

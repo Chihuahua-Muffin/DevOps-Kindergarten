@@ -7,6 +7,8 @@ export const ICON_STYLE = {
   marginRight: '5px',
 };
 
+export const MIN_WIDTH_1100 = '(min-width: 1100px)';
+
 // Explan page list
 export const EXPLAIN_PAGE_LIST = ['plan', 'code', 'build', 'test', 'release', 'deploy', 'operate', 'monitor'];
 
@@ -19,12 +21,12 @@ export const TOAST_STATUS_INFO = 'info';
 export const TOAST_STATUS_WARNING = 'warning';
 
 // PAGE ROUTE
-export const LOGIN_PAGE_URL = '/signin';
-export const SIGNUP_PAGE_URL = '/signup';
-export const ROADMAP_PAGE_URL = '/roadmap';
-export const LECTURE_PAGE_URL = '/lecture';
-export const LANDING_PAGE_URL = '/';
-export const PROFILE_PAGE_URL = '/profile';
+export const LOGIN_PAGE_URL = 'signin';
+export const SIGNUP_PAGE_URL = 'signup';
+export const ROADMAP_PAGE_URL = 'roadmap';
+export const LECTURE_PAGE_URL = 'lecture';
+export const LANDING_PAGE_URL = '';
+export const PROFILE_PAGE_URL = 'profile';
 
 // STORAGE
 export const REFRESH_TOKEN = 'refreshToken';

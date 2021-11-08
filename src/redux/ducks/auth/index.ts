@@ -97,6 +97,8 @@ export const authSlice = createSlice({
       .addCase(logoutAsync.fulfilled, (state) => {
         state.isLogin = false;
         state.username = '';
+        state.userId = 0;
+        state.authority = [];
       })
       .addCase(refreshAsync.fulfilled, (state, action) => {
         state.isLogin = true;

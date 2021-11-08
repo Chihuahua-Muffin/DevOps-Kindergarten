@@ -4,10 +4,12 @@ import Head from 'next/head';
 
 import storage from '#/lib/storage';
 import Header from '#/components/common/header/Header';
-import { useAppDispatch } from '#/hooks/useRedux';
+import { useAppDispatch, useAppSelector } from '#/hooks/useRedux';
 import { REFRESH_TOKEN } from '#/constants';
 import JSUtility from '#/lib/JSUtility';
 import { refreshAsync } from '#/redux/ducks/auth';
+import { initialUserLectureProgress } from '#/redux/ducks/user';
+import { getUserLectureProgressAPI } from '#/lib/api/user';
 import { REFRESH_ASYNC_FULFILLED, REFRESH_ASYNC_REJECTED } from '#/redux/ducks/auth/actions';
 
 axios.defaults.baseURL = process.env.NEXT_PUBLIC_DEV_SERVER_URL;
@@ -16,6 +18,8 @@ axios.defaults.withCredentials = true; // 토큰 쿠키 받기
 // 모든 페이지에 적용되는 컴포넌트
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
   const dispatch = useAppDispatch();
+  const { isLogin, userId } = useAppSelector((state) => state.auth);
+
   /* 새로고침 후에도 로그인 정보 확인 후 로그인 유지 */
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -44,6 +48,16 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
       })();
     }
   }, [dispatch]);
+
+  // 유저 lecture 정보 불러오기
+  useEffect(() => {
+    if (!isLogin) return;
+
+    (async () => {
+      const res = await getUserLectureProgressAPI(userId);
+      dispatch(initialUserLectureProgress(res.data));
+    })();
+  }, [dispatch, isLogin, userId]);
 
   return (
     <div>

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import TableOfContents from '#/components/common/TableOfContents';
+import TableOfContents from '#/components/explain/ExplainTableOfContents';
 import ExplainLayout from '#/components/layouts/Explain';
 
 import ExplainTitle from '#/components/explain/ExplainTitle';
@@ -22,11 +22,10 @@ const PlanPage = () => (
       titleHref="https://www.atlassian.com/software/jira"
       explaination={(
         <>
-          Jira는 이러이러한 툴입니다. Jira는 이러이러한 툴입니다. Jira는 이러이러한 툴입니다. Jira는 이러이러한 툴입니다.
-          Jira는 이러이러한 툴입니다. Jira는 이러이러한 툴입니다. Jira는 이러이러한 툴입니다. Jira는 이러이러한 툴입니다.
+          Jira에 대한 설명입니다.
         </>
       )}
-      features={['아주 좋아요', '아주 섹시해요', '아주 어썸해요']}
+      features={['Jira의 1번 특징', 'Jira의 2번 특징', 'Jira의 3번 특징']}
     />
     <ExplainTool
       title="Git"
@@ -34,11 +33,10 @@ const PlanPage = () => (
       titleHref="https://git-scm.com/"
       explaination={(
         <>
-          Jira는 이러이러한 툴입니다. Jira는 이러이러한 툴입니다. Jira는 이러이러한 툴입니다. Jira는 이러이러한 툴입니다.
-          Jira는 이러이러한 툴입니다. Jira는 이러이러한 툴입니다. Jira는 이러이러한 툴입니다. Jira는 이러이러한 툴입니다.
+          Git에 대한 설명입니다.
         </>
       )}
-      features={['1', '2', '3']}
+      features={['Git의 1번 특징', 'Git의 2번 특징', 'Git의 3번 특징']}
     />
   </>
 );

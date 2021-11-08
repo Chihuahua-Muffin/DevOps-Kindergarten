@@ -20,6 +20,8 @@ import { useAppSelector, useAppDispatch } from '#/hooks/useRedux';
 import { logoutAsync } from '#/redux/ducks/auth';
 import storage from '#/lib/storage';
 import { LOGOUT_ASYNC_FULFILLED, LOGOUT_ASYNC_REJECTED } from '#/redux/ducks/auth/actions';
+import { initial as initialLecture } from '#/redux/ducks/lecture';
+import { initial as initialUser } from '#/redux/ducks/user';
 import {
   ICON_STYLE,
   PROFILE_PAGE_URL,
@@ -43,10 +45,12 @@ const LoginStatusMenu = () => {
 
   const logoutButtonHandler = useCallback(async () => {
     const result = await dispatch(logoutAsync(authState.username));
+    dispatch(initialLecture());
+    dispatch(initialUser());
 
     if (result.type === LOGOUT_ASYNC_FULFILLED) {
       storage.remove(REFRESH_TOKEN);
-      router.replace(LANDING_PAGE_URL);
+      router.replace(`/${LANDING_PAGE_URL}`);
       toast({
         title: '로그아웃 되었습니다!',
         status: TOAST_STATUS_ERROR,
