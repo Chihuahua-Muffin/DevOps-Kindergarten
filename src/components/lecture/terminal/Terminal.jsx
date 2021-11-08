@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 // import { Terminal } from 'xterm';
 import { XTerm } from 'xterm-for-react';
-// import { io } from 'socket.io-client';
+import { io } from 'socket.io-client';
 import { chakra, Box, useMediaQuery } from '@chakra-ui/react';
 // import { AttachAddon } from 'xterm-addon-attach';
 import { MIN_WIDTH_1100 } from '#/constants';
@@ -15,6 +15,7 @@ const Container = chakra(Box, {
     height: '30vh',
     color: 'white',
     backgroundColor: 'black',
+    paddingLeft: '10px',
   },
 });
 
@@ -61,31 +62,24 @@ const Terminal = () => {
 
   useEffect(() => {
     // 소켓 생성 및 연결
-    // const socket = io('http://13.124.116.53:3000', {
-    //   transports: ['websocket', 'polling'],
-    // });
-    // // 연결 완료 했을 때
-    // socket.on('connect', () => {
-    //   console.log('연결완료', socket.id);
-    //   const attachAddon = new AttachAddon(socket);
-    //   xtermRef.current.terminal.loadAddon(attachAddon);
-    //   console.log('attach socket');
-    //   socketClient.current = socket;
-    // });
-    // socket.on('chat message', (res) => {
-    //   console.log('chat message res\n', res);
-    //   setChatMessage(res);
-    //   const splitted = res.split('\n');
-    //   setSplitChatMessage(splitted);
-    //   splitted.forEach((line) => {
-    //     xtermRef.current.terminal.write(line);
-    //     xtermRef.current.terminal.write('\r\n');
-    //   });
-    // });
-    // prompt();
-    // return () => {
-    //   socketClient.current.close();
-    // };
+    const socket = io('http://13.124.116.53:3000', {
+      transports: ['websocket', 'polling'],
+    });
+
+    // 연결 완료 했을 때
+    socket.on('connect', () => {
+      console.log('연결완료', socket.id);
+      socketClient.current = socket;
+    });
+
+    socket.on('chat message', (res) => {
+      console.log('chat message res\n', res);
+      xtermRef.current.terminal.write(res);
+    });
+
+    return () => {
+      socketClient.current.close();
+    };
   }, []);
 
   // const onClickButton = () => {
@@ -94,7 +88,7 @@ const Terminal = () => {
   // };
 
   const options = {
-    rows: 14,
+    rows: 13,
   };
 
   return (
