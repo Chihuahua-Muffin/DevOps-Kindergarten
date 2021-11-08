@@ -35,7 +35,7 @@ const GoStepButton = () => {
 
     console.log('progressObject', progressObject);
 
-    const res = await putUserLectureProgressAPI(userId, progressObject);
+    await putUserLectureProgressAPI(userId, progressObject);
   // eslint-disable-next-line max-len
   }, [clearSlideNumber, currentLectureId, currentSlideNumber, dispatch, isLogin, slideCount, userId]);
 
