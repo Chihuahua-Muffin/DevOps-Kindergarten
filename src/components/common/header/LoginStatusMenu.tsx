@@ -46,7 +46,7 @@ const LoginStatusMenu = () => {
 
     if (result.type === LOGOUT_ASYNC_FULFILLED) {
       storage.remove(REFRESH_TOKEN);
-      router.replace(LANDING_PAGE_URL);
+      router.replace(`/${LANDING_PAGE_URL}`);
       toast({
         title: '로그아웃 되었습니다!',
         status: TOAST_STATUS_ERROR,

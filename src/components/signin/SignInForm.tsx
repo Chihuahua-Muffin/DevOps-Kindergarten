@@ -85,7 +85,7 @@ const SignInForm = () => {
         isClosable: true,
       });
 
-      router.replace(LANDING_PAGE_URL);
+      router.replace(`/${LANDING_PAGE_URL}`);
     } else if (result.type === LOGIN_ASYNC_REJECTED) {
       toast({
         title: '로그인에 실패했습니다.',
