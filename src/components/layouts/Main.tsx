@@ -9,7 +9,7 @@ import { REFRESH_TOKEN } from '#/constants';
 import JSUtility from '#/lib/JSUtility';
 import { refreshAsync } from '#/redux/ducks/auth';
 import { initialUserLectureProgress } from '#/redux/ducks/user';
-import { getUserLectureProgressAPI, putUserLectureProgressAPI } from '#/lib/api/user';
+import { getUserLectureProgressAPI } from '#/lib/api/user';
 import { REFRESH_ASYNC_FULFILLED, REFRESH_ASYNC_REJECTED } from '#/redux/ducks/auth/actions';
 
 axios.defaults.baseURL = process.env.NEXT_PUBLIC_DEV_SERVER_URL;
@@ -52,12 +52,6 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
   // 유저 lecture 정보 불러오기
   useEffect(() => {
     if (!isLogin) return;
-
-    putUserLectureProgressAPI(userId, {
-      count: 0,
-      lectureId: 1,
-      progressRate: 0,
-    });
 
     (async () => {
       const res = await getUserLectureProgressAPI(userId);
