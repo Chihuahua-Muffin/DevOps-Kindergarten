@@ -6,6 +6,7 @@ import SliderItemHeader from '../slider/SliderItemHeader';
 import SliderItemContentText from '../slider/SliderItemContentText';
 import CodeBox from '#/components/common/codeBox/CodeBox';
 
+export const lectureNumber = 1;
 export const Title = '기초 리눅스 명령어';
 
 const SLIDE1_TITLE = '폴더 만들기';

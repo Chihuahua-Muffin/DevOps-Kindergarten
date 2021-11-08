@@ -1,9 +1,10 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useCallback } from 'react';
 import { chakra, IconButton, Tooltip } from '@chakra-ui/react';
 import CheckIcon from '@mui/icons-material/Check';
 
 import { goOneStep } from '#/redux/ducks/lecture';
 import { useAppDispatch, useAppSelector } from '#/hooks/useRedux';
+import { putUserLectureProgressAPI } from '#/lib/api/user';
 
 const ChakraButton = chakra(IconButton, {
   baseStyle: {
@@ -16,14 +17,27 @@ const ChakraButton = chakra(IconButton, {
 
 const GoStepButton = () => {
   const dispatch = useAppDispatch();
-  const { clearSlideNumber, currentSlideNumber, slideCount } = useAppSelector(
+  const { clearSlideNumber, currentSlideNumber, slideCount, currentLectureId } = useAppSelector(
     (state) => state.lecture,
   );
+  const { userId, isLogin } = useAppSelector((state) => state.auth);
 
-  const onClickButton = () => {
+  const onClickButton = useCallback(async () => {
+    if (!isLogin) return;
     if (clearSlideNumber !== currentSlideNumber) return;
     dispatch(goOneStep());
-  };
+
+    const progressObject = {
+      count: clearSlideNumber + 1,
+      lectureId: currentLectureId,
+      progressRate: Math.floor(((clearSlideNumber + 1) / slideCount) * 100),
+    };
+
+    console.log('progressObject', progressObject);
+
+    const res = await putUserLectureProgressAPI(userId, progressObject);
+  // eslint-disable-next-line max-len
+  }, [clearSlideNumber, currentLectureId, currentSlideNumber, dispatch, isLogin, slideCount, userId]);
 
   const isCheckedButton = useMemo(
     () => (clearSlideNumber !== currentSlideNumber) || (slideCount <= clearSlideNumber),

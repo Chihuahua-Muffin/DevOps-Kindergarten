@@ -1,10 +1,10 @@
-import One, { Checkpoints as OneCheckpoints, Title as OneTitle } from './1';
-import Two, { Checkpoints as TwoCheckpoints, Title as TwoTitle } from './2';
+import One, { Checkpoints as OneCheckpoints, Title as OneTitle, lectureNumber as OneLectureNumaber } from './1';
+import Two, { Checkpoints as TwoCheckpoints, Title as TwoTitle, lectureNumber as TwoLectureNumaber } from './2';
 import type { LectureContent } from './types';
 
 const LectureContents: LectureContent[] = [
   {
-    lectureNumber: 1,
+    lectureNumber: OneLectureNumaber,
     sliderContents: One,
     checkpoints: OneCheckpoints,
     card: {
@@ -15,7 +15,7 @@ const LectureContents: LectureContent[] = [
     },
   },
   {
-    lectureNumber: 2,
+    lectureNumber: TwoLectureNumaber,
     sliderContents: Two,
     checkpoints: TwoCheckpoints,
     card: {

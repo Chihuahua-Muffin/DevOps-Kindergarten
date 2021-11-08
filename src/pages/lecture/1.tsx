@@ -6,7 +6,8 @@ import dynamic from 'next/dynamic';
 import SlideContents, {
   Checkpoints,
   Title,
-} from '#/components/lecture/contents/1';
+  lectureNumber,
+} from '#/components/lecture/contents/1'; // <- 숫자를 바꿔주세요
 import Slider from '#/components/lecture/slider/Slider';
 import { useAppDispatch } from '#/hooks/useRedux';
 import { initialSlideCount } from '#/redux/ducks/lecture';
@@ -22,7 +23,10 @@ const LectureContentPage = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(initialSlideCount(SlideContents.length));
+    dispatch(initialSlideCount({
+      slideCount: SlideContents.length,
+      currentLectureId: lectureNumber,
+    }));
   }, [dispatch]);
 
   return (
@@ -35,7 +39,7 @@ const LectureContentPage = () => {
 };
 
 LectureContentPage.getLayout = (page: React.ReactElement) => (
-  <DynamicLectureLayout title={Title} checkpoints={Checkpoints}>
+  <DynamicLectureLayout title={Title} checkpoints={Checkpoints} lectureNumber={lectureNumber}>
     {page}
   </DynamicLectureLayout>
 );
