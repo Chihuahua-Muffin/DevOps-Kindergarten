@@ -1,9 +1,9 @@
 import React, { useRef, useEffect, useState } from 'react';
 // import { Terminal } from 'xterm';
 import { XTerm } from 'xterm-for-react';
-import { io } from 'socket.io-client';
+// import { io } from 'socket.io-client';
 import { chakra, Box, useMediaQuery } from '@chakra-ui/react';
-import { AttachAddon } from 'xterm-addon-attach';
+// import { AttachAddon } from 'xterm-addon-attach';
 import { MIN_WIDTH_1100 } from '#/constants';
 
 const Container = chakra(Box, {
@@ -28,8 +28,8 @@ const SmallContainer = chakra(Container, {
 const Terminal = () => {
   const xtermRef = useRef(null);
   const socketClient = useRef(null);
-  const [chatMessage, setChatMessage] = useState();
-  const [splitChatMessage, setSplitChatMessage] = useState([]);
+  // const [chatMessage, setChatMessage] = useState();
+  // const [splitChatMessage, setSplitChatMessage] = useState([]);
   const [islargerthan1100] = useMediaQuery(MIN_WIDTH_1100);
   const [buffer, setBuffer] = useState('');
 
@@ -40,13 +40,13 @@ const Terminal = () => {
 
   const onData = (string) => {
     setBuffer((prevState) => prevState + string);
-    console.log('buffer', buffer);
-    console.log('onData', string);
+    // console.log('buffer', buffer);
+    // console.log('onData', string);
     xtermRef.current.terminal.write(string);
   };
 
   const onKey = (event) => {
-    console.log(event);
+    // console.log(event);
 
     if (event.key === '\r') {
       // enter
@@ -88,10 +88,10 @@ const Terminal = () => {
     // };
   }, []);
 
-  const onClickButton = () => {
-    const res = socketClient.current.emit('chat message', 'ls');
-    console.log('res', res);
-  };
+  // const onClickButton = () => {
+  //   const res = socketClient.current.emit('chat message', 'ls');
+  //   console.log('res', res);
+  // };
 
   const options = {
     rows: 14,

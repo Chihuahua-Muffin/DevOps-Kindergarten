@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { chakra, Box, useMediaQuery } from '@chakra-ui/react';
-import type { AxiosResponse } from 'axios';
 
 import Terminal from '#/components/lecture/terminal/Terminal';
 import Sidebar from '#/components/lecture/sidebar/Sidebar';
@@ -8,7 +7,6 @@ import type { Checkpoint } from '#/components/lecture/contents/types';
 import { MIN_WIDTH_1100 } from '#/constants';
 import { useAppDispatch, useAppSelector } from '#/hooks/useRedux';
 import { initialClearAndSlideCount, reset } from '#/redux/ducks/lecture';
-import { getUserAPI } from '#/lib/api/user';
 
 interface LayoutProps {
   children: React.ReactNode;

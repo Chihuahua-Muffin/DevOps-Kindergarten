@@ -33,8 +33,6 @@ const GoStepButton = () => {
       progressRate: Math.floor(((clearSlideNumber + 1) / slideCount) * 100),
     };
 
-    console.log('progressObject', progressObject);
-
     await putUserLectureProgressAPI(userId, progressObject);
   // eslint-disable-next-line max-len
   }, [clearSlideNumber, currentLectureId, currentSlideNumber, dispatch, isLogin, slideCount, userId]);
