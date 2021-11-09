@@ -2,7 +2,7 @@ import React from 'react';
 import SliderItem from '../slider/SliderItem';
 
 export const lectureNumber = 2;
-export const Title = '기초 리눅스 명령어';
+export const Title = 'CI / CD 배우기';
 
 // API 되면 체크포인트 true로
 export const Checkpoints = [
