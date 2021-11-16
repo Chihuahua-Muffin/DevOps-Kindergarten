@@ -62,7 +62,7 @@ const Terminal = () => {
 
   useEffect(() => {
     // 소켓 생성 및 연결
-    const socket = io('http://13.124.116.53:3000', {
+    const socket = io(process.env.NEXT_PUBLIC_DEV_SOCKET_SERVER_URL, {
       transports: ['websocket', 'polling'],
     });
 
@@ -72,8 +72,8 @@ const Terminal = () => {
       socketClient.current = socket;
     });
 
+    // 채팅 메세지 메소드
     socket.on('chat message', (res) => {
-      console.log('chat message res\n', res);
       xtermRef.current.terminal.write(res);
     });
 
@@ -82,36 +82,12 @@ const Terminal = () => {
     };
   }, []);
 
-  // const onClickButton = () => {
-  //   const res = socketClient.current.emit('chat message', 'ls');
-  //   console.log('res', res);
-  // };
-
   const options = {
     rows: 13,
   };
 
   return (
     <>
-      {/* <button type="button" onClick={onClickButton}>
-        Button
-      </button>
-      <div>
-        buffer:
-        {buffer}
-      </div>
-      <div>
-        {chatMessage
-          ? (
-            <div>
-              {splitChatMessage.map((line) => <div>{line}</div>)}
-            </div>
-          ) : (
-            <div>
-              No chat message
-            </div>
-          )}
-      </div> */}
       {islargerthan1100 ? (
         <Container>
           {/* Create a new terminal and set it's ref. */}
