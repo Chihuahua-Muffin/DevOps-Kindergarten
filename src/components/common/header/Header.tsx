@@ -54,7 +54,7 @@ const Header = () => {
       {isHeaderShow && (
         <HeaderContainer as="header">
           <FlexItem>
-            <Link href="/"><Button>🏫 DevOps Kindergarten</Button></Link>
+            <Link href="/roadmap"><Button>🏫 DevOps Kindergarten</Button></Link>
           </FlexItem>
           <Spacer />
           <FlexItem>

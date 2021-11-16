@@ -70,7 +70,8 @@ const DescriptionText = chakra(Text, {
 const LectureCard = ({
   card, lectureNumber,
 }: CardProps) => {
-  const { lectureProgress } = useAppSelector((state) => state.user);
+  const lectureProgress = useAppSelector((state) => state.user.lectureProgress);
+
   return (
     <DictionaryCardContainer>
       <Link href={`/lecture/${lectureNumber}`}>
@@ -88,7 +89,7 @@ const LectureCard = ({
           <EnglishHeadText>{card.title}</EnglishHeadText>
           <DescriptionText>{card.description}</DescriptionText>
           <div>
-            {lectureProgress[lectureNumber].progressRate}
+            {lectureProgress[lectureNumber] ? lectureProgress[lectureNumber].progressRate : '0'}
             %
           </div>
         </DictionaryContentCard>

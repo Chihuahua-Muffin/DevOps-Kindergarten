@@ -25,7 +25,7 @@ export const LOGIN_PAGE_URL = 'signin';
 export const SIGNUP_PAGE_URL = 'signup';
 export const ROADMAP_PAGE_URL = 'roadmap';
 export const LECTURE_PAGE_URL = 'lecture';
-export const LANDING_PAGE_URL = '';
+export const LANDING_PAGE_URL = 'roadmap';
 export const PROFILE_PAGE_URL = 'profile';
 
 // STORAGE

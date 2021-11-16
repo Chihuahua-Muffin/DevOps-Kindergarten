@@ -44,8 +44,12 @@ const LectureLayout = ({ children, checkpoints, title, lectureNumber }: LayoutPr
   // 현재 진행도에 따라 슬라이드를 넘겨주는 로직
   useEffect(() => {
     dispatch(reset());
-    const { count } = lectureProgress[lectureNumber];
-    dispatch(initialClearAndSlideCount(count));
+    const lectureProgressCount = lectureProgress[lectureNumber];
+    if (!lectureProgressCount) {
+      dispatch(initialClearAndSlideCount(0));
+    } else {
+      dispatch(initialClearAndSlideCount(lectureProgressCount.count));
+    }
 
     return () => {
       dispatch(reset());
