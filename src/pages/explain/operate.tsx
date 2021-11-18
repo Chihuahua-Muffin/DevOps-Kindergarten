@@ -1,5 +1,6 @@
 import React from 'react';
 
+import TableOfContents from '#/components/explain/ExplainTableOfContents';
 import ExplainLayout from '#/components/layouts/Explain';
 
 import ExplainTitle from '#/components/explain/ExplainTitle';
@@ -7,6 +8,7 @@ import ExplainContent from '#/components/explain/ExplainContent';
 
 const OperatePage = () => (
   <>
+    <TableOfContents />
     <ExplainTitle id="operate">Operate</ExplainTitle>
     <ExplainContent>
       OPERATE?
