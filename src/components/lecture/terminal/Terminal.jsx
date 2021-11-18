@@ -28,7 +28,7 @@ const Terminal = () => {
   const onData = (string) => {
     const code = string.charCodeAt(0);
 
-    console.log('code', code);
+    // console.log('code', code);
 
     // 한글 입력 시
     if (code >= 0x1100 && code <= 0x11FF) return;
@@ -45,6 +45,7 @@ const Terminal = () => {
 
     // 엔터
     if (code === 13) {
+      buffer.split('').forEach(() => xtermRef.current.terminal.write('\b \b'));
       socketClient.current.emit(EMIT_CHAT_MESSAGE, buffer.trim());
       setBuffer('');
       return;
@@ -68,8 +69,8 @@ const Terminal = () => {
     });
 
     // 채팅 메세지 메소드
-    socket.on(EMIT_CHAT_MESSAGE, (res) => {
-      xtermRef.current.terminal.write(res);
+    socket.on(EMIT_CHAT_MESSAGE, (message) => {
+      xtermRef.current.terminal.write(message);
     });
 
     return () => {
