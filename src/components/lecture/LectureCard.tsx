@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Box,
   chakra,
@@ -8,6 +8,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import LectureCardTag from './LectureCardTag';
+import LectureProgress from './LectureProgress';
 import type { Card } from '#/components/lecture/contents/types';
 import { useAppSelector } from '#/hooks/useRedux';
 
@@ -33,11 +34,13 @@ const DictionaryContentCard = chakra(Box, {
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
+    rowGap: '10px',
     padding: '10px',
     width: '350px',
     height: '350px',
     textAlign: 'center',
-    boxShadow: '0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)',
+    boxShadow: 'rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px',
+    borderRadius: '20px',
     transition: 'transform .3s ease',
     '&:hover': {
       cursor: 'pointer',
@@ -53,29 +56,63 @@ const ImageBox = chakra(Box, {
   },
 });
 
-const EnglishHeadText = chakra(Text, {
+const TitleText = chakra(Text, {
   baseStyle: {
-    fontFamily: 'Song Myung',
-    fontSize: '30px',
+    fontSize: '25px',
+    fontWeight: 'bold',
     lineHeight: '25px',
   },
 });
 
 const DescriptionText = chakra(Text, {
   baseStyle: {
-    fontSize: '12px',
+    fontSize: '16px',
+    width: '270px',
+  },
+});
+
+const BackContainer = chakra(Box, {
+  baseStyle: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'column',
+    backgroundColor: 'rgba(0, 0, 0, 0.7)',
+    position: 'absolute',
+    borderRadius: '20px',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+  },
+});
+
+const BackTitleText = chakra(Text, {
+  baseStyle: {
+    fontSize: '30px',
+    fontWeight: 'bold',
+    color: 'white',
   },
 });
 
 const LectureCard = ({
   card, lectureNumber,
 }: CardProps) => {
+  const [hover, setHover] = useState<boolean>(false);
   const lectureProgress = useAppSelector((state) => state.user.lectureProgress);
+
+  const onHoverCard = () => {
+    setHover(true);
+  };
+
+  const onLeaveCard = () => {
+    setHover(false);
+  };
 
   return (
     <DictionaryCardContainer>
       <Link href={`/lecture/${lectureNumber}`}>
-        <DictionaryContentCard>
+        <DictionaryContentCard onMouseEnter={onHoverCard} onMouseLeave={onLeaveCard}>
           <ImageBox>
             <Image
               src={`/${card.image}`}
@@ -83,18 +120,23 @@ const LectureCard = ({
               draggable={false}
               width={200}
               height={200}
-              objectFit="contain"
+              objectFit="cover"
             />
           </ImageBox>
-          <EnglishHeadText>{card.title}</EnglishHeadText>
+          <TitleText>{card.title}</TitleText>
           <DescriptionText>{card.description}</DescriptionText>
-          <div>
-            {lectureProgress[lectureNumber] ? lectureProgress[lectureNumber].progressRate : '0'}
-            %
-          </div>
+          <LectureProgress
+            progress={lectureProgress[lectureNumber]
+              ? lectureProgress[lectureNumber]?.progressRate : 0}
+          />
+          {hover ? (
+            <BackContainer>
+              <BackTitleText>관련 태그</BackTitleText>
+              <LectureCardTag tags={card.tags} />
+            </BackContainer>
+          ) : ''}
         </DictionaryContentCard>
       </Link>
-      <LectureCardTag tags={card.tags} />
     </DictionaryCardContainer>
   );
 };
