@@ -14,16 +14,18 @@ const TagContainer = chakra(Box, {
     display: 'flex',
     justifyContent: 'center',
     flexWrap: 'wrap',
+    backgroundColor: 'rgb(255, 255, 255)',
     margin: '20px',
-    width: '350px',
+    width: '300px',
+    borderRadius: '20px',
   },
 });
 
 const Tag = chakra(Box, {
   baseStyle: {
     display: 'flex',
-    backgroundColor: '#eeeeee',
-    fontSize: '12px',
+    fontSize: '18px',
+    fontWeight: 'bold',
     padding: '4px',
     margin: '4px',
   },
@@ -33,8 +35,8 @@ const LectureCardTag = ({ tags }: CardTagProps) => (
   <TagContainer>
     {tags.map((tag) => (
       <Tag key={tag}>
-        <Text color="teal.600" fontWeight="bold">#</Text>
-        <Text color="teal.400">{tag}</Text>
+        <Text>#</Text>
+        <Text>{tag}</Text>
       </Tag>
     ))}
   </TagContainer>
