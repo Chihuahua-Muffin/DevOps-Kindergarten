@@ -30,7 +30,7 @@ const ProgressText = chakra(Text, {
     position: 'absolute',
     left: '50%',
     transform: 'translateX(-50%)',
-    zIndex: 10,
+    zIndex: 5,
     fontWeight: 'bold',
   },
 });
@@ -40,11 +40,11 @@ const LectureProgress = ({ progress }: CardTagProps) => (
     <ProgressText
       color={progress > 60 ? 'white' : 'black'}
     >
-      {progress}
-      %
+      {`${progress}%`}
     </ProgressText>
     <Progress
       value={progress}
+      colorScheme={progress === 100 ? 'green' : 'blue'}
       isAnimated
       hasStripe
     />

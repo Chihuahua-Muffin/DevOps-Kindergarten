@@ -14,7 +14,6 @@ const TagContainer = chakra(Box, {
     display: 'flex',
     justifyContent: 'center',
     flexWrap: 'wrap',
-    backgroundColor: 'rgb(255, 255, 255)',
     margin: '20px',
     width: '300px',
     borderRadius: '20px',
@@ -23,10 +22,12 @@ const TagContainer = chakra(Box, {
 
 const Tag = chakra(Box, {
   baseStyle: {
+    backgroundColor: 'gray.100',
+    borderRadius: '5px',
     display: 'flex',
-    fontSize: '18px',
+    fontSize: '16px',
     fontWeight: 'bold',
-    padding: '4px',
+    padding: '10px',
     margin: '4px',
   },
 });
