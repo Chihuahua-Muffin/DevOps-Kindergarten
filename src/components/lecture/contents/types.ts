@@ -1,5 +1,6 @@
 export interface Checkpoint {
   name: string;
+  commands: string[];
 }
 
 export interface Card {

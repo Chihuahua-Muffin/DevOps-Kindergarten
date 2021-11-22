@@ -1,10 +1,11 @@
-import React, { useRef, useEffect, useState } from 'react';
-// import { Terminal } from 'xterm';
+import React, { useRef, useEffect } from 'react';
 import { XTerm } from 'xterm-for-react';
 import { io } from 'socket.io-client';
 import { chakra, Box, useMediaQuery } from '@chakra-ui/react';
-// import { AttachAddon } from 'xterm-addon-attach';
+
 import { MIN_WIDTH_1100 } from '#/constants';
+import { onChangeBuffer, clearCommand } from '#/redux/ducks/lecture';
+import { useAppDispatch, useAppSelector } from '#/hooks/useRedux';
 
 const EMIT_CHAT_MESSAGE = 'chat message';
 
@@ -20,10 +21,15 @@ const Container = chakra(Box, {
 });
 
 const Terminal = () => {
+  const dispatch = useAppDispatch();
+  const {
+    terminalBuffer,
+    currentCommands,
+    commandCount,
+  } = useAppSelector((state) => state.lecture);
   const xtermRef = useRef(null);
   const socketClient = useRef(null);
   const [islargerthan1100] = useMediaQuery(MIN_WIDTH_1100);
-  const [buffer, setBuffer] = useState('');
 
   const onData = (string) => {
     const code = string.charCodeAt(0);
@@ -37,22 +43,26 @@ const Terminal = () => {
 
     // 백 스페이스
     if (code === 127) {
-      if (!buffer) return;
-      setBuffer(buffer.slice(0, -1));
+      if (!terminalBuffer) return;
+      dispatch(onChangeBuffer(terminalBuffer.slice(0, -1)));
       xtermRef.current.terminal.write('\b \b');
       return;
     }
 
     // 엔터
     if (code === 13) {
-      buffer.split('').forEach(() => xtermRef.current.terminal.write('\b \b'));
-      socketClient.current.emit(EMIT_CHAT_MESSAGE, buffer.trim());
-      setBuffer('');
+      if (currentCommands[commandCount] === terminalBuffer) {
+        dispatch(clearCommand());
+      }
+
+      terminalBuffer.split('').forEach(() => xtermRef.current.terminal.write('\b \b'));
+      socketClient.current.emit(EMIT_CHAT_MESSAGE, terminalBuffer.trim());
+      dispatch(onChangeBuffer(''));
       return;
     }
 
     // 나머지 string 입력 [buffer, socket]
-    setBuffer((prevState) => prevState + string);
+    dispatch(onChangeBuffer(terminalBuffer + string));
     xtermRef.current.terminal.write(string);
   };
 
@@ -75,8 +85,9 @@ const Terminal = () => {
 
     return () => {
       socketClient.current.close();
+      dispatch(onChangeBuffer(''));
     };
-  }, []);
+  }, [dispatch]);
 
   const options = {
     rows: 13,
