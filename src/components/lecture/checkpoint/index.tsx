@@ -5,8 +5,9 @@ import { Text, chakra, useMediaQuery } from '@chakra-ui/react';
 
 import { useAppSelector, useAppDispatch } from '#/hooks/useRedux';
 import type { Checkpoint } from '#/components/lecture/contents/types';
-import { changeSlideNumber } from '#/redux/ducks/lecture';
+import { changeSlideNumber, changeCommandList } from '#/redux/ducks/lecture';
 import { MIN_WIDTH_1100 } from '#/constants';
+import CommandList from './CommandList';
 
 const OptionalText = chakra(Text, {
   baseStyle: {
@@ -54,7 +55,7 @@ const useStyles = makeStyles({
 
 const CheckpointList = ({ checkpoints }: { checkpoints: Checkpoint[] }) => {
   const [islargerthan1100] = useMediaQuery(MIN_WIDTH_1100);
-  const { clearSlideNumber, currentSlideNumber } = useAppSelector(
+  const { clearSlideNumber, currentSlideNumber, currentCommandsList } = useAppSelector(
     (state) => state.lecture,
   );
   const dispatch = useAppDispatch();
@@ -62,6 +63,7 @@ const CheckpointList = ({ checkpoints }: { checkpoints: Checkpoint[] }) => {
 
   const onClickButton = (step: number) => () => {
     dispatch(changeSlideNumber(step));
+    dispatch(changeCommandList(currentCommandsList[step]));
   };
 
   return (
@@ -92,6 +94,7 @@ const CheckpointList = ({ checkpoints }: { checkpoints: Checkpoint[] }) => {
           >
             <StepLabel>{islargerthan1100 ? checkpoint.name : ''}</StepLabel>
           </StepButton>
+          <CommandList commands={checkpoint.commands} />
         </Step>
       ))}
     </Stepper>

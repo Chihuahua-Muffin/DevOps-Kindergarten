@@ -6,7 +6,7 @@ import Sidebar from '#/components/lecture/sidebar/Sidebar';
 import type { Checkpoint } from '#/components/lecture/contents/types';
 import { MIN_WIDTH_1100 } from '#/constants';
 import { useAppDispatch, useAppSelector } from '#/hooks/useRedux';
-import { initialClearAndSlideCount, reset } from '#/redux/ducks/lecture';
+import { initialClearAndSlideCount, reset, initialCommandList, changeCommandList } from '#/redux/ducks/lecture';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -54,7 +54,12 @@ const LectureLayout = ({ children, checkpoints, title, lectureNumber }: LayoutPr
     return () => {
       dispatch(reset());
     };
-  }, [dispatch, lectureNumber, lectureProgress]);
+  }, [checkpoints, dispatch, lectureNumber, lectureProgress]);
+
+  useEffect(() => {
+    dispatch(initialCommandList(checkpoints.map((i) => i.commands)));
+    dispatch(changeCommandList(checkpoints[0].commands));
+  }, [checkpoints, dispatch]);
 
   return (
     <>

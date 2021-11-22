@@ -4,13 +4,14 @@ import SliderItem from '../slider/SliderItem';
 export const lectureNumber = 2;
 export const Title = 'CI / CD 배우기';
 
-// API 되면 체크포인트 true로
 export const Checkpoints = [
   {
     name: '체크포인트1',
+    commands: [],
   },
   {
     name: '체크포인트2',
+    commands: [],
   },
 ];
 

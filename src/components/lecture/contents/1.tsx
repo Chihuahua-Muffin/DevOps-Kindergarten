@@ -14,19 +14,22 @@ const SLIDE2_TITLE = '폴더 이동하기';
 const SLIDE3_TITLE = '문서 편집기 열기';
 const SLIDE4_TITLE = '현재 폴더의 파일목록 확인하기';
 
-// API 되면 체크포인트 true로
 export const Checkpoints = [
   {
     name: SLIDE1_TITLE,
+    commands: ['mkdir temp', 'ls'],
   },
   {
     name: SLIDE2_TITLE,
+    commands: ['hi'],
   },
   {
     name: SLIDE3_TITLE,
+    commands: ['hello'],
   },
   {
     name: SLIDE4_TITLE,
+    commands: ['hi there'],
   },
 ];
 
