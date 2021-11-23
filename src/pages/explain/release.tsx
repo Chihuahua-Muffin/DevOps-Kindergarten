@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React from 'react';
 
 import TableOfContents from '#/components/explain/ExplainTableOfContents';
@@ -5,6 +6,7 @@ import ExplainLayout from '#/components/layouts/Explain';
 
 import ExplainTitle from '#/components/explain/ExplainTitle';
 import ExplainContent from '#/components/explain/ExplainContent';
+import ExplainTool from '#/components/explain/ExplainTool';
 
 const ReleasePage = () => (
   <>
@@ -20,8 +22,7 @@ const ReleasePage = () => (
       titleHref="https://www.jenkins.io/"
       explaination={(
         <>
-          젠킨스(Jenkins)는 소프트웨어 개발 시 지속적 통합(continuous integration) 서비스를 제공하는 툴입니다. 
-          다수의 개발자들이 하나의 프로그램을 개발할 때 버전 충돌을 방지하기 위해 각자 작업한 내용을 공유 영역에 있는 Git등의 저장소에 빈번히 업로드함으로써 지속적 통합이 가능하도록 해 줍니다.
+          젠킨스(Jenkins)는 소프트웨어 개발 시 지속적 통합(continuous integration) 서비스를 제공하는 툴입니다. 다수의 개발자들이 하나의 프로그램을 개발할 때 버전 충돌을 방지하기 위해 각자 작업한 내용을 공유 영역에 있는 Git등의 저장소에 빈번히 업로드함으로써 지속적 통합이 가능하도록 해 줍니다.
         </>
       )}
       features={['정기적인 빌드 자동화', '동시에 여러 프로젝트 빌드 가능', '다양한 플러그인으로 기능 확장', '코딩 룰 체크 및 정적분석']}
