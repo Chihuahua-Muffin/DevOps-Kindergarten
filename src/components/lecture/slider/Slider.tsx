@@ -5,6 +5,7 @@ import { chakra, Box, useToast } from '@chakra-ui/react';
 import Slider from 'react-slick';
 import { useAppSelector } from '#/hooks/useRedux';
 import GoStepButton from '#/components/lecture/goStepButton';
+import CommandListPopover from '#/components/lecture/commandListPopover';
 import { TOAST_STATUS_SUCCESS, TOAST_DURATION } from '#/constants';
 
 const SliderContainer = chakra(Box, {
@@ -71,6 +72,7 @@ const Container = ({ children }: { children: React.ReactNode }) => {
         {children}
       </Slider>
       <GoStepButton />
+      <CommandListPopover />
     </SliderContainer>
   );
 };

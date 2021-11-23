@@ -44,7 +44,7 @@ const GoStepButton = () => {
     if (clearSlideNumber !== currentSlideNumber) return;
     if (currentCommands.length !== commandCount) {
       toast({
-        title: '명령어를 더 입력해주세요',
+        title: '요구사항을 확인해주세요',
         status: TOAST_STATUS_INFO,
         duration: TOAST_DURATION,
         isClosable: true,
@@ -88,8 +88,9 @@ const GoStepButton = () => {
   ) : (
     <>
       <Tooltip
-        label={isClear ? '모든 요구사항을 만족했습니다!' : `모든 요구사항을 만족했나요? ${commandCount}/${currentCommands.length}`}
+        label={isClear ? '모든 요구사항을 만족했습니다! 클릭해서 다음 단계로 넘어가세요!' : `모든 요구사항을 만족했나요? ${commandCount}/${currentCommands.length}`}
         placement="left"
+        width="max-content"
         closeOnClick={false}
         isOpen={isClear || isHover}
       >
