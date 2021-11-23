@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { useRef, useEffect } from 'react';
 import { XTerm } from 'xterm-for-react';
 import { io } from 'socket.io-client';
