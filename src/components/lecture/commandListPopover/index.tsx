@@ -90,7 +90,7 @@ const CommandListPopover = () => {
         )}
         <PopoverBody>
           {currentCommands.map((command, index) => (
-            <>
+            <div key={command}>
               {isClearAllCommand || (index === commandCount) ? (
                 <CodeBox bg="gray.800">
                   {`$ ${command}`}
@@ -100,7 +100,7 @@ const CommandListPopover = () => {
                   {`$ ${command}`}
                 </CodeBox>
               )}
-            </>
+            </div>
           ))}
         </PopoverBody>
       </PopoverContent>
