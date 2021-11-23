@@ -94,7 +94,7 @@ const CheckpointList = ({ checkpoints }: { checkpoints: Checkpoint[] }) => {
           >
             <StepLabel>{islargerthan1100 ? checkpoint.name : ''}</StepLabel>
           </StepButton>
-          <CommandList commands={checkpoint.commands} />
+          {islargerthan1100 && <CommandList commands={checkpoint.commands} />}
         </Step>
       ))}
     </Stepper>
