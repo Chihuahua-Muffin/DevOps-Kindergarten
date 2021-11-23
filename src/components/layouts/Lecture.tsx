@@ -56,6 +56,7 @@ const LectureLayout = ({ children, checkpoints, title, lectureNumber }: LayoutPr
     };
   }, [checkpoints, dispatch, lectureNumber, lectureProgress]);
 
+  // 커맨드 리스트를 변경하는 로직
   useEffect(() => {
     dispatch(initialCommandList(checkpoints.map((i) => i.commands)));
     dispatch(changeCommandList(checkpoints[0].commands));

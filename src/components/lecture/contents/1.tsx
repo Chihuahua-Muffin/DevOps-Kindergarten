@@ -21,7 +21,7 @@ export const Checkpoints = [
   },
   {
     name: SLIDE2_TITLE,
-    commands: ['hi'],
+    commands: ['hi', 'hello', 'step'],
   },
   {
     name: SLIDE3_TITLE,
