@@ -5,6 +5,7 @@ import ExplainLayout from '#/components/layouts/Explain';
 
 import ExplainTitle from '#/components/explain/ExplainTitle';
 import ExplainContent from '#/components/explain/ExplainContent';
+import ExplainTool from '#/components/explain/ExplainTool';
 
 const BuildPage = () => (
   <>
@@ -21,6 +22,7 @@ const BuildPage = () => (
       titleHref="https://gradle.org/"
       explaination={(
         <>
+          {/* eslint-disable-next-line max-len */}
           Gradle은 그루비를 이용한 빌드 자동화 시스템입니다. Groovy와 유사한 도메인 언어를 채용하였으며, 현재 안드로이드 앱을 만드는데 필요한 안드로이드 스튜디오의 공식 빌드 시스템이기도 합니다. Java, C/C++, 파이썬 등과 같은 여러 가지 언어를 지원하고 있습니다.
         </>
       )}
@@ -32,6 +34,7 @@ const BuildPage = () => (
       titleHref="https://maven.apache.org/"
       explaination={(
         <>
+          {/* eslint-disable-next-line max-len */}
           아파치 메이븐(Apache Maven)은 자바용 프로젝트 관리 도구입니다. 프로젝트 빌드(컴파일, 테스트, 패키징), 배포, 문서 등에 대한 일관된 표준과 업무를 수행하는데 필요한 다양한 기능을 제공합니다.
         </>
       )}
