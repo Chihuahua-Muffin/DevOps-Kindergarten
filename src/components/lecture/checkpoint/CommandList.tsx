@@ -8,7 +8,7 @@ const Container = chakra(Box, {
     display: 'flex',
     flexDirection: 'column',
     rowGap: '5px',
-    margin: '10px 0 0 10px',
+    margin: '10px 0 10px 10px',
   },
 });
 
@@ -16,9 +16,10 @@ const Command = chakra(Box, {
   baseStyle: {
     position: 'relative',
     // backgroundColor: 'gray.800',
-    color: 'gray.700',
+    color: 'gray.500',
     borderRadius: '5px',
-    fontSize: '16px',
+    fontSize: '14px',
+    fontWeight: '300',
     overflowX: 'auto',
     overflowY: 'hidden',
   },
