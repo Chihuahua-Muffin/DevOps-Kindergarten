@@ -12,7 +12,8 @@ import { initialUserLectureProgress } from '#/redux/ducks/user';
 import { getUserLectureProgressAPI } from '#/lib/api/user';
 import { REFRESH_ASYNC_FULFILLED, REFRESH_ASYNC_REJECTED } from '#/redux/ducks/auth/actions';
 
-axios.defaults.baseURL = process.env.NEXT_PUBLIC_DEV_SERVER_URL;
+// axios.defaults.baseURL = process.env.NEXT_PUBLIC_DEV_SERVER_URL;
+axios.defaults.baseURL = 'http://localhost:8080';
 axios.defaults.withCredentials = true; // 토큰 쿠키 받기
 
 // 모든 페이지에 적용되는 컴포넌트
