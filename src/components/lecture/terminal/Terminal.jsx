@@ -1,4 +1,4 @@
-/* eslint-disable no-console */
+/* eslint-disable no-console, max-len */
 import React, { useRef, useEffect, useState } from 'react';
 import { XTerm } from 'xterm-for-react';
 import { io } from 'socket.io-client';
@@ -24,16 +24,14 @@ const Container = chakra(Box, {
 
 const Terminal = () => {
   const [connectError, setConnectError] = useState(false);
-  const dispatch = useAppDispatch();
+  const [islargerthan1100] = useMediaQuery(MIN_WIDTH_1100);
   const toast = useToast();
-  const {
-    terminalBuffer,
-    currentCommands,
-    commandCount,
-  } = useAppSelector((state) => state.lecture);
   const xtermRef = useRef(null);
   const socketClient = useRef(null);
-  const [islargerthan1100] = useMediaQuery(MIN_WIDTH_1100);
+
+  const dispatch = useAppDispatch();
+  const { terminalBuffer, currentCommands, commandCount } = useAppSelector((state) => state.lecture);
+  const { userIP } = useAppSelector((state) => state.user);
 
   const onData = (string) => {
     const code = string.charCodeAt(0);
@@ -83,27 +81,29 @@ const Terminal = () => {
   };
 
   useEffect(() => {
-    // 소켓 생성 및 연결
-    const socket = io(process.env.NEXT_PUBLIC_DEV_SOCKET_SERVER_URL, {
-      transports: ['websocket', 'polling'],
-    });
+    if (userIP) {
+      // 소켓 생성 및 연결
+      const socket = io(userIP, {
+        transports: ['websocket', 'polling'],
+      });
 
-    // 연결 완료 했을 때
-    socket.on('connect', () => {
-      console.log('연결 완료', socket.id);
-      setConnectError(false);
-      socketClient.current = socket;
-    });
+      // 연결 완료 했을 때
+      socket.on('connect', () => {
+        console.log('연결 완료', socket.id);
+        setConnectError(false);
+        socketClient.current = socket;
+      });
 
-    socket.on('connect_error', () => {
-      console.log('연결 실패');
-      setConnectError(true);
-    });
+      socket.on('connect_error', () => {
+        console.log('연결 실패');
+        setConnectError(true);
+      });
 
-    // 채팅 메세지 메소드
-    socket.on(EMIT_CHAT_MESSAGE, (message) => {
-      xtermRef.current.terminal.write(message);
-    });
+      // 채팅 메세지 메소드
+      socket.on(EMIT_CHAT_MESSAGE, (message) => {
+        xtermRef.current.terminal.write(message);
+      });
+    }
 
     return () => {
       if (socketClient.current) {
@@ -111,7 +111,7 @@ const Terminal = () => {
       }
       dispatch(onChangeBuffer(''));
     };
-  }, [dispatch]);
+  }, [dispatch, toast, userIP]);
 
   const options = {
     rows: 13,

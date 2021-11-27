@@ -1,8 +1,13 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import type { LectureProgress } from '#/types/user';
 
 const SLICE_NAME = 'user';
+
+interface InitialStateProps {
+  lectureProgress: { [lectureNumber: number]: LectureProgress }; // 클리어 한 슬라이드의 개수
+  userIP: string;
+}
 
 const LECTURE_PROGRESS_INIT = {
   count: 0,
@@ -10,11 +15,12 @@ const LECTURE_PROGRESS_INIT = {
   progressRate: 0,
 };
 
-const initialState: { lectureProgress: { [lectureNumber: number]: LectureProgress } } = {
+const initialState: InitialStateProps = {
   lectureProgress: {
     1: LECTURE_PROGRESS_INIT,
     2: LECTURE_PROGRESS_INIT,
-  }, // 클리어 한 슬라이드의 개수
+  },
+  userIP: '',
 };
 
 export const userSlice = createSlice({
@@ -25,12 +31,16 @@ export const userSlice = createSlice({
     initialUserLectureProgress: (state, action) => {
       state.lectureProgress = action.payload;
     },
+    setUserIP: (state, action: PayloadAction<string>) => {
+      state.userIP = action.payload;
+    },
   },
 });
 
 export const {
   initial,
   initialUserLectureProgress,
+  setUserIP,
 } = userSlice.actions;
 
 export default userSlice.reducer;

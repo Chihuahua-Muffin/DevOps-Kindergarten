@@ -10,7 +10,7 @@ import type { ReactElement, ReactNode } from 'react';
 import type { AppProps } from 'next/app';
 import type { NextPage } from 'next';
 
-import store from '#/redux/store';
+import store, { wrapper } from '#/redux/store';
 import chakraTheme from '#/styles/chakraTheme';
 import muiTheme from '#/styles/muiTheme';
 
@@ -56,4 +56,4 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
 //   // return { sub } = accessToken;
 // };
 
-export default MyApp;
+export default wrapper.withRedux(MyApp);

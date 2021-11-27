@@ -75,16 +75,7 @@ export const logoutAsync = createAsyncThunk(
 export const authSlice = createSlice({
   name: SLICE_NAME,
   initialState,
-  // '리듀서' 필드를 사용하면 리듀서를 정의하고 관련 액션을 생성할 수 있습니다.
   reducers: {
-    // login: (state, action: PayloadAction<string>) => {
-    //   state.isLogin = true;
-    //   state.username = action.payload;
-    // },
-    // logout: (state) => {
-    //   state.isLogin = false;
-    //   state.username = '';
-    // },
   },
   extraReducers: (builder) => {
     builder
@@ -108,7 +99,5 @@ export const authSlice = createSlice({
       });
   },
 });
-
-// export const { logout } = authSlice.actions;
 
 export default authSlice.reducer;
