@@ -10,3 +10,5 @@ export const putUserLectureProgressAPI = (
   id: number,
   object: LectureProgress,
 ) => axios.put(`/api/user/${id}/lecture`, object);
+
+export const getUserIpAPI = (id: number) => axios.get(`/api/user/${id}/ip`);
