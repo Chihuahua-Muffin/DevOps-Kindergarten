@@ -1,14 +1,15 @@
 /* eslint-disable no-console */
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { XTerm } from 'xterm-for-react';
 import { io } from 'socket.io-client';
-import { chakra, Box, useMediaQuery } from '@chakra-ui/react';
+import { chakra, Box, useMediaQuery, useToast } from '@chakra-ui/react';
 
 import { MIN_WIDTH_1100 } from '#/constants';
 import { onChangeBuffer, clearCommand } from '#/redux/ducks/lecture';
 import { useAppDispatch, useAppSelector } from '#/hooks/useRedux';
 
 const EMIT_CHAT_MESSAGE = 'chat message';
+const TOAST_ID = 'error-toast';
 
 const Container = chakra(Box, {
   baseStyle: {
@@ -22,7 +23,9 @@ const Container = chakra(Box, {
 });
 
 const Terminal = () => {
+  const [connectError, setConnectError] = useState(false);
   const dispatch = useAppDispatch();
+  const toast = useToast();
   const {
     terminalBuffer,
     currentCommands,
@@ -67,6 +70,18 @@ const Terminal = () => {
     xtermRef.current.terminal.write(string);
   };
 
+  const onErrorData = () => {
+    if (!toast.isActive(TOAST_ID)) {
+      toast({
+        id: TOAST_ID,
+        title: '서버 연결에 실패했습니다.',
+        duration: 3000,
+        status: 'error',
+        isClosable: true,
+      });
+    }
+  };
+
   useEffect(() => {
     // 소켓 생성 및 연결
     const socket = io(process.env.NEXT_PUBLIC_DEV_SOCKET_SERVER_URL, {
@@ -75,8 +90,14 @@ const Terminal = () => {
 
     // 연결 완료 했을 때
     socket.on('connect', () => {
-      console.log('연결완료', socket.id);
+      console.log('연결 완료', socket.id);
+      setConnectError(false);
       socketClient.current = socket;
+    });
+
+    socket.on('connect_error', () => {
+      console.log('연결 실패');
+      setConnectError(true);
     });
 
     // 채팅 메세지 메소드
@@ -85,7 +106,9 @@ const Terminal = () => {
     });
 
     return () => {
-      socketClient.current.close();
+      if (socketClient.current) {
+        socketClient.current.close();
+      }
       dispatch(onChangeBuffer(''));
     };
   }, [dispatch]);
@@ -100,7 +123,7 @@ const Terminal = () => {
       left={islargerthan1100 ? '300px' : '70px'}
     >
       {/* Create a new terminal and set it's ref. */}
-      <XTerm options={options} ref={xtermRef} onData={onData} />
+      <XTerm options={options} ref={xtermRef} onData={!connectError ? onData : onErrorData} />
     </Container>
   );
 };
