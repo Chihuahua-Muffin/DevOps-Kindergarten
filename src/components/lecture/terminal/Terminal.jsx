@@ -2,7 +2,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { XTerm } from 'xterm-for-react';
 import { io } from 'socket.io-client';
-import { chakra, Box, useMediaQuery, useToast } from '@chakra-ui/react';
+import { chakra, Box, useMediaQuery, useToast, Spinner as ChakraSpinner } from '@chakra-ui/react';
 
 import { MIN_WIDTH_1100 } from '#/constants';
 import { onChangeBuffer, clearCommand } from '#/redux/ducks/lecture';
@@ -19,6 +19,28 @@ const Container = chakra(Box, {
     color: 'white',
     backgroundColor: 'black',
     paddingLeft: '10px',
+  },
+});
+
+const Spinner = chakra(ChakraSpinner, {
+  baseStyle: {
+    position: 'absolute',
+    bottom: '50%',
+    zIndex: 100,
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    color: 'white',
+  },
+});
+
+const Wait = chakra(Box, {
+  baseStyle: {
+    position: 'absolute',
+    bottom: '30%',
+    zIndex: 100,
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    color: 'white',
   },
 });
 
@@ -123,6 +145,12 @@ const Terminal = () => {
       left={islargerthan1100 ? '300px' : '70px'}
     >
       {/* Create a new terminal and set it's ref. */}
+      {!userIP ? (
+        <>
+          <Wait>인스턴스 생성중입니다. 3분정도 소요됩니다.</Wait>
+          <Spinner size="xl" />
+        </>
+      ) : ''}
       <XTerm options={options} ref={xtermRef} onData={!connectError ? onData : onErrorData} />
     </Container>
   );
