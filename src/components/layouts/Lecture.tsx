@@ -6,7 +6,7 @@ import Sidebar from '#/components/lecture/sidebar/Sidebar';
 import type { Checkpoint } from '#/components/lecture/contents/types';
 import { MIN_WIDTH_1100 } from '#/constants';
 import { useAppDispatch, useAppSelector } from '#/hooks/useRedux';
-import { initialClearAndSlideCount, reset, initialCommandList, changeCommandList, goOneStep } from '#/redux/ducks/lecture';
+import { initialClearAndSlideCount, reset, initialCommandList, changeCommandList/* , goOneStep */ } from '#/redux/ducks/lecture';
 import { getUserIpAPI } from '#/lib/api/user';
 import { setUserIP } from '#/redux/ducks/user';
 
@@ -74,9 +74,9 @@ const LectureLayout = ({ children, checkpoints, title, lectureNumber }: LayoutPr
     })();
   }, [dispatch, isLogin, userId]);
 
-  const onClickButton = () => {
-    dispatch(goOneStep());
-  };
+  // const onClickButton = () => {
+  //   dispatch(goOneStep());
+  // };
 
   return (
     // isLogin ? (
@@ -84,12 +84,12 @@ const LectureLayout = ({ children, checkpoints, title, lectureNumber }: LayoutPr
       <Sidebar title={title} checkpoints={checkpoints} />
       {isLargerThan1100 ? (
         <LectureContainer>
-          <button type="button" onClick={onClickButton}>다음</button>
+          {/* <button type="button" onClick={onClickButton}>다음</button> */}
           {children}
         </LectureContainer>
       ) : (
         <SmallLectureContainer>
-          <button type="button" onClick={onClickButton}>다음</button>
+          {/* <button type="button" onClick={onClickButton}>다음</button> */}
           {children}
         </SmallLectureContainer>
       )}
