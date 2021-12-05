@@ -59,7 +59,6 @@ const Slide2 = () => (
   <SliderItem>
     <SliderItemHeader>{SLIDE2_TITLE}</SliderItemHeader>
     <SliderItemContentText>
-      <Code>docker run -i -t --name my_mysql -e MYSQL_ROOT_PASSWORD="root" -d mysql:5.7.30</Code>
       다음 명령어를 통해 MySQL:5.7.30 버전의 이미지를 설치 후, 바로 컨테이너로 만들어 실행하겠습니다.
       <CodeBox text={'docker run -i -t --name my_mysql -e MYSQL_ROOT_PASSWORD="root" -d mysql:5.7.30'} />
       <img
@@ -72,7 +71,8 @@ const Slide2 = () => (
       <Code>-i -t</Code>는 실행한 컨테이너를 유저의 명령을 기다리며 실행을 유지하겠다는 의미입니다.<br />
       <Code>-t -t</Code>옵션을 넣지 않는다면, 컨테이너는 남아있는 명령이 없으므로 실행과 동시에 종료될 것입니다.<br />
       <Code>--name db001</Code>은 이 컨테이너를 my_mysql로 부르겠다는 의미입니다. 이제 우리는 db001로 해당 컨테이너를 호출할 수 잇습니다.<br />
-      <Code>-e MYSQL_ROOT_PASSWORD="root"</Code>는 해당 mysql 컨테이너의 비밀번호를 root로 설정하겠다는 의미입니다. -e는 환경 변수 설정을 의미합니다.<br />
+      {/* eslint-disable-next-line react/jsx-curly-brace-presence */}
+      <Code>{'-e MYSQL_ROOT_PASSWORD="root"'}</Code>는 해당 mysql 컨테이너의 비밀번호를 root로 설정하겠다는 의미입니다. -e는 환경 변수 설정을 의미합니다.<br />
       <Code>-d</Code>는 백그라운드로 실행하겠다는 의미입니다. 이는 백신 프로그램이 보이지는 않지만, 컴퓨터에서 항상 실행되고 있는 것처럼 우리 눈에는 보이지 않는 곳에서 실행시키겠다는 의미입니다.<br />
     </SliderItemContentText>
     <SliderItemContentText>
