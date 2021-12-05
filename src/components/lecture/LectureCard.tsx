@@ -4,7 +4,6 @@ import {
   chakra,
   Text,
 } from '@chakra-ui/react';
-import Image from 'next/image';
 import Link from 'next/link';
 
 import LectureCardTag from './LectureCardTag';
@@ -51,6 +50,9 @@ const DictionaryContentCard = chakra(Box, {
 
 const ImageBox = chakra(Box, {
   baseStyle: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
     width: '150px',
     height: '150px',
   },
@@ -115,13 +117,11 @@ const LectureCard = ({
       <Link href={`/lecture/${lectureNumber}`}>
         <DictionaryContentCard onMouseEnter={onHoverCard} onMouseLeave={onLeaveCard}>
           <ImageBox>
-            <Image
+            <img
               src={`/${card.image}`}
-              alt="Lecture Image"
+              alt="Lecture logo"
               draggable={false}
-              width={200}
-              height={200}
-              objectFit="cover"
+              style={{ objectFit: 'contain' }}
             />
           </ImageBox>
           <TitleText>{card.title}</TitleText>
