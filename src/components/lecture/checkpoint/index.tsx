@@ -85,7 +85,6 @@ const CheckpointList = ({ checkpoints }: { checkpoints: Checkpoint[] }) => {
                 ? classes.activeStepButton
                 : classes.stepButton
             }
-            // eslint-disable-next-line max-len
             optional={
               (islargerthan1100 && (index === clearSlideNumber)) ? (
                 <OptionalText>현재 체크포인트입니다.</OptionalText>
